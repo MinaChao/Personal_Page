@@ -244,7 +244,6 @@ header .nav_box .navbar a:hover {
   -o-object-fit: cover;
      object-fit: cover;
   vertical-align: middle;
-  display: block;
 }
 .portfolio .right_box .uiux ul li .card .back, .portfolio .right_box .web ul li .card .back, .portfolio .right_box .illustration ul li .card .back, .portfolio .right_box .clip ul li .card .back, .portfolio .right_box .product ul li .card .back {
   background-color: #fff;
