@@ -35,18 +35,19 @@ body {
     width: 100%;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    vertical-align: middle;
-    display: block;
-}
+
 
 body {
     background-color: #FBFBFB;
 }
 
 header {
+    img {
+        max-width: 100%;
+        height: auto;
+        vertical-align: middle;
+        display: block;
+    }
     position: fixed;
     z-index: 5;
     top: 4%;
