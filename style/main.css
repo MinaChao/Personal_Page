@@ -322,6 +322,3 @@ header .nav_box .navbar a:hover {
   -o-object-position: 50% 50%;
      object-position: 50% 50%;
 }
-.portfolio .right_box .disable {
-  display: none;
-}
