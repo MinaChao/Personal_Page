@@ -5,60 +5,118 @@ html(lang="zh-TW")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Chao Chien I
         link(rel="stylesheet", href="style/main.css")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js") 
+        script(type="module", src="js/all.js")    
+        
     body
-        header
-            .left_box 
-                a(href="#")
-                    img(src="img/mina.png")
-            nav.nav_box
-                ul.navbar
-                    li
-                        a(href="#") Home
-                    li |
-                    li
-                        a(href="#") About
-                    li |
-                    li
-                        a(href="#") Portfolio
-        main.disable 
-            section.portfolio 
-                .left_box
-                    ul.nav_tag 
+        #app
+            header
+                .left_box 
+                    a(href="#")
+                        img(src="img/mina.png")
+                nav.nav_box
+                    ul.navbar
                         li
-                            a UIUX設計
+                            a(href="#") Home
+                        li |
                         li
-                            a 網頁設計
-                        li 
-                            a 插畫繪製
-                        li 
-                            a 影片剪輯
-                .right_box 
-                    ul 
+                            a(href="#") About
+                        li |
                         li
-                            .photo
-                                img(src="img/Frame 53.png")
-                                p 文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字述文字描述文字描述文字描述文字描述文字描述文字述文字描述文字描述文字描述文字描述文字描述文字述文字描述文字描述文字描述文字描述文字描述
-                            h3 作品名
-                        li
-                            .photo
-                                img(src="img/Frame 53.png")
-                                p 文字描述
-                            h3 作品名
-                        li
-                            .photo
-                                img(src="img/Frame 53.png")
-                                p 文字描述
-                            h3 作品名
-                        li
-                            .photo
-                                img(src="img/Frame 53.png")
-                                p 文字描述
-                            h3 作品名
-                        li
-                            .photo
-                                img(src="img/Frame 53.png")
-                                p 文字描述
-                            h3 作品名
-        section.about                  
-                            
+                            a(href="#") Portfolio
+            main
+                section.portfolio 
+                    .left_box
+                        ul.nav_tag 
+                            li
+                                a UIUX設計
+                            li
+                                a 網頁設計
+                            li 
+                                a 插畫繪製
+                            li 
+                                a 影片剪輯
+                            li 
+                                a 產品設計
+                    .right_box
+                        .uiux
+                            ul 
+                                li(v-for="uiux_data in uiuxData")
+                                    .card
+                                        a(v-bind:href='uiux_data.Link')
+                                        .front 
+                                            img(v-bind:src='uiux_data.img')
+                                        .back 
+                                            p {{uiux_data.Introduction}}
+                                            span {{uiux_data.tag}}
+                                    h3 {{uiux_data.Name}}
+                        .web.disable 
+                            ul 
+                                li
+                                    .card
+                                        a(href="#")
+                                        .front 
+                                            img(src="img/Frame 53.png")
+                                        .back 
+                                            p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
+                                            span UIUX設計、Logo設計、HTML、CSS 
+                                    h3 作品名
+                                li
+                                    .card
+                                        a(href="#")
+                                        .front 
+                                            img(src="img/Frame 53.png")
+                                        .back 
+                                            p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
+                                            span UIUX設計、Logo設計、HTML、CSS 
+                                    h3 作品名
+                                li
+                                    .card
+                                        a(href="#")
+                                        .front 
+                                            img(src="img/Frame 53.png")
+                                        .back 
+                                            p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
+                                            span UIUX設計、Logo設計、HTML、CSS 
+                                    h3 作品名
+                        .illustration.disable
+                            .waterfall 
+                                .item 
+                                    img(src="img/pic1.jpg")
+                                .item 
+                                    img(src="img/pic2.jpg")
+                                .item 
+                                    img(src="img/pic3.jpg")
+                                .item 
+                                    img(src="img/pic4.jpg")
+                                .item 
+                                    img(src="img/pic5.png")
+                                .item 
+                                    img(src="img/pic6.jpg")
+                                .item 
+                                    img(src="img/pic7.jpg")
+                        .clip.disable
+                            ul 
+                                li
+                                    .card
+                                        a(href="#")
+                                        .front 
+                                            img(src="img/Frame 53.png")
+                                        .back 
+                                            p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
+                                            span UIUX設計、Logo設計、HTML、CSS
+                                    h3 作品名
+                        .product.disable 
+                            ul 
+                                li
+                                    .card
+                                        a(href="#")
+                                        .front 
+                                            img(src="img/Frame 53.png")
+                                        .back 
+                                            p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
+                                            span UIUX設計、Logo設計、HTML、CSS
+                                    h3 作品名
+            section.about                  
+                           
         
