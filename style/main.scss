@@ -1,31 +1,30 @@
 @mixin size($w, $h) {
     width: $w;
     height: $h;
-}
-
-@mixin ab-center {
+  }
+  
+  @mixin ab-center {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-@mixin flexbox-centering {
+  }
+  
+  @mixin flexbox-centering {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-* {
+  }
+  
+  * {
     font-family: 微軟正黑體;
     // border: solid 1px red;
     list-style: none;
     position: relative;
     letter-spacing: 1px;
-}
-
-html,
-body {
+  }
+  
+  html, body {
     overflow-x: hidden;
     font-size: 100%;
     margin: 0;
@@ -33,21 +32,13 @@ body {
     box-sizing: border-box;
     height: 100%;
     width: 100%;
-}
-
-
-
-body {
+  }
+  
+  body {
     background-color: #FBFBFB;
-}
-
-header {
-    img {
-        max-width: 100%;
-        height: auto;
-        vertical-align: middle;
-        display: block;
-    }
+  }
+  
+  header {
     position: fixed;
     z-index: 5;
     top: 4%;
@@ -62,233 +53,237 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+  
+    img {
+      max-width: 100%;
+      height: auto;
+      vertical-align: middle;
+      display: block;
+    }
+  
     .left_box {
+      display: flex;
+      align-items: center;
+      height: 100%;
+  
+      a {
         display: flex;
         align-items: center;
+        overflow: hidden;
         height: 100%;
-
-        a {
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            height: 100%;
-            object-fit: contain;
-
-            img {
-                height: 70%;
-                border-radius: 50%;
-                object-fit: contain;
-                border: solid 2px #d7d7d7;
-            }
-
-            &:hover {
-                opacity: 0.7;
-            }
+        object-fit: contain;
+  
+        img {
+          height: 70%;
+          border-radius: 50%;
+          object-fit: contain;
+          border: solid 2px #d7d7d7;
         }
+  
+        &:hover {
+          opacity: 0.7;
+        }
+      }
     }
-
+  
     .nav_box {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      user-select: none;
+  
+      .navbar {
         height: 100%;
         display: flex;
+        justify-content: space-around;
         align-items: center;
-        user-select: none;
-
-        .navbar {
-            height: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 0;
-            margin: 0;
-
-            li {
-                margin: 0 0.5rem;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                color: #000;
-            }
-
-            a {
-                padding: 0.5rem 1rem;
-                border-radius: 72px;
-                text-decoration: none;
-                color: #000;
-
-                &:hover {
-                    background-color: #e9e9e9;
-                }
-            }
+        padding: 0;
+        margin: 0;
+  
+        li {
+          margin: 0 0.5rem;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          color: #000;
         }
+  
+        a {
+          padding: 0.5rem 1rem;
+          border-radius: 72px;
+          text-decoration: none;
+          color: #000;
+  
+          &:hover {
+            background-color: #e9e9e9;
+          }
+        }
+      }
     }
-
-}
-
-.portfolio {
+  }
+  
+  .portfolio {
     margin: 132px auto;
     max-width: 1400px;
-
+  
     .left_box {
-        width: 10%;
-        position: fixed;
-        z-index: 1;
-
-        .nav_tag {
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            padding: 0;
+      width: 10%;
+      position: fixed;
+      z-index: 1;
+  
+      .nav_tag {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+      }
+  
+      li {
+        margin-bottom: 2rem;
+        border-radius: 70px;
+        overflow: hidden;
+        background-color: #fff;
+        box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+  
+        a {
+          display: block;
+          padding: 1rem;
+          text-align: center;
+  
+          &:hover {
+            background-color: #e9e9e9;
+          }
         }
-
-        li {
-            margin-bottom: 2rem;
-            border-radius: 70px;
-            overflow: hidden;
-            background-color: #fff;
-            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
-
-            a {
-                display: block;
-                padding: 1rem;
-                text-align: center;
-
-                &:hover {
-                    background-color: #e9e9e9;
-                }
-            }
-        }
+      }
     }
-
-    .right_box{
-        width: 86%;
+  
+    .right_box {
+      width: 86%;
+      display: flex;
+      justify-content: center;
+      top: 0;
+      left: 14%;
+  
+      .uiux, .web, .illustration, .clip, .product {
+        width: 100%;
+        ul {
+          margin: 0;
+          padding: 0;
+          width: 100%;
+          font-size: 0;
+  
+          li {
+            display: inline-block;
+            width: 40%;
+            padding-left: 4rem;
+            margin-bottom: 2.4rem;
+            font-size: 18px;
+            vertical-align: top;
+  
+            h3 {
+              margin: 0.8rem;
+            }
+  
+            .card {
+              @include size(100%, 280px);
+              margin: auto;
+              position: relative;
+              perspective: 150rem;
+              vertical-align: top;
+  
+              a {
+                position: absolute;
+                @include size(100%, 100%);
+                z-index: 1;
+                border-radius: 8px;
+              }
+  
+              .front, .back {
+                @include size(100%, 100%);
+                position: absolute;
+                box-sizing: border-box;
+                transition: all 0.5s;
+                backface-visibility: hidden;
+                border: 1px solid #dbdbdb;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+              }
+  
+              .front {
+                background-color: #fff;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  vertical-align: middle;
+                }
+              }
+  
+              .back {
+                background-color: #fff;
+                transform: rotateY(-180deg);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                p, span {
+                  padding: 1rem 2rem;
+                }
+                span {
+                  font-size: 0.8rem;
+                  color: #949494;
+                }
+              }
+  
+              &:hover {
+                .front {
+                  transform: rotateY(180deg);
+                }
+  
+                .back {
+                  transform: rotateY(0);
+                }
+              }
+            }
+          }
+        }
+      }
+  
+      .illustration {
+        width: 100%;
         display: flex;
         justify-content: center;
         top: 0;
-        left: 14%;
-
-        .uiux,.web,.illustration,.clip,.product{
-            width: 100%;
-            ul {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                font-size: 0;
-    
-                li {
-                    display: inline-block;
-                    width: 40%;
-                    padding-left: 4rem;
-                    margin-bottom: 2.4rem;
-                    font-size: 18px;
-                    vertical-align: top;
-    
-                    h3 {
-                        margin: 0.8rem;
-                    }
-    
-                    .card {
-                        @include size(100%, 280px);
-                        margin: auto;
-                        position: relative;
-                        perspective: 150rem;
-                        vertical-align: top;
-    
-                        a {
-                            position: absolute;
-                            @include size(100%, 100%);
-                            z-index: 1;
-                            border-radius: 8px;
-                        }
-    
-                        .front,
-                        .back {
-                            @include size(100%, 100%);
-                            position: absolute;
-                            box-sizing: border-box;
-                            transition: all 0.5s;
-                            backface-visibility: hidden;
-                            border: 1px solid #dbdbdb;
-                            border-radius: 8px;
-                            overflow: hidden;
-                            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
-                        }
-    
-                        .front {
-                            background-color: #fff;
-                            img {
-                                width: 100%;   
-                                height: 100%;   
-                                object-fit:cover;   
-                                vertical-align: middle;
-                            }
-                        }  
-                        .back {
-                            background-color: #fff;
-                            transform: rotateY(-180deg);
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: flex-start;
-                            p,span {
-                                padding: 1rem 2rem;
-                            }
-                            span{
-                                font-size: 0.8rem;
-                                color: #949494;
-                            }
-                        }
-    
-                        &:hover {
-                            .front {
-                                transform: rotateY(180deg);
-                            }
-    
-                            .back {
-                                transform: rotateY(0);
-                            }
-                        }
-                    }
-    
-                }
+        left: 0;
+  
+        .waterfall {
+          width: 100%;
+          margin: 0px auto;
+          column-count: 3;
+          /*欄數*/
+          column-gap: 10px;
+          /*每欄間隔*/
+  
+          .item {
+            padding: 5px;
+            box-sizing: border-box;
+            margin: 0 auto 5px;
+            break-inside: avoid;
+            transition: all 0.5s;
+            /*定義頁面、列或是區域發生中斷時的元素表現方式。 auto->元素中斷、acoid->元素不中斷*/
+            &:hover {
+              transform: scale(1.2);
+              z-index: 2;
             }
-
-        }
-        .illustration {
+          }
+  
+          img {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            top: 0;
-            left: 0;
-    
-            .waterfall {
-                width: 100%;
-                margin: 0px auto;
-                column-count: 3;
-                /*欄數*/
-                column-gap: 10px;
-    
-                /*每欄間隔*/
-                .item {
-                    padding: 5px;
-                    box-sizing: border-box;
-                    margin: 0 auto 5px;
-                    break-inside: avoid;
-                    transition: all 0.5s;
-                    /*定義頁面、列或是區域發生中斷時的元素表現方式。 auto->元素中斷、acoid->元素不中斷*/
-                    &:hover{
-                        transform: scale(1.2);
-                        z-index: 2;
-                    }
-                }
-    
-                img {
-                    width: 100%;
-                    object-fit: cover;
-                    object-position: 50% 50%;
-                }
-            }
+            object-fit: cover;
+            object-position: 50% 50%;
+          }
         }
+      }
     }
-
-}
+  }

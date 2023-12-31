@@ -6,8 +6,7 @@
   letter-spacing: 1px;
 }
 
-html,
-body {
+html, body {
   overflow-x: hidden;
   font-size: 100%;
   margin: 0;
@@ -213,12 +212,7 @@ header .nav_box .navbar a:hover {
   z-index: 1;
   border-radius: 8px;
 }
-.portfolio .right_box .uiux ul li .card .front,
-.portfolio .right_box .uiux ul li .card .back, .portfolio .right_box .web ul li .card .front,
-.portfolio .right_box .web ul li .card .back, .portfolio .right_box .illustration ul li .card .front,
-.portfolio .right_box .illustration ul li .card .back, .portfolio .right_box .clip ul li .card .front,
-.portfolio .right_box .clip ul li .card .back, .portfolio .right_box .product ul li .card .front,
-.portfolio .right_box .product ul li .card .back {
+.portfolio .right_box .uiux ul li .card .front, .portfolio .right_box .uiux ul li .card .back, .portfolio .right_box .web ul li .card .front, .portfolio .right_box .web ul li .card .back, .portfolio .right_box .illustration ul li .card .front, .portfolio .right_box .illustration ul li .card .back, .portfolio .right_box .clip ul li .card .front, .portfolio .right_box .clip ul li .card .back, .portfolio .right_box .product ul li .card .front, .portfolio .right_box .product ul li .card .back {
   width: 100%;
   height: 100%;
   position: absolute;
