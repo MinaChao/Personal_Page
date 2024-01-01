@@ -168,7 +168,7 @@
       top: 0;
       left: 14%;
   
-      .uiux, .web, .illustration, .clip, .product {
+      .uiux, .web, .illustration, .clip, .product,.other {
         width: 100%;
         ul {
           margin: 0;
@@ -275,6 +275,17 @@
             margin: 0 auto 5px;
             break-inside: avoid;
             transition: all 0.5s;
+            .tag{
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              margin: 1rem;
+              padding: 0.2rem 0.5rem;
+              font-size: 0.8rem;
+              background-color: rgb(220, 224, 255);
+              border: solid 1px #fff;
+              border-radius: 16px;
+            }
             /*定義頁面、列或是區域發生中斷時的元素表現方式。 auto->元素中斷、acoid->元素不中斷*/
             &:hover {
               transform: scale(1.2);

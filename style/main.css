@@ -183,16 +183,16 @@ header .nav_box .navbar a:hover {
   top: 0;
   left: 14%;
 }
-.portfolio .right_box .uiux, .portfolio .right_box .web, .portfolio .right_box .illustration, .portfolio .right_box .clip, .portfolio .right_box .product {
+.portfolio .right_box .uiux, .portfolio .right_box .web, .portfolio .right_box .illustration, .portfolio .right_box .clip, .portfolio .right_box .product, .portfolio .right_box .other {
   width: 100%;
 }
-.portfolio .right_box .uiux ul, .portfolio .right_box .web ul, .portfolio .right_box .illustration ul, .portfolio .right_box .clip ul, .portfolio .right_box .product ul {
+.portfolio .right_box .uiux ul, .portfolio .right_box .web ul, .portfolio .right_box .illustration ul, .portfolio .right_box .clip ul, .portfolio .right_box .product ul, .portfolio .right_box .other ul {
   margin: 0;
   padding: 0;
   width: 100%;
   font-size: 0;
 }
-.portfolio .right_box .uiux ul li, .portfolio .right_box .web ul li, .portfolio .right_box .illustration ul li, .portfolio .right_box .clip ul li, .portfolio .right_box .product ul li {
+.portfolio .right_box .uiux ul li, .portfolio .right_box .web ul li, .portfolio .right_box .illustration ul li, .portfolio .right_box .clip ul li, .portfolio .right_box .product ul li, .portfolio .right_box .other ul li {
   display: inline-block;
   width: 40%;
   padding-left: 4rem;
@@ -200,10 +200,10 @@ header .nav_box .navbar a:hover {
   font-size: 18px;
   vertical-align: top;
 }
-.portfolio .right_box .uiux ul li h3, .portfolio .right_box .web ul li h3, .portfolio .right_box .illustration ul li h3, .portfolio .right_box .clip ul li h3, .portfolio .right_box .product ul li h3 {
+.portfolio .right_box .uiux ul li h3, .portfolio .right_box .web ul li h3, .portfolio .right_box .illustration ul li h3, .portfolio .right_box .clip ul li h3, .portfolio .right_box .product ul li h3, .portfolio .right_box .other ul li h3 {
   margin: 0.8rem;
 }
-.portfolio .right_box .uiux ul li .card, .portfolio .right_box .web ul li .card, .portfolio .right_box .illustration ul li .card, .portfolio .right_box .clip ul li .card, .portfolio .right_box .product ul li .card {
+.portfolio .right_box .uiux ul li .card, .portfolio .right_box .web ul li .card, .portfolio .right_box .illustration ul li .card, .portfolio .right_box .clip ul li .card, .portfolio .right_box .product ul li .card, .portfolio .right_box .other ul li .card {
   width: 100%;
   height: 280px;
   margin: auto;
@@ -212,14 +212,14 @@ header .nav_box .navbar a:hover {
           perspective: 150rem;
   vertical-align: top;
 }
-.portfolio .right_box .uiux ul li .card a, .portfolio .right_box .web ul li .card a, .portfolio .right_box .illustration ul li .card a, .portfolio .right_box .clip ul li .card a, .portfolio .right_box .product ul li .card a {
+.portfolio .right_box .uiux ul li .card a, .portfolio .right_box .web ul li .card a, .portfolio .right_box .illustration ul li .card a, .portfolio .right_box .clip ul li .card a, .portfolio .right_box .product ul li .card a, .portfolio .right_box .other ul li .card a {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 1;
   border-radius: 8px;
 }
-.portfolio .right_box .uiux ul li .card .front, .portfolio .right_box .uiux ul li .card .back, .portfolio .right_box .web ul li .card .front, .portfolio .right_box .web ul li .card .back, .portfolio .right_box .illustration ul li .card .front, .portfolio .right_box .illustration ul li .card .back, .portfolio .right_box .clip ul li .card .front, .portfolio .right_box .clip ul li .card .back, .portfolio .right_box .product ul li .card .front, .portfolio .right_box .product ul li .card .back {
+.portfolio .right_box .uiux ul li .card .front, .portfolio .right_box .uiux ul li .card .back, .portfolio .right_box .web ul li .card .front, .portfolio .right_box .web ul li .card .back, .portfolio .right_box .illustration ul li .card .front, .portfolio .right_box .illustration ul li .card .back, .portfolio .right_box .clip ul li .card .front, .portfolio .right_box .clip ul li .card .back, .portfolio .right_box .product ul li .card .front, .portfolio .right_box .product ul li .card .back, .portfolio .right_box .other ul li .card .front, .portfolio .right_box .other ul li .card .back {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -235,17 +235,17 @@ header .nav_box .navbar a:hover {
   -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
 }
-.portfolio .right_box .uiux ul li .card .front, .portfolio .right_box .web ul li .card .front, .portfolio .right_box .illustration ul li .card .front, .portfolio .right_box .clip ul li .card .front, .portfolio .right_box .product ul li .card .front {
+.portfolio .right_box .uiux ul li .card .front, .portfolio .right_box .web ul li .card .front, .portfolio .right_box .illustration ul li .card .front, .portfolio .right_box .clip ul li .card .front, .portfolio .right_box .product ul li .card .front, .portfolio .right_box .other ul li .card .front {
   background-color: #fff;
 }
-.portfolio .right_box .uiux ul li .card .front img, .portfolio .right_box .web ul li .card .front img, .portfolio .right_box .illustration ul li .card .front img, .portfolio .right_box .clip ul li .card .front img, .portfolio .right_box .product ul li .card .front img {
+.portfolio .right_box .uiux ul li .card .front img, .portfolio .right_box .web ul li .card .front img, .portfolio .right_box .illustration ul li .card .front img, .portfolio .right_box .clip ul li .card .front img, .portfolio .right_box .product ul li .card .front img, .portfolio .right_box .other ul li .card .front img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   vertical-align: middle;
 }
-.portfolio .right_box .uiux ul li .card .back, .portfolio .right_box .web ul li .card .back, .portfolio .right_box .illustration ul li .card .back, .portfolio .right_box .clip ul li .card .back, .portfolio .right_box .product ul li .card .back {
+.portfolio .right_box .uiux ul li .card .back, .portfolio .right_box .web ul li .card .back, .portfolio .right_box .illustration ul li .card .back, .portfolio .right_box .clip ul li .card .back, .portfolio .right_box .product ul li .card .back, .portfolio .right_box .other ul li .card .back {
   background-color: #fff;
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
@@ -263,18 +263,18 @@ header .nav_box .navbar a:hover {
       -ms-flex-align: start;
           align-items: flex-start;
 }
-.portfolio .right_box .uiux ul li .card .back p, .portfolio .right_box .uiux ul li .card .back span, .portfolio .right_box .web ul li .card .back p, .portfolio .right_box .web ul li .card .back span, .portfolio .right_box .illustration ul li .card .back p, .portfolio .right_box .illustration ul li .card .back span, .portfolio .right_box .clip ul li .card .back p, .portfolio .right_box .clip ul li .card .back span, .portfolio .right_box .product ul li .card .back p, .portfolio .right_box .product ul li .card .back span {
+.portfolio .right_box .uiux ul li .card .back p, .portfolio .right_box .uiux ul li .card .back span, .portfolio .right_box .web ul li .card .back p, .portfolio .right_box .web ul li .card .back span, .portfolio .right_box .illustration ul li .card .back p, .portfolio .right_box .illustration ul li .card .back span, .portfolio .right_box .clip ul li .card .back p, .portfolio .right_box .clip ul li .card .back span, .portfolio .right_box .product ul li .card .back p, .portfolio .right_box .product ul li .card .back span, .portfolio .right_box .other ul li .card .back p, .portfolio .right_box .other ul li .card .back span {
   padding: 1rem 2rem;
 }
-.portfolio .right_box .uiux ul li .card .back span, .portfolio .right_box .web ul li .card .back span, .portfolio .right_box .illustration ul li .card .back span, .portfolio .right_box .clip ul li .card .back span, .portfolio .right_box .product ul li .card .back span {
+.portfolio .right_box .uiux ul li .card .back span, .portfolio .right_box .web ul li .card .back span, .portfolio .right_box .illustration ul li .card .back span, .portfolio .right_box .clip ul li .card .back span, .portfolio .right_box .product ul li .card .back span, .portfolio .right_box .other ul li .card .back span {
   font-size: 0.8rem;
   color: #949494;
 }
-.portfolio .right_box .uiux ul li .card:hover .front, .portfolio .right_box .web ul li .card:hover .front, .portfolio .right_box .illustration ul li .card:hover .front, .portfolio .right_box .clip ul li .card:hover .front, .portfolio .right_box .product ul li .card:hover .front {
+.portfolio .right_box .uiux ul li .card:hover .front, .portfolio .right_box .web ul li .card:hover .front, .portfolio .right_box .illustration ul li .card:hover .front, .portfolio .right_box .clip ul li .card:hover .front, .portfolio .right_box .product ul li .card:hover .front, .portfolio .right_box .other ul li .card:hover .front {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
 }
-.portfolio .right_box .uiux ul li .card:hover .back, .portfolio .right_box .web ul li .card:hover .back, .portfolio .right_box .illustration ul li .card:hover .back, .portfolio .right_box .clip ul li .card:hover .back, .portfolio .right_box .product ul li .card:hover .back {
+.portfolio .right_box .uiux ul li .card:hover .back, .portfolio .right_box .web ul li .card:hover .back, .portfolio .right_box .illustration ul li .card:hover .back, .portfolio .right_box .clip ul li .card:hover .back, .portfolio .right_box .product ul li .card:hover .back, .portfolio .right_box .other ul li .card:hover .back {
   -webkit-transform: rotateY(0);
           transform: rotateY(0);
 }
@@ -312,6 +312,17 @@ header .nav_box .navbar a:hover {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   /*定義頁面、列或是區域發生中斷時的元素表現方式。 auto->元素中斷、acoid->元素不中斷*/
+}
+.portfolio .right_box .illustration .waterfall .item .tag {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 1rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  background-color: rgb(220, 224, 255);
+  border: solid 1px #fff;
+  border-radius: 16px;
 }
 .portfolio .right_box .illustration .waterfall .item:hover {
   -webkit-transform: scale(1.2);
