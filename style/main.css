@@ -49,7 +49,6 @@ header img {
   max-width: 100%;
   height: auto;
   vertical-align: middle;
-  display: block;
 }
 header .left_box {
   display: -webkit-box;
@@ -335,4 +334,74 @@ header .nav_box .navbar a:hover {
      object-fit: cover;
   -o-object-position: 50% 50%;
      object-position: 50% 50%;
+}
+
+.about .chart {
+  position: absolute;
+  bottom: 0%;
+  right: 20%;
+  height: 360px;
+  width: 360px;
+  overflow: hidden;
+}
+.about .chart canvas {
+  position: absolute;
+  top: -9%;
+}
+.about .card {
+  top: 160px;
+  left: 8%;
+  width: 36%;
+  padding: 1rem 2rem;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+}
+.about .card h3 {
+  margin: 0.8rem 0 0.5rem 0;
+}
+.about .card p {
+  margin: 0 0 1rem 0;
+}
+.about .card .edu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.about .card .edu h4, .about .card .edu h5 {
+  display: inline-block;
+  margin: 0.5rem 0;
+}
+.about .card .skills .skill {
+  display: inline-block;
+  padding: 0.5rem 0.8rem;
+  border: solid 1px #d7d7d7;
+  border-radius: 24px;
+  margin-right: 0.6rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+.about .card .softwares {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 60px;
+}
+.about .card .softwares .software {
+  display: inline-block;
+  border: solid 1px blue;
+  height: 60px;
+  width: 60px;
+  margin-right: 1.2rem;
 }

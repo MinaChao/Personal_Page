@@ -9,8 +9,8 @@ const otherDataUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1TUZOFns9dqe
 
 createApp({
     data() {
-        let portfolio_page=2;
-        let web_page = 3;
+        let portfolio_page=0;
+        let web_page = 1;
         return {
             uiuxData: [],
             webData: [],
@@ -80,7 +80,7 @@ createApp({
                 const resultObjects = this.illustrationData.map((item) => {
                     return {
                         img: item[0],
-                        tag: item[1],
+                        tag: item[1]
                     };
                 });
                 resultObjects.shift();
@@ -92,3 +92,33 @@ createApp({
             });
     }
 }).mount("#app");
+
+var ctx = 'myChart';
+var myChart = new Chart(ctx, {
+    type: 'radar', //圖表類型
+    data: {
+      //標題
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+      datasets: [{
+        label: "", //標籤
+        data: [8, 10, 4, 6, 2], //資料
+        //圖表背景色
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)'
+        ],
+        //圖表外框線色
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)'
+        ],
+        //外框線寬度
+        borderWidth: 2
+      }]
+    },
+    options: {
+      
+    }
+  });

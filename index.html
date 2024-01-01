@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chao Chien I</title>
     <link rel="stylesheet" href="style/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"> </script>
     <script type="module" src="js/all.js"></script>
   </head>
   <body>
     <div id="app">
       <header>
-        <div class="left_box"> <a href="#"><img src="img/mina.png"></a></div>
+        <div class="left_box"><a @click="web_page_change(0)"><img src="img/mina.png"></a></div>
         <nav class="nav_box">
           <ul class="navbar">
             <li><a @click="web_page_change(0)">Home</a></li>
@@ -23,9 +24,9 @@
         </nav>
       </header>
       <main>
-        <section class="portfolio" v-if="web_page === 2"> 
+        <section class="portfolio" v-if="web_page === 2">
           <div class="left_box">
-            <ul class="nav_tag"> 
+            <ul class="nav_tag">
               <li><a @click="portfolio_change(0)">UIUX設計</a></li>
               <li><a @click="portfolio_change(1)">網頁設計</a></li>
               <li><a @click="portfolio_change(2)"> 插畫繪製</a></li>
@@ -36,11 +37,11 @@
           </div>
           <div class="right_box">
             <div class="uiux" v-if="portfolio_page === 0">
-              <ul> 
+              <ul>
                 <li v-for="uiux_data in uiuxData">
                   <div class="card"><a :href="uiux_data.Link" target="_blank"></a>
-                    <div class="front"> <img :src="uiux_data.img"></div>
-                    <div class="back"> 
+                    <div class="front"><img :src="uiux_data.img"></div>
+                    <div class="back">
                       <p>{{uiux_data.Introduction}}</p><span>{{uiux_data.tag}}</span>
                     </div>
                   </div>
@@ -49,11 +50,11 @@
               </ul>
             </div>
             <div class="web" v-else-if="portfolio_page === 1">
-              <ul> 
+              <ul>
                 <li v-for="web_data in webData">
                   <div class="card"><a :href="web_data.Link" target="_blank"></a>
-                    <div class="front"> <img :src="web_data.img"></div>
-                    <div class="back"> 
+                    <div class="front"><img :src="web_data.img"></div>
+                    <div class="back">
                       <p>{{web_data.Introduction}}</p><span>{{web_data.tag}}</span>
                     </div>
                   </div>
@@ -62,18 +63,18 @@
               </ul>
             </div>
             <div class="illustration" v-else-if="portfolio_page === 2">
-              <div class="waterfall"> 
-                <div class="item" v-for="illustration_data in illustrationData"> <img :src="illustration_data.img">
+              <div class="waterfall">
+                <div class="item" v-for="illustration_data in illustrationData"><img :src="illustration_data.img">
                   <div class="tag">{{illustration_data.tag}}</div>
                 </div>
               </div>
             </div>
             <div class="clip" v-else-if="portfolio_page === 3">
-              <ul> 
+              <ul>
                 <li>
                   <div class="card"><a href="#"></a>
-                    <div class="front"> <img src="img/Frame 53.png"></div>
-                    <div class="back"> 
+                    <div class="front"><img src="img/Frame 53.png"></div>
+                    <div class="back">
                       <p>文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例</p><span>UIUX設計、Logo設計、HTML、CSS</span>
                     </div>
                   </div>
@@ -82,11 +83,11 @@
               </ul>
             </div>
             <div class="product" v-else-if="portfolio_page === 4">
-              <ul> 
+              <ul>
                 <li>
                   <div class="card"><a href="#"></a>
-                    <div class="front"> <img src="img/Frame 53.png"></div>
-                    <div class="back"> 
+                    <div class="front"><img src="img/Frame 53.png"></div>
+                    <div class="back">
                       <p>文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例</p><span>UIUX設計、Logo設計、HTML、CSS</span>
                     </div>
                   </div>
@@ -95,11 +96,11 @@
               </ul>
             </div>
             <div class="other" v-else-if="portfolio_page === 5">
-              <ul> 
+              <ul>
                 <li>
                   <div class="card"><a href="#"></a>
-                    <div class="front"> <img src="img/Frame 53.png"></div>
-                    <div class="back"> 
+                    <div class="front"><img src="img/Frame 53.png"></div>
+                    <div class="back">
                       <p>文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例</p><span>UIUX設計、Logo設計、HTML、CSS</span>
                     </div>
                   </div>
@@ -109,10 +110,40 @@
             </div>
           </div>
         </section>
-        <section class="about" v-else-if="web_page === 1"> 
-          <h1>test texttest text   test text   test text   test text            </h1>
+        <section class="about" v-else-if="web_page === 1">
+          <div class="card">
+            <h1>趙千儀 Chao Chien I</h1>
+            <hr>
+            <div class="edu">
+              <h4>國立臺灣科技大學  設計系  畢業</h4>
+              <h5>2019 - 2023</h5>
+            </div>
+            <h3>專長</h3>
+            <div class="skills">
+              <div class="skill">UIUX設計</div>
+              <div class="skill">網頁設計</div>
+              <div class="skill">網頁切版</div>
+              <div class="skill">插畫繪製</div>
+              <div class="skill">影片剪輯</div>
+            </div>
+            <h3>軟體</h3>
+            <div class="softwares">
+              <div class="software"></div>
+              <div class="software"></div>
+              <div class="software"></div>
+              <div class="software"></div>
+              <div class="software"></div>
+            </div>
+            <h3>簡介</h3>
+            <p>Lorem ipsum at eos minima, quibusdam, ut, dignissimos labore a maxime quasi blanditiis voluptas earum laborum sit harum?</p>
+          </div>
+          <div class="chart">
+            <canvas id="myChart" width="360" height="360"></canvas>
+          </div>
         </section>
-        <section class="home" v-else-if="web_page === 0">                 </section>
+        <section class="home" v-else-if="web_page === 0">
+          <h1>HOME PAGE</h1>
+        </section>
       </main>
     </div>
   </body>

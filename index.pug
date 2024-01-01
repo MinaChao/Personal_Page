@@ -5,13 +5,14 @@ html(lang="zh-TW")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Chao Chien I
         link(rel="stylesheet", href="style/main.css")
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js") 
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js") 
         script(type="module", src="js/all.js")
     body
         #app
             header
-                .left_box 
-                    a(href="#")
+                .left_box
+                    a(@click="web_page_change(0)")
                         img(src="img/mina.png")
                 nav.nav_box
                     ul.navbar
@@ -24,9 +25,9 @@ html(lang="zh-TW")
                         li
                             a(@click="web_page_change(2)") Portfolio
             main
-                section.portfolio(v-if="web_page === 2") 
+                section.portfolio(v-if="web_page === 2")
                     .left_box
-                        ul.nav_tag 
+                        ul.nav_tag
                             li
                                 a(@click="portfolio_change(0)") UIUX設計
                             li
@@ -41,67 +42,89 @@ html(lang="zh-TW")
                                 a(@click="portfolio_change(5)")  其他作品
                     .right_box
                         .uiux(v-if="portfolio_page === 0")
-                            ul 
+                            ul
                                 li(v-for="uiux_data in uiuxData")
                                     .card
                                         a(:href='uiux_data.Link' target="_blank")
-                                        .front 
+                                        .front
                                             img(:src='uiux_data.img')
-                                        .back 
+                                        .back
                                             p {{uiux_data.Introduction}}
                                             span {{uiux_data.tag}}
                                     h3 {{uiux_data.Name}}
                         .web(v-else-if="portfolio_page === 1")
-                            ul 
+                            ul
                                 li(v-for="web_data in webData")
                                     .card
                                         a(:href='web_data.Link' target="_blank")
-                                        .front 
+                                        .front
                                             img(:src='web_data.img')
-                                        .back 
+                                        .back
                                             p {{web_data.Introduction}}
                                             span {{web_data.tag}}
                                     h3 {{web_data.Name}}
                         .illustration(v-else-if="portfolio_page === 2")
-                            .waterfall 
-                                .item(v-for="illustration_data in illustrationData") 
+                            .waterfall
+                                .item(v-for="illustration_data in illustrationData")
                                     img(:src="illustration_data.img")
                                     .tag {{illustration_data.tag}}
                         .clip(v-else-if="portfolio_page === 3")
-                            ul 
+                            ul
                                 li
                                     .card
                                         a(href="#")
-                                        .front 
+                                        .front
                                             img(src="img/Frame 53.png")
-                                        .back 
+                                        .back
                                             p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
                                             span UIUX設計、Logo設計、HTML、CSS
                                     h3 作品名
                         .product(v-else-if="portfolio_page === 4")
-                            ul 
+                            ul
                                 li
                                     .card
                                         a(href="#")
-                                        .front 
+                                        .front
                                             img(src="img/Frame 53.png")
-                                        .back 
+                                        .back
                                             p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
                                             span UIUX設計、Logo設計、HTML、CSS
                                     h3 作品名
                         .other(v-else-if="portfolio_page === 5")
-                            ul 
+                            ul
                                 li
                                     .card
                                         a(href="#")
-                                        .front 
+                                        .front
                                             img(src="img/Frame 53.png")
-                                        .back 
+                                        .back
                                             p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
                                             span UIUX設計、Logo設計、HTML、CSS
                                     h3 作品名
-                section.about(v-else-if="web_page === 1") 
-                    h1 test texttest text   test text   test text   test text            
-                section.home(v-else-if="web_page === 0")                  
-                           
-        
+                section.about(v-else-if="web_page === 1")
+                    .card
+                        h1 趙千儀 Chao Chien I
+                        hr
+                        .edu
+                            h4 國立臺灣科技大學  設計系  畢業
+                            h5 2019 - 2023
+                        h3 專長
+                        .skills
+                            .skill UIUX設計
+                            .skill 網頁設計
+                            .skill 網頁切版
+                            .skill 插畫繪製
+                            .skill 影片剪輯
+                        h3 軟體
+                        .softwares
+                            .software
+                            .software
+                            .software
+                            .software
+                            .software
+                        h3 簡介
+                        p Lorem ipsum at eos minima, quibusdam, ut, dignissimos labore a maxime quasi blanditiis voluptas earum laborum sit harum?
+                    .chart
+                        canvas#myChart(width="360" height="360")
+                section.home(v-else-if="web_page === 0")
+                    h1 HOME PAGE
