@@ -16,29 +16,29 @@ html(lang="zh-TW")
                 nav.nav_box
                     ul.navbar
                         li
-                            a(href="#") Home
+                            a(@click="web_page_change(0)") Home
                         li |
                         li
-                            a(href="#") About
+                            a(@click="web_page_change(1)") About
                         li |
                         li
-                            a(href="#") Portfolio
+                            a(@click="web_page_change(2)") Portfolio
             main
-                section.portfolio 
+                section.portfolio(v-if="web_page === 2") 
                     .left_box
                         ul.nav_tag 
                             li
-                                a UIUX設計
+                                a(@click="portfolio_change(0)") UIUX設計
                             li
-                                a 網頁設計
-                            li 
-                                a 插畫繪製
-                            li 
-                                a 影片剪輯
-                            li 
-                                a 產品設計
+                                a(@click="portfolio_change(1)") 網頁設計
+                            li
+                                a(@click="portfolio_change(2)")  插畫繪製
+                            li
+                                a(@click="portfolio_change(3)")  影片剪輯
+                            li
+                                a(@click="portfolio_change(4)")  產品設計
                     .right_box
-                        .uiux
+                        .uiux(v-if="portfolio_page === 0")
                             ul 
                                 li(v-for="uiux_data in uiuxData")
                                     .card
@@ -49,73 +49,57 @@ html(lang="zh-TW")
                                             p {{uiux_data.Introduction}}
                                             span {{uiux_data.tag}}
                                     h3 {{uiux_data.Name}}
-                        //- .web.disable 
-                        //-     ul 
-                        //-         li
-                        //-             .card
-                        //-                 a(href="#")
-                        //-                 .front 
-                        //-                     img(src="img/Frame 53.png")
-                        //-                 .back 
-                        //-                     p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
-                        //-                     span UIUX設計、Logo設計、HTML、CSS 
-                        //-             h3 作品名
-                        //-         li
-                        //-             .card
-                        //-                 a(href="#")
-                        //-                 .front 
-                        //-                     img(src="img/Frame 53.png")
-                        //-                 .back 
-                        //-                     p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
-                        //-                     span UIUX設計、Logo設計、HTML、CSS 
-                        //-             h3 作品名
-                        //-         li
-                        //-             .card
-                        //-                 a(href="#")
-                        //-                 .front 
-                        //-                     img(src="img/Frame 53.png")
-                        //-                 .back 
-                        //-                     p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
-                        //-                     span UIUX設計、Logo設計、HTML、CSS 
-                        //-             h3 作品名
-                        //- .illustration.disable
-                        //-     .waterfall 
-                        //-         .item 
-                        //-             img(src="img/pic1.jpg")
-                        //-         .item 
-                        //-             img(src="img/pic2.jpg")
-                        //-         .item 
-                        //-             img(src="img/pic3.jpg")
-                        //-         .item 
-                        //-             img(src="img/pic4.jpg")
-                        //-         .item 
-                        //-             img(src="img/pic5.png")
-                        //-         .item 
-                        //-             img(src="img/pic6.jpg")
-                        //-         .item 
-                        //-             img(src="img/pic7.jpg")
-                        //- .clip.disable
-                        //-     ul 
-                        //-         li
-                        //-             .card
-                        //-                 a(href="#")
-                        //-                 .front 
-                        //-                     img(src="img/Frame 53.png")
-                        //-                 .back 
-                        //-                     p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
-                        //-                     span UIUX設計、Logo設計、HTML、CSS
-                        //-             h3 作品名
-                        //- .product.disable 
-                        //-     ul 
-                        //-         li
-                        //-             .card
-                        //-                 a(href="#")
-                        //-                 .front 
-                        //-                     img(src="img/Frame 53.png")
-                        //-                 .back 
-                        //-                     p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
-                        //-                     span UIUX設計、Logo設計、HTML、CSS
-                        //-             h3 作品名
-            section.about                  
+                        .web(v-else-if="portfolio_page === 1")
+                            ul 
+                                li(v-for="web_data in webData")
+                                    .card
+                                        a(v-bind:href='web_data.Link')
+                                        .front 
+                                            img(v-bind:src='web_data.img')
+                                        .back 
+                                            p {{web_data.Introduction}}
+                                            span {{web_data.tag}}
+                                    h3 {{web_data.Name}}
+                        .illustration(v-else-if="portfolio_page === 2")
+                            .waterfall 
+                                .item 
+                                    img(src="img/pic1.jpg")
+                                .item 
+                                    img(src="img/pic2.jpg")
+                                .item 
+                                    img(src="img/pic3.jpg")
+                                .item 
+                                    img(src="img/pic4.jpg")
+                                .item 
+                                    img(src="img/pic5.png")
+                                .item 
+                                    img(src="img/pic6.jpg")
+                                .item 
+                                    img(src="img/pic7.jpg")
+                        .clip(v-else-if="portfolio_page === 3")
+                            ul 
+                                li
+                                    .card
+                                        a(href="#")
+                                        .front 
+                                            img(src="img/Frame 53.png")
+                                        .back 
+                                            p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
+                                            span UIUX設計、Logo設計、HTML、CSS
+                                    h3 作品名
+                        .product(v-else-if="portfolio_page === 4")
+                            ul 
+                                li
+                                    .card
+                                        a(href="#")
+                                        .front 
+                                            img(src="img/Frame 53.png")
+                                        .back 
+                                            p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
+                                            span UIUX設計、Logo設計、HTML、CSS
+                                    h3 作品名
+                section.about(v-else-if="web_page === 1") 
+                    h1 test texttest text   test text   test text   test text            
+                section.home(v-else-if="web_page === 0")                  
                            
         

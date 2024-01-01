@@ -8,10 +8,22 @@ const productDataUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1TUZOFns9d
 
 createApp({
     data() {
+        let portfolio_page=0;
+        let web_page = 3;
         return {
             uiuxData: [],
-            webData: []
+            webData: [],
+            portfolio_page,
+            web_page
         };
+    },
+    methods:{
+        portfolio_change(page){
+            this.portfolio_page=page;
+        },
+        web_page_change(page){
+            this.web_page=page;
+        }
     },
     mounted() {
         axios.get(uiuxDataUrl)
@@ -53,6 +65,7 @@ createApp({
                 });
                 resultObjects.shift();
                 console.log(resultObjects);
+                this.webData=resultObjects;
             })
             .catch((error) => {
                 console.error('Error fetching web design data:', error);
