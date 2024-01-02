@@ -336,18 +336,6 @@ header .nav_box .navbar a:hover {
      object-position: 50% 50%;
 }
 
-.about .chart {
-  position: absolute;
-  bottom: 0%;
-  right: 20%;
-  height: 360px;
-  width: 360px;
-  overflow: hidden;
-}
-.about .chart canvas {
-  position: absolute;
-  top: -9%;
-}
 .about .card {
   top: 160px;
   left: 8%;
@@ -404,4 +392,16 @@ header .nav_box .navbar a:hover {
   height: 60px;
   width: 60px;
   margin-right: 1.2rem;
+}
+
+.chart {
+  position: absolute;
+  bottom: 0%;
+  right: 20%;
+  height: 360px;
+  width: 360px;
+}
+.chart canvas {
+  position: absolute;
+  top: -9%;
 }

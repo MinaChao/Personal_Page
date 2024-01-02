@@ -24,7 +24,38 @@
         </nav>
       </header>
       <main>
-        <section class="portfolio" v-if="web_page === 2">
+        <section class="home" v-if="web_page === 0">
+          <h1>HOME PAGE</h1>
+        </section>
+        <section class="about" v-else-if="web_page === 1">
+          <div class="card">
+            <h1>趙千儀 Chao Chien I</h1>
+            <hr>
+            <div class="edu">
+              <h4>國立臺灣科技大學  設計系  畢業</h4>
+              <h5>2019 - 2023</h5>
+            </div>
+            <h3>專長</h3>
+            <div class="skills">
+              <div class="skill">UIUX設計</div>
+              <div class="skill">網頁設計</div>
+              <div class="skill">網頁切版</div>
+              <div class="skill">插畫繪製</div>
+              <div class="skill">影片剪輯</div>
+            </div>
+            <h3>軟體</h3>
+            <div class="softwares">
+              <div class="software"></div>
+              <div class="software"></div>
+              <div class="software"></div>
+              <div class="software"></div>
+              <div class="software"></div>
+            </div>
+            <h3>簡介</h3>
+            <p>Lorem ipsum at eos minima, quibusdam, ut, dignissimos labore a maxime quasi blanditiis voluptas earum laborum sit harum?</p>
+          </div>
+        </section>
+        <section class="portfolio" v-else-if="web_page === 2">
           <div class="left_box">
             <ul class="nav_tag">
               <li><a @click="portfolio_change(0)">UIUX設計</a></li>
@@ -110,40 +141,9 @@
             </div>
           </div>
         </section>
-        <section class="about" v-else-if="web_page === 1">
-          <div class="card">
-            <h1>趙千儀 Chao Chien I</h1>
-            <hr>
-            <div class="edu">
-              <h4>國立臺灣科技大學  設計系  畢業</h4>
-              <h5>2019 - 2023</h5>
-            </div>
-            <h3>專長</h3>
-            <div class="skills">
-              <div class="skill">UIUX設計</div>
-              <div class="skill">網頁設計</div>
-              <div class="skill">網頁切版</div>
-              <div class="skill">插畫繪製</div>
-              <div class="skill">影片剪輯</div>
-            </div>
-            <h3>軟體</h3>
-            <div class="softwares">
-              <div class="software"></div>
-              <div class="software"></div>
-              <div class="software"></div>
-              <div class="software"></div>
-              <div class="software"></div>
-            </div>
-            <h3>簡介</h3>
-            <p>Lorem ipsum at eos minima, quibusdam, ut, dignissimos labore a maxime quasi blanditiis voluptas earum laborum sit harum?</p>
-          </div>
-          <div class="chart">
-            <canvas id="myChart" width="360" height="360"></canvas>
-          </div>
-        </section>
-        <section class="home" v-else-if="web_page === 0">
-          <h1>HOME PAGE</h1>
-        </section>
+        <div class="chart">
+          <canvas id="myChart" v-show="web_page===1" width="360" height="360"></canvas>
+        </div>
       </main>
     </div>
   </body>

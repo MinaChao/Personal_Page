@@ -303,20 +303,6 @@
   }
 
   .about{
-    .chart{
-      position: absolute;
-      bottom: 0%;
-      right: 20%;
-      // transform: translate(-50%,-50%);
-      // border: solid 1px red;
-      height: 360px;
-      width: 360px;
-      overflow: hidden;
-      canvas{
-        position: absolute;
-        top: -9%;
-      }
-    }
     .card{
       top: 160px;
       left: 8%;
@@ -366,3 +352,18 @@
       }
     }
   }
+
+.chart{
+  position: absolute;
+  bottom: 0%;
+  right: 20%;
+  // transform: translate(-50%,-50%);
+  // border: solid 1px red;
+  height: 360px;
+  width: 360px;
+  // overflow: hidden;
+  canvas{
+    position: absolute;
+    top: -9%;
+  }
+}

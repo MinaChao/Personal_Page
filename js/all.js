@@ -9,25 +9,62 @@ const otherDataUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1TUZOFns9dqe
 
 createApp({
     data() {
-        let portfolio_page=0;
-        let web_page = 1;
+        let portfolio_page = 0;
+        let web_page = 0;
         return {
             uiuxData: [],
             webData: [],
             illustrationData: [],
             portfolio_page,
-            web_page
+            web_page,
+            myChart: null
         };
     },
-    methods:{
-        portfolio_change(page){
-            this.portfolio_page=page;
+    methods: {
+        portfolio_change(page) {
+            this.portfolio_page = page;
         },
-        web_page_change(page){
-            this.web_page=page;
+        createChart() {
+            // 获取 canvas 元素
+        var canvas = document.getElementById('myChart');
+
+        // 检查是否存在 canvas 元素
+        if (!canvas) {
+            console.error('Canvas element not found');
+            return;
+        }
+
+        // 获取上下文
+        var ctx = canvas.getContext('2d');
+            // 使用 Chart.js 创建图表
+            this.myChart = new Chart(ctx, {
+                type: 'radar', // 图表类型
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+                    datasets: [{
+                        label: "", // 标签
+                        data: [8, 10, 4, 6, 2],
+                        backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        },
+        web_page_change(page) {
+            this.web_page = page;
+            // console.log(this.web_page);
         }
     },
     mounted() {
+        this.createChart();
         axios.get(uiuxDataUrl)
             .then((response) => {
                 // console.log(response.data.values);
@@ -92,33 +129,3 @@ createApp({
             });
     }
 }).mount("#app");
-
-var ctx = 'myChart';
-var myChart = new Chart(ctx, {
-    type: 'radar', //圖表類型
-    data: {
-      //標題
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
-      datasets: [{
-        label: "", //標籤
-        data: [8, 10, 4, 6, 2], //資料
-        //圖表背景色
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)'
-        ],
-        //圖表外框線色
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)'
-        ],
-        //外框線寬度
-        borderWidth: 2
-      }]
-    },
-    options: {
-      
-    }
-  });
