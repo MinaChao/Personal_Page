@@ -43,11 +43,8 @@ html(lang="zh-TW")
                             .skill 影片剪輯
                         h3 軟體
                         .softwares
-                            .software
-                            .software
-                            .software
-                            .software
-                            .software
+                            .software(v-for="myinfo_data in myinfoData" :key="myinfo_data.id")
+                                .img(:style="{'background-image': 'url(' + myinfo_data.software + ')','background-size': 'cover','background-position': 'center','width': '100%', 'padding-top': '100%'}")
                         h3 簡介
                         p Lorem ipsum at eos minima, quibusdam, ut, dignissimos labore a maxime quasi blanditiis voluptas earum laborum sit harum?
                 section.portfolio(v-else-if="web_page === 2")
@@ -95,36 +92,36 @@ html(lang="zh-TW")
                                     .tag {{illustration_data.tag}}
                         .clip(v-else-if="portfolio_page === 3")
                             ul
-                                li
+                                li(v-for="clip_data in clipData")
                                     .card
-                                        a(href="#")
+                                        a(:href='clip_data.Link' target="_blank")
                                         .front
-                                            img(src="img/Frame 53.png")
+                                            img(:src='clip_data.img')
                                         .back
-                                            p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
-                                            span UIUX設計、Logo設計、HTML、CSS
-                                    h3 作品名
+                                            p {{clip_data.Introduction}}
+                                            span {{clip_data.tag}}
+                                    h3 {{clip_data.Name}}
                         .product(v-else-if="portfolio_page === 4")
                             ul
-                                li
+                                li(v-for="product_data in productData")
                                     .card
-                                        a(href="#")
+                                        a(:href='product_data.Link' target="_blank")
                                         .front
-                                            img(src="img/Frame 53.png")
+                                            img(:src='product_data.img')
                                         .back
-                                            p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
-                                            span UIUX設計、Logo設計、HTML、CSS
-                                    h3 作品名
+                                            p {{product_data.Introduction}}
+                                            span {{product_data.tag}}
+                                    h3 {{product_data.Name}}
                         .other(v-else-if="portfolio_page === 5")
                             ul
-                                li
+                                li(v-for="other_data in otherData")
                                     .card
-                                        a(href="#")
+                                        a(:href='other_data.Link' target="_blank")
                                         .front
-                                            img(src="img/Frame 53.png")
+                                            img(:src='other_data.img')
                                         .back
-                                            p 文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例
-                                            span UIUX設計、Logo設計、HTML、CSS
-                                    h3 作品名
-                .chart
+                                            p {{other_data.Introduction}}
+                                            span {{other_data.tag}}
+                                    h3 {{other_data.Name}}
+                .chart(:class="{ 'chart-z-index-1': web_page === 1, 'chart-z-index-2': web_page === 0 || web_page === 2 }")
                     canvas#myChart(v-show="web_page===1" width="360" height="360")

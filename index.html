@@ -45,11 +45,9 @@
             </div>
             <h3>軟體</h3>
             <div class="softwares">
-              <div class="software"></div>
-              <div class="software"></div>
-              <div class="software"></div>
-              <div class="software"></div>
-              <div class="software"></div>
+              <div class="software" v-for="myinfo_data in myinfoData" :key="myinfo_data.id">
+                <div class="img" :style="{'background-image': 'url(' + myinfo_data.software + ')','background-size': 'cover','background-position': 'center','width': '100%', 'padding-top': '100%'}"></div>
+              </div>
             </div>
             <h3>簡介</h3>
             <p>Lorem ipsum at eos minima, quibusdam, ut, dignissimos labore a maxime quasi blanditiis voluptas earum laborum sit harum?</p>
@@ -102,46 +100,46 @@
             </div>
             <div class="clip" v-else-if="portfolio_page === 3">
               <ul>
-                <li>
-                  <div class="card"><a href="#"></a>
-                    <div class="front"><img src="img/Frame 53.png"></div>
+                <li v-for="clip_data in clipData">
+                  <div class="card"><a :href="clip_data.Link" target="_blank"></a>
+                    <div class="front"><img :src="clip_data.img"></div>
                     <div class="back">
-                      <p>文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例</p><span>UIUX設計、Logo設計、HTML、CSS</span>
+                      <p>{{clip_data.Introduction}}</p><span>{{clip_data.tag}}</span>
                     </div>
                   </div>
-                  <h3>作品名</h3>
+                  <h3>{{clip_data.Name}}</h3>
                 </li>
               </ul>
             </div>
             <div class="product" v-else-if="portfolio_page === 4">
               <ul>
-                <li>
-                  <div class="card"><a href="#"></a>
-                    <div class="front"><img src="img/Frame 53.png"></div>
+                <li v-for="product_data in productData">
+                  <div class="card"><a :href="product_data.Link" target="_blank"></a>
+                    <div class="front"><img :src="product_data.img"></div>
                     <div class="back">
-                      <p>文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例</p><span>UIUX設計、Logo設計、HTML、CSS</span>
+                      <p>{{product_data.Introduction}}</p><span>{{product_data.tag}}</span>
                     </div>
                   </div>
-                  <h3>作品名</h3>
+                  <h3>{{product_data.Name}}</h3>
                 </li>
               </ul>
             </div>
             <div class="other" v-else-if="portfolio_page === 5">
               <ul>
-                <li>
-                  <div class="card"><a href="#"></a>
-                    <div class="front"><img src="img/Frame 53.png"></div>
+                <li v-for="other_data in otherData">
+                  <div class="card"><a :href="other_data.Link" target="_blank"></a>
+                    <div class="front"><img :src="other_data.img"></div>
                     <div class="back">
-                      <p>文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例文字範例</p><span>UIUX設計、Logo設計、HTML、CSS</span>
+                      <p>{{other_data.Introduction}}</p><span>{{other_data.tag}}</span>
                     </div>
                   </div>
-                  <h3>作品名</h3>
+                  <h3>{{other_data.Name}}</h3>
                 </li>
               </ul>
             </div>
           </div>
         </section>
-        <div class="chart">
+        <div class="chart" :class="{ 'chart-z-index-1': web_page === 1, 'chart-z-index-2': web_page === 0 || web_page === 2 }">
           <canvas id="myChart" v-show="web_page===1" width="360" height="360"></canvas>
         </div>
       </main>

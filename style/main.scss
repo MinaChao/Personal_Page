@@ -355,16 +355,22 @@
 
 .chart{
   position: absolute;
-  bottom: 0%;
-  right: 20%;
-  // transform: translate(-50%,-50%);
-  // border: solid 1px red;
-  height: 360px;
-  width: 360px;
-  // overflow: hidden;
+  top: 85%;
+  right:30%;
+  height: 280px;
+  width: 280px;
+  overflow: hidden;
   canvas{
     position: absolute;
-    top: -9%;
+    top: 0;
+    left: 0;
   }
 } 
+.chart-z-index-1 {
+  z-index: 1;
+}
+
+.chart-z-index-2 {
+  z-index: -1;
+}
 
