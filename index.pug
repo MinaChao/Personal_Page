@@ -7,8 +7,10 @@ html(lang="zh-TW")
         link(rel="stylesheet", href="style/main.css")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js") 
+        script(src="https://cdn.jsdelivr.net/npm/tsparticles@1.32.0/tsparticles.min.js") 
         script(type="module", src="js/all.js")
     body
+        #tsparticles
         #app
             header
                 .left_box
@@ -29,22 +31,23 @@ html(lang="zh-TW")
                     h1 HOME PAGE
                 section.about(v-else-if="web_page === 1")
                     .card
-                        h1 趙千儀 Chao Chien I
+                        .title
+                            h1 趙千儀 Chao Chien I
+                            h4 社會新鮮人
                         hr
                         .edu
-                            h4 國立臺灣科技大學  設計系  畢業
+                            h4
+                                | 國立臺灣科技大學 
+                                span 設計系
+                                |  畢業
                             h5 2019 - 2023
                         h3 專長
                         .skills
-                            .skill UIUX設計
-                            .skill 網頁設計
-                            .skill 網頁切版
-                            .skill 插畫繪製
-                            .skill 影片剪輯
+                            .skill(v-for="skills in myinfoData") {{skills.skill}}
                         h3 軟體
                         .softwares
-                            .software(v-for="myinfo_data in myinfoData" :key="myinfo_data.id")
-                                .img(:style="{'background-image': 'url(' + myinfo_data.software + ')','background-size': 'cover','background-position': 'center','width': '100%', 'padding-top': '100%'}")
+                            .software(v-for="software_img in myinfoData" :key="software_img.id")
+                                .img(:style="{'background-image': 'url(' + software_img.software + ')','background-size': 'cover','background-position': 'center','width': '100%', 'padding-top': '100%'}")
                         h3 簡介
                         p Lorem ipsum at eos minima, quibusdam, ut, dignissimos labore a maxime quasi blanditiis voluptas earum laborum sit harum?
                 section.portfolio(v-else-if="web_page === 2")

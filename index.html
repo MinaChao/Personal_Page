@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="style/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.32.0/tsparticles.min.js"> </script>
     <script type="module" src="js/all.js"></script>
   </head>
   <body>
+    <div id="tsparticles"></div>
     <div id="app">
       <header>
         <div class="left_box"><a @click="web_page_change(0)"><img src="img/mina.png"></a></div>
@@ -29,24 +31,23 @@
         </section>
         <section class="about" v-else-if="web_page === 1">
           <div class="card">
-            <h1>趙千儀 Chao Chien I</h1>
+            <div class="title">
+              <h1>趙千儀 Chao Chien I</h1>
+              <h4>社會新鮮人</h4>
+            </div>
             <hr>
             <div class="edu">
-              <h4>國立臺灣科技大學  設計系  畢業</h4>
+              <h4>國立臺灣科技大學 <span>設計系</span> 畢業</h4>
               <h5>2019 - 2023</h5>
             </div>
             <h3>專長</h3>
             <div class="skills">
-              <div class="skill">UIUX設計</div>
-              <div class="skill">網頁設計</div>
-              <div class="skill">網頁切版</div>
-              <div class="skill">插畫繪製</div>
-              <div class="skill">影片剪輯</div>
+              <div class="skill" v-for="skills in myinfoData">{{skills.skill}}</div>
             </div>
             <h3>軟體</h3>
             <div class="softwares">
-              <div class="software" v-for="myinfo_data in myinfoData" :key="myinfo_data.id">
-                <div class="img" :style="{'background-image': 'url(' + myinfo_data.software + ')','background-size': 'cover','background-position': 'center','width': '100%', 'padding-top': '100%'}"></div>
+              <div class="software" v-for="software_img in myinfoData" :key="software_img.id">
+                <div class="img" :style="{'background-image': 'url(' + software_img.software + ')','background-size': 'cover','background-position': 'center','width': '100%', 'padding-top': '100%'}"></div>
               </div>
             </div>
             <h3>簡介</h3>

@@ -312,8 +312,20 @@
       background-color: #fff;
       border-radius: 8px;
       box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+      .title{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        h1,h4{
+          display: inline-block;
+          margin: 0.8rem 0 0.4rem 0;
+        }
+      }
       h3{
-        margin: 0.8rem 0 0.5rem 0;
+        margin: 0.5rem 0 0.5rem 0;
+      }
+      span{
+        color: #949494;
       }
       p{
         margin: 0 0 1rem 0;
@@ -327,14 +339,18 @@
         }
       }
       .skills{
+        vertical-align: middle;
+        display: flex;
+        align-items: center;
         .skill{
           display: inline-block;
           padding: 0.5rem 0.8rem;
           border: solid 1px #d7d7d7;
           border-radius: 24px;
-          margin-right: 0.6rem;
-          margin-bottom: 0.8rem;
+          margin-right: 0.8rem;
+          margin-bottom: 0.6rem;
           text-align: center;
+          font-size: 0.8rem;
         }
       }
       .softwares{
@@ -345,8 +361,8 @@
         .software{
           display: inline-block;
           // border: solid 1px blue;
-          height: 60px;
-          width: 60px;
+          height: 42px;
+          width: 42px;
           margin-right: 1.2rem;
         }
       }
@@ -365,7 +381,7 @@
     top: 0;
     left: 0;
   }
-} 
+}
 .chart-z-index-1 {
   z-index: 1;
 }

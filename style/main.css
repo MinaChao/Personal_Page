@@ -347,8 +347,26 @@ header .nav_box .navbar a:hover {
   -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
 }
+.about .card .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+.about .card .title h1, .about .card .title h4 {
+  display: inline-block;
+  margin: 0.8rem 0 0.4rem 0;
+}
 .about .card h3 {
-  margin: 0.8rem 0 0.5rem 0;
+  margin: 0.5rem 0 0.5rem 0;
+}
+.about .card span {
+  color: #949494;
 }
 .about .card p {
   margin: 0 0 1rem 0;
@@ -365,14 +383,24 @@ header .nav_box .navbar a:hover {
   display: inline-block;
   margin: 0.5rem 0;
 }
+.about .card .skills {
+  vertical-align: middle;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
 .about .card .skills .skill {
   display: inline-block;
   padding: 0.5rem 0.8rem;
   border: solid 1px #d7d7d7;
   border-radius: 24px;
-  margin-right: 0.6rem;
-  margin-bottom: 0.8rem;
+  margin-right: 0.8rem;
+  margin-bottom: 0.6rem;
   text-align: center;
+  font-size: 0.8rem;
 }
 .about .card .softwares {
   display: -webkit-box;
@@ -388,8 +416,8 @@ header .nav_box .navbar a:hover {
 }
 .about .card .softwares .software {
   display: inline-block;
-  height: 60px;
-  width: 60px;
+  height: 42px;
+  width: 42px;
   margin-right: 1.2rem;
 }
 
