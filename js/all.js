@@ -11,104 +11,21 @@ const clipDataUrl = `${googleSheetsBaseUrl}clip?alt=json&key=${apiKey}`;
 const productDataUrl = `${googleSheetsBaseUrl}other?alt=json&key=${apiKey}`;
 const otherDataUrl = `${googleSheetsBaseUrl}other?alt=json&key=${apiKey}`;
 const myinfoDataUrl = `${googleSheetsBaseUrl}myinfo?alt=json&key=${apiKey}`;
-tsParticles.load("tsparticles", {
-  background: {
-    color: {
-      value: "#fff"
-    }
-  },
-  fullScreen: {
-    enable: true,
-    zIndex: -1
-  },
-  interactivity: {
-    detectsOn: "window"
-  },
-  emitters: {
-    position: {
-      x: 50,
-      y: -50
-    },
-    rate: {
-      quantity: 5,
-      delay: 0.25
-    }
-  },
-  particles: {
-    color: {
-      value: ["949494"]
-    },
-    move: {
-      decay: 0.4,
-      direction: "top",
-      enable: true,
-      gravity: {
-        enable: true
-      },
-      outModes: {
-        top: "none",
-        default: "destroy"
-      },
-      speed: { min: 80, max: 120 }
-    },
-    number: {
-      value: 0
-    },
-    opacity: {
-      value: 0.1
-    },
-    rotate: {
-      value: {
-        min: 0,
-        max: 0
-      },
-      direction: "random",
-      animation: {
-        enable: true,
-        speed: 5
-      }
-    },
-    tilt: {
-      direction: "random",
-      enable: true,
-      value: {
-        min: 0,
-        max: 360
-      },
-      animation: {
-        enable: true,
-        speed: 3
-      }
-    },
-    size: {
-      value: 6
-    },
-    roll: {
-      darken: {
-        enable: true,
-        value: 25
-      },
-      enable: true,
-      speed: {
-        min: 5,
-        max: 15
-      }
-    },
-    wobble: {
-      distance: 30,
-      enable: true,
-      speed: {
-        min: -7,
-        max: 7
-      }
-    },
-    shape: {
-      type: [
-        "circle",
-      ]
-    }
-  }
-});
+
+// 定義背景粒子，生成粒子
+var confettiSettings = {
+  target:"confetti_holder",
+  max:80,size:1,
+  animate:true,
+  props:["circle"],
+  colors:[[210,210,210]],
+  clock:"2",rotate:false,
+  width:"1498",height:"705",
+  start_from_edge:false,
+  respawn:true
+};
+var confetti = new ConfettiGenerator(confettiSettings);
+confetti.render();
 
 // 定義雷達圖的配置
 const chartConfig = {
