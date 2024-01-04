@@ -70,8 +70,8 @@
           <div class="right_box">
             <div class="uiux" v-if="portfolio_page === 0">
               <ul>
-                <li v-for="uiux_data in uiuxData">
-                  <div class="card wow animate__fadeIn"><a :href="uiux_data.Link" target="_blank"></a>
+                <li class="wow animate__bounce" v-for="uiux_data in uiuxData" data-wow-delay="1s">
+                  <div class="card"><a :href="uiux_data.Link" target="_blank"></a>
                     <div class="front"><img :src="uiux_data.img"></div>
                     <div class="back">
                       <p>{{uiux_data.Introduction}}</p><span>{{uiux_data.tag}}</span>
@@ -96,7 +96,7 @@
             </div>
             <div class="illustration" v-else-if="portfolio_page === 2">
               <div class="waterfall">
-                <div class="item wow animate__slideInLeft" v-for="illustration_data in illustrationData"><img :src="illustration_data.img">
+                <div class="item wow animate__fadeInDown" v-for="illustration_data in illustrationData" data-wow-duration="2s" data-wow-delay="5s"><img :src="illustration_data.img">
                   <div class="tag">{{illustration_data.tag}}</div>
                 </div>
               </div>
