@@ -93,7 +93,7 @@ html(lang="zh-TW")
                                     h3 {{web_data.Name}}
                         .illustration(v-else-if="portfolio_page === 2")
                             .waterfall
-                                .item.wow.animate__fadeIn(v-for="illustration_data in illustrationData")
+                                .item.wow.animate__slideInLeft(v-for="illustration_data in illustrationData")
                                     img(:src="illustration_data.img")
                                     .tag {{illustration_data.tag}}
                         .clip(v-else-if="portfolio_page === 3")

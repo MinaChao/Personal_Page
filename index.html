@@ -96,7 +96,7 @@
             </div>
             <div class="illustration" v-else-if="portfolio_page === 2">
               <div class="waterfall">
-                <div class="item wow animate__fadeIn" v-for="illustration_data in illustrationData"><img :src="illustration_data.img">
+                <div class="item wow animate__slideInLeft" v-for="illustration_data in illustrationData"><img :src="illustration_data.img">
                   <div class="tag">{{illustration_data.tag}}</div>
                 </div>
               </div>
