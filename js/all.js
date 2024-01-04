@@ -90,8 +90,10 @@ createApp({
   },
   methods: {
     // 切換專案類別
-    portfolio_change(page) {
+    async portfolio_change(page) {
       this.portfolio_page = page;
+      await this.loadData();
+      AOS.refreshHard({offset: 0,}); // 重新初始化 AOS
     },
     // 創建 Chart.js 圖表
     createChart() {
@@ -104,8 +106,10 @@ createApp({
       this.myChart = new Chart(ctx, chartConfig);
     },
     // 切換網頁頁面
-    web_page_change(page) {
+    async web_page_change(page) {
       this.web_page = page;
+      await this.loadData();
+      AOS.refreshHard({offset: 0,}); // 重新初始化 AOS
     },
     // 從 Google Sheets 中抓取資料
     async fetchData(url) {
@@ -136,9 +140,27 @@ createApp({
       this.productData = await this.fetchData(productDataUrl);
       this.otherData = await this.fetchData(otherDataUrl);
     },
+    async loadMyinfoData(){
+      axios.get(myinfoDataUrl)
+      .then((response) => {
+        this.myinfoData = response.data.values;
+        const resultObjects = this.myinfoData.map((item) => ({
+          skill: item[0],
+          software: item[1],
+        }));
+        resultObjects.shift();
+        // console.log(resultObjects);
+        this.myinfoData = resultObjects;
+      })
+      .catch((error) => {
+        console.error('抓取我的資訊時發生錯誤:', error);
+      });
+    }
+
     
   },
   async mounted() {
+    AOS.init();
     // 在元件掛載後創建 Chart.js 圖表並載入資料
     this.createChart();
     await this.loadData();
@@ -156,8 +178,6 @@ createApp({
       .catch((error) => {
         console.error('抓取我的資訊時發生錯誤:', error);
       });
-      AOS.init({
-        // 可以在這裡設置 AOS 的選項
-    });
+      AOS.refreshHard();
   }
 }).mount("#app");

@@ -33,7 +33,7 @@ html(lang="zh-TW")
                 section.home(v-if="web_page === 0")
                     h1 HOME PAGE
                 section.about(v-else-if="web_page === 1")
-                    .card
+                    .card(data-aos="fade-up")
                         .title
                             h1 趙千儀 Chao Chien I
                             h4 社會新鮮人
@@ -69,9 +69,9 @@ html(lang="zh-TW")
                             li(:class="{active:portfolio_page===5}")
                                 a(@click="portfolio_change(5)")  其他作品
                     .right_box
-                        .uiux(v-if="portfolio_page === 0")
+                        .uiux(v-if="portfolio_page === 0" data-aos="fade-up")
                             ul
-                                li(v-for="uiux_data in uiuxData" data-aos="fade-up")
+                                li(v-for="uiux_data in uiuxData")
                                     .card
                                         a(:href='uiux_data.Link' target="_blank")
                                         .front
@@ -80,7 +80,7 @@ html(lang="zh-TW")
                                             p {{uiux_data.Introduction}}
                                             span {{uiux_data.tag}}
                                     h3 {{uiux_data.Name}}
-                        .web(v-else-if="portfolio_page === 1")
+                        .web(v-else-if="portfolio_page === 1" data-aos="fade-up")
                             ul
                                 li(v-for="web_data in webData")
                                     .card
@@ -91,12 +91,12 @@ html(lang="zh-TW")
                                             p {{web_data.Introduction}}
                                             span {{web_data.tag}}
                                     h3 {{web_data.Name}}
-                        .illustration(v-else-if="portfolio_page === 2")
+                        .illustration(v-else-if="portfolio_page === 2" data-aos="fade-up")
                             .waterfall
-                                .item(v-for="illustration_data in illustrationData" data-aos="fade-up")
+                                .item(v-for="illustration_data in illustrationData")
                                     img(:src="illustration_data.img")
                                     .tag {{illustration_data.tag}}
-                        .clip(v-else-if="portfolio_page === 3")
+                        .clip(v-else-if="portfolio_page === 3" data-aos="fade-up")
                             ul
                                 li(v-for="clip_data in clipData")
                                     .card
@@ -107,7 +107,7 @@ html(lang="zh-TW")
                                             p {{clip_data.Introduction}}
                                             span {{clip_data.tag}}
                                     h3 {{clip_data.Name}}
-                        .product(v-else-if="portfolio_page === 4")
+                        .product(v-else-if="portfolio_page === 4" data-aos="fade-up")
                             ul
                                 li(v-for="product_data in productData")
                                     .card
@@ -118,7 +118,7 @@ html(lang="zh-TW")
                                             p {{product_data.Introduction}}
                                             span {{product_data.tag}}
                                     h3 {{product_data.Name}}
-                        .other(v-else-if="portfolio_page === 5")
+                        .other(v-else-if="portfolio_page === 5" data-aos="fade-up")
                             ul
                                 li(v-for="other_data in otherData")
                                     .card
@@ -129,5 +129,5 @@ html(lang="zh-TW")
                                             p {{other_data.Introduction}}
                                             span {{other_data.tag}}
                                     h3 {{other_data.Name}}
-                .chart(:class="{ 'chart-z-index-1': web_page === 1, 'chart-z-index-2': web_page === 0 || web_page === 2 }")
+                .chart(:class="{ 'chart-z-index-1': web_page === 1, 'chart-z-index-2': web_page === 0 || web_page === 2 }"  data-aos="fade-up")
                     canvas#myChart(v-show="web_page===1" width="360" height="360")
