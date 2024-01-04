@@ -136,12 +136,12 @@ createApp({
       this.productData = await this.fetchData(productDataUrl);
       this.otherData = await this.fetchData(otherDataUrl);
     },
+    
   },
   async mounted() {
     // 在元件掛載後創建 Chart.js 圖表並載入資料
     this.createChart();
     await this.loadData();
-    new WOW({ live: false}).init();
     axios.get(myinfoDataUrl)
       .then((response) => {
         this.myinfoData = response.data.values;
@@ -156,5 +156,8 @@ createApp({
       .catch((error) => {
         console.error('抓取我的資訊時發生錯誤:', error);
       });
+      AOS.init({
+        // 可以在這裡設置 AOS 的選項
+    });
   }
 }).mount("#app");

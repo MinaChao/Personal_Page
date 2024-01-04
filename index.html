@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chao Chien I</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="style/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"> </script>
     <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"> </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"> </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"> </script>
     <script type="module" src="js/all.js"></script>
   </head>
   <body>
@@ -70,7 +70,7 @@
           <div class="right_box">
             <div class="uiux" v-if="portfolio_page === 0">
               <ul>
-                <li class="wow fadeInDown" v-for="uiux_data in uiuxData">
+                <li v-for="uiux_data in uiuxData" data-aos="fade-up">
                   <div class="card"><a :href="uiux_data.Link" target="_blank"></a>
                     <div class="front"><img :src="uiux_data.img"></div>
                     <div class="back">
@@ -96,7 +96,7 @@
             </div>
             <div class="illustration" v-else-if="portfolio_page === 2">
               <div class="waterfall">
-                <div class="item wow fadeInDown" v-for="illustration_data in illustrationData"><img :src="illustration_data.img">
+                <div class="item" v-for="illustration_data in illustrationData" data-aos="fade-up"><img :src="illustration_data.img">
                   <div class="tag">{{illustration_data.tag}}</div>
                 </div>
               </div>

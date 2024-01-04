@@ -4,12 +4,12 @@ html(lang="zh-TW")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Chao Chien I
-        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css")
+        link(rel="stylesheet", href="https://unpkg.com/aos@2.3.1/dist/aos.css")
         link(rel="stylesheet", href="style/main.css")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js") 
         script(src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js") 
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js") 
+        script(src="https://unpkg.com/aos@2.3.1/dist/aos.js") 
         script(type="module", src="js/all.js")
     body
         //- .custom-loader
@@ -71,7 +71,7 @@ html(lang="zh-TW")
                     .right_box
                         .uiux(v-if="portfolio_page === 0")
                             ul
-                                li.wow.fadeInDown(v-for="uiux_data in uiuxData")
+                                li(v-for="uiux_data in uiuxData" data-aos="fade-up")
                                     .card
                                         a(:href='uiux_data.Link' target="_blank")
                                         .front
@@ -93,7 +93,7 @@ html(lang="zh-TW")
                                     h3 {{web_data.Name}}
                         .illustration(v-else-if="portfolio_page === 2")
                             .waterfall
-                                .item.wow.fadeInDown(v-for="illustration_data in illustrationData")
+                                .item(v-for="illustration_data in illustrationData" data-aos="fade-up")
                                     img(:src="illustration_data.img")
                                     .tag {{illustration_data.tag}}
                         .clip(v-else-if="portfolio_page === 3")
