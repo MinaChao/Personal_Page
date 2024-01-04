@@ -36,7 +36,11 @@
   
   body {
     background-color: #FBFBFB;
+    &::-webkit-scrollbar{
+      display: none;
+    }
   }
+
   
   header {
     position: fixed;
@@ -420,4 +424,8 @@
   100% {
     inset: 0
   }
+}
+
+.active{
+  background-color: #5be0ef !important;
 }

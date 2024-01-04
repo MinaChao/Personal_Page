@@ -4,10 +4,12 @@ html(lang="zh-TW")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Chao Chien I
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css")
         link(rel="stylesheet", href="style/main.css")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js") 
         script(src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js") 
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js") 
         script(type="module", src="js/all.js")
     body
         //- .custom-loader
@@ -54,23 +56,23 @@ html(lang="zh-TW")
                 section.portfolio(v-else-if="web_page === 2")
                     .left_box
                         ul.nav_tag
-                            li
+                            li(:class="{active:portfolio_page===0}")
                                 a(@click="portfolio_change(0)") UIUX設計
-                            li
+                            li(:class="{active:portfolio_page===1}")
                                 a(@click="portfolio_change(1)") 網頁設計
-                            li
+                            li(:class="{active:portfolio_page===2}")
                                 a(@click="portfolio_change(2)")  插畫繪製
-                            li
+                            li(:class="{active:portfolio_page===3}")
                                 a(@click="portfolio_change(3)")  影片剪輯
-                            li
+                            li(:class="{active:portfolio_page===4}")
                                 a(@click="portfolio_change(4)")  產品設計
-                            li
+                            li(:class="{active:portfolio_page===5}")
                                 a(@click="portfolio_change(5)")  其他作品
                     .right_box
                         .uiux(v-if="portfolio_page === 0")
                             ul
                                 li(v-for="uiux_data in uiuxData")
-                                    .card
+                                    .card.wow.animate__fadeIn
                                         a(:href='uiux_data.Link' target="_blank")
                                         .front
                                             img(:src='uiux_data.img')
@@ -91,7 +93,7 @@ html(lang="zh-TW")
                                     h3 {{web_data.Name}}
                         .illustration(v-else-if="portfolio_page === 2")
                             .waterfall
-                                .item(v-for="illustration_data in illustrationData")
+                                .item.wow.animate__fadeIn(v-for="illustration_data in illustrationData")
                                     img(:src="illustration_data.img")
                                     .tag {{illustration_data.tag}}
                         .clip(v-else-if="portfolio_page === 3")

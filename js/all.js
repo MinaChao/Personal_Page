@@ -27,6 +27,7 @@ var confettiSettings = {
 var confetti = new ConfettiGenerator(confettiSettings);
 confetti.render();
 
+new WOW().init();
 // 定義雷達圖的配置
 const chartConfig = {
   type: 'radar',
@@ -137,7 +138,6 @@ createApp({
     },
   },
   async mounted() {
-    
     // 在元件掛載後創建 Chart.js 圖表並載入資料
     this.createChart();
     await this.loadData();
