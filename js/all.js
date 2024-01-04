@@ -8,7 +8,7 @@ const uiuxDataUrl = `${googleSheetsBaseUrl}uiux?alt=json&key=${apiKey}`;
 const webDataUrl = `${googleSheetsBaseUrl}web?alt=json&key=${apiKey}`;
 const illustrationDataUrl = `${googleSheetsBaseUrl}illustration?alt=json&key=${apiKey}`;
 const clipDataUrl = `${googleSheetsBaseUrl}clip?alt=json&key=${apiKey}`;
-const productDataUrl = `${googleSheetsBaseUrl}other?alt=json&key=${apiKey}`;
+const productDataUrl = `${googleSheetsBaseUrl}product?alt=json&key=${apiKey}`;
 const otherDataUrl = `${googleSheetsBaseUrl}other?alt=json&key=${apiKey}`;
 const myinfoDataUrl = `${googleSheetsBaseUrl}myinfo?alt=json&key=${apiKey}`;
 
@@ -139,25 +139,7 @@ createApp({
       this.clipData = await this.fetchData(clipDataUrl);
       this.productData = await this.fetchData(productDataUrl);
       this.otherData = await this.fetchData(otherDataUrl);
-    },
-    async loadMyinfoData(){
-      axios.get(myinfoDataUrl)
-      .then((response) => {
-        this.myinfoData = response.data.values;
-        const resultObjects = this.myinfoData.map((item) => ({
-          skill: item[0],
-          software: item[1],
-        }));
-        resultObjects.shift();
-        // console.log(resultObjects);
-        this.myinfoData = resultObjects;
-      })
-      .catch((error) => {
-        console.error('抓取我的資訊時發生錯誤:', error);
-      });
     }
-
-    
   },
   async mounted() {
     AOS.init();

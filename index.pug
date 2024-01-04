@@ -127,7 +127,7 @@ html(lang="zh-TW")
                                             img(:src='other_data.img')
                                         .back
                                             p {{other_data.Introduction}}
-                                            span {{other_data.tag}}
+                                            span {{other_data.tag}} 
                                     h3 {{other_data.Name}}
                 .chart(:class="{ 'chart-z-index-1': web_page === 1, 'chart-z-index-2': web_page === 0 || web_page === 2 }"  data-aos="fade-up")
                     canvas#myChart(v-show="web_page===1" width="360" height="360")
