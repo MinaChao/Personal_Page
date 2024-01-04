@@ -71,7 +71,7 @@ html(lang="zh-TW")
                     .right_box
                         .uiux(v-if="portfolio_page === 0")
                             ul
-                                li.wow.animate__bounce(v-for="uiux_data in uiuxData" data-wow-delay="1s")
+                                li.wow.fadeInDown(v-for="uiux_data in uiuxData")
                                     .card
                                         a(:href='uiux_data.Link' target="_blank")
                                         .front
@@ -93,7 +93,7 @@ html(lang="zh-TW")
                                     h3 {{web_data.Name}}
                         .illustration(v-else-if="portfolio_page === 2")
                             .waterfall
-                                .item.wow.animate__fadeInDown(v-for="illustration_data in illustrationData" data-wow-duration='2s' data-wow-delay='5s')
+                                .item.wow.fadeInDown(v-for="illustration_data in illustrationData")
                                     img(:src="illustration_data.img")
                                     .tag {{illustration_data.tag}}
                         .clip(v-else-if="portfolio_page === 3")

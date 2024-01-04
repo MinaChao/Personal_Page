@@ -141,7 +141,7 @@ createApp({
     // 在元件掛載後創建 Chart.js 圖表並載入資料
     this.createChart();
     await this.loadData();
-    new WOW({ live: false }).init();
+    new WOW({ live: false}).init();
     axios.get(myinfoDataUrl)
       .then((response) => {
         this.myinfoData = response.data.values;
@@ -150,7 +150,7 @@ createApp({
           software: item[1],
         }));
         resultObjects.shift();
-        console.log(resultObjects);
+        // console.log(resultObjects);
         this.myinfoData = resultObjects;
       })
       .catch((error) => {
