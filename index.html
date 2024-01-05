@@ -28,10 +28,20 @@
         </nav>
       </header>
       <main>
+        <div class="loader" v-show="loading">
+          <div class="glitch" data-glitch="Loading...">Loading...</div>
+        </div>
         <section class="home" v-if="web_page === 0">
           <h1>HOME PAGE</h1>
         </section>
         <section class="about" v-else-if="web_page === 1">
+          <div class="blocks">
+            <div class="block block1"></div>
+            <div class="block block2"></div>
+            <div class="block block3"></div>
+            <div class="block block4"></div>
+          </div>
+          <div class="my_photo" data-aos="fade-left"><img src="https://i.imgur.com/htZC4sDh.jpg"></div>
           <div class="card" data-aos="fade-right">
             <div class="title">
               <h1>趙千儀 Chao Chien I</h1>

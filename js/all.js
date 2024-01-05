@@ -39,7 +39,7 @@ const chartConfig = {
         backgroundColor: ['rgba(255, 99, 132, 0.2)'],
         borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
         borderWidth: 1,
-        pointRadius: 4,
+        pointRadius: 3,
         pointBackgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
       },
       {
@@ -62,7 +62,7 @@ const chartConfig = {
     },
     scale: {
       pointLabels: {
-        fontSize: 12 // 在這裡設定標籤的字體大小
+        fontSize: 11 // 在這裡設定標籤的字體大小
       }
     }
   }
@@ -84,15 +84,16 @@ createApp({
       web_page: 1,
       // Chart.js 實例
       myChart: null,
-      // 是否顯示圖表
-      showChart: false
+      loading: false,
     };
   },
   methods: {
     // 切換專案類別
     async portfolio_change(page) {
       this.portfolio_page = page;
+      this.loading = true;
       await this.loadData();
+      this.loading = false;
       AOS.refreshHard({delay: 1000,}); // 重新初始化 AOS
     },
     // 創建 Chart.js 圖表
@@ -107,8 +108,11 @@ createApp({
     },
     // 切換網頁頁面
     async web_page_change(page) {
+      AOS.init();
+      this.loading = true;
       this.web_page = page;
       await this.loadAllData();
+      this.loading = false;
       AOS.refreshHard(); // 重新初始化 AOS
     },
     // 從 Google Sheets 中抓取資料
@@ -156,9 +160,10 @@ createApp({
       this.productData = await this.fetchData(productDataUrl);
       this.otherData = await this.fetchData(otherDataUrl);
       }
-    },
+    }
   },
   async mounted() {
+    this.loading = true;
     AOS.init();
     // 在元件掛載後創建 Chart.js 圖表並載入資料
     this.createChart();
@@ -177,6 +182,7 @@ createApp({
       .catch((error) => {
         console.error('抓取我的資訊時發生錯誤:', error);
       });
+      this.loading = false;
       AOS.refreshHard();
   }
 }).mount("#app");

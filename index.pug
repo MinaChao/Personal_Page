@@ -12,7 +12,7 @@ html(lang="zh-TW")
         script(src="https://unpkg.com/aos@2.3.1/dist/aos.js") 
         script(type="module", src="js/all.js")
     body
-        //- .custom-loader
+        
         canvas#confetti_holder
         #app
             header
@@ -30,9 +30,18 @@ html(lang="zh-TW")
                         li
                             a(@click="web_page_change(2)") Portfolio
             main
+                .loader(v-show="loading")
+                    .glitch(data-glitch='Loading...') Loading...
                 section.home(v-if="web_page === 0")
                     h1 HOME PAGE
                 section.about(v-else-if="web_page === 1")
+                    .blocks
+                        .block.block1
+                        .block.block2
+                        .block.block3
+                        .block.block4
+                    .my_photo(data-aos="fade-left")
+                        img(src="https://i.imgur.com/htZC4sDh.jpg")
                     .card(data-aos="fade-right")
                         .title
                             h1 趙千儀 Chao Chien I
