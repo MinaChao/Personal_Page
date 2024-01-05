@@ -93,7 +93,7 @@ createApp({
     async portfolio_change(page) {
       this.portfolio_page = page;
       await this.loadData();
-      AOS.refreshHard({offset: 0,}); // 重新初始化 AOS
+      AOS.refreshHard({delay: 1000,}); // 重新初始化 AOS
     },
     // 創建 Chart.js 圖表
     createChart() {
@@ -108,8 +108,8 @@ createApp({
     // 切換網頁頁面
     async web_page_change(page) {
       this.web_page = page;
-      await this.loadData();
-      AOS.refreshHard({offset: 0,}); // 重新初始化 AOS
+      await this.loadAllData();
+      AOS.refreshHard(); // 重新初始化 AOS
     },
     // 從 Google Sheets 中抓取資料
     async fetchData(url) {
@@ -133,13 +133,30 @@ createApp({
     },
     // 載入所有資料
     async loadData() {
+      if (this.portfolio_page === 0 && this.web_page ===2) {
+        this.uiuxData = await this.fetchData(uiuxDataUrl);
+      } else if (this.portfolio_page === 1 &&  this.web_page ===2) {
+        this.webData = await this.fetchData(webDataUrl);
+      } else if (this.portfolio_page === 2 &&  this.web_page ===2) {
+        this.illustrationData = await this.fetchData(illustrationDataUrl);
+      } else if (this.portfolio_page === 3 &&  this.web_page ===2) {
+        this.clipData = await this.fetchData(clipDataUrl);
+      } else if (this.portfolio_page === 4 &&  this.web_page ===2) {
+        this.productData = await this.fetchData(productDataUrl);
+      } else if (this.portfolio_page === 5 &&  this.web_page ===2) {
+        this.otherData = await this.fetchData(otherDataUrl);
+      }
+    },
+    async loadAllData() {
+      if(this.web_page ===2){
       this.uiuxData = await this.fetchData(uiuxDataUrl);
       this.webData = await this.fetchData(webDataUrl);
       this.illustrationData = await this.fetchData(illustrationDataUrl);
       this.clipData = await this.fetchData(clipDataUrl);
       this.productData = await this.fetchData(productDataUrl);
       this.otherData = await this.fetchData(otherDataUrl);
-    }
+      }
+    },
   },
   async mounted() {
     AOS.init();

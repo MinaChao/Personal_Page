@@ -32,7 +32,7 @@
           <h1>HOME PAGE</h1>
         </section>
         <section class="about" v-else-if="web_page === 1">
-          <div class="card" data-aos="fade-up">
+          <div class="card" data-aos="fade-right">
             <div class="title">
               <h1>趙千儀 Chao Chien I</h1>
               <h4>社會新鮮人</h4>
@@ -57,7 +57,7 @@
           </div>
         </section>
         <section class="portfolio" v-else-if="web_page === 2">
-          <div class="left_box">
+          <div class="left_box" data-aos="fade-right">
             <ul class="nav_tag">
               <li :class="{active:portfolio_page===0}"><a @click="portfolio_change(0)">UIUX設計</a></li>
               <li :class="{active:portfolio_page===1}"><a @click="portfolio_change(1)">網頁設計</a></li>
@@ -68,7 +68,7 @@
             </ul>
           </div>
           <div class="right_box">
-            <div class="uiux" v-if="portfolio_page === 0" data-aos="fade-up">
+            <div class="uiux" v-if="portfolio_page === 0" data-aos="fade-down">
               <ul>
                 <li v-for="uiux_data in uiuxData">
                   <div class="card"><a :href="uiux_data.Link" target="_blank"></a>
@@ -81,7 +81,7 @@
                 </li>
               </ul>
             </div>
-            <div class="web" v-else-if="portfolio_page === 1" data-aos="fade-up">
+            <div class="web" v-else-if="portfolio_page === 1" data-aos="fade-down">
               <ul>
                 <li v-for="web_data in webData">
                   <div class="card"><a :href="web_data.Link" target="_blank"></a>
@@ -94,14 +94,14 @@
                 </li>
               </ul>
             </div>
-            <div class="illustration" v-else-if="portfolio_page === 2" data-aos="fade-up">
+            <div class="illustration" v-else-if="portfolio_page === 2" data-aos="fade-down">
               <div class="waterfall">
                 <div class="item" v-for="illustration_data in illustrationData"><img :src="illustration_data.img">
                   <div class="tag">{{illustration_data.tag}}</div>
                 </div>
               </div>
             </div>
-            <div class="clip" v-else-if="portfolio_page === 3" data-aos="fade-up">
+            <div class="clip" v-else-if="portfolio_page === 3" data-aos="fade-down">
               <ul>
                 <li v-for="clip_data in clipData">
                   <div class="card"><a :href="clip_data.Link" target="_blank"></a>
@@ -114,7 +114,7 @@
                 </li>
               </ul>
             </div>
-            <div class="product" v-else-if="portfolio_page === 4" data-aos="fade-up">
+            <div class="product" v-else-if="portfolio_page === 4" data-aos="fade-down">
               <ul>
                 <li v-for="product_data in productData">
                   <div class="card"><a :href="product_data.Link" target="_blank"></a>
@@ -127,7 +127,7 @@
                 </li>
               </ul>
             </div>
-            <div class="other" v-else-if="portfolio_page === 5" data-aos="fade-up">
+            <div class="other" v-else-if="portfolio_page === 5" data-aos="fade-down">
               <ul>
                 <li v-for="other_data in otherData">
                   <div class="card"><a :href="other_data.Link" target="_blank"></a>

@@ -33,7 +33,7 @@ html(lang="zh-TW")
                 section.home(v-if="web_page === 0")
                     h1 HOME PAGE
                 section.about(v-else-if="web_page === 1")
-                    .card(data-aos="fade-up")
+                    .card(data-aos="fade-right")
                         .title
                             h1 趙千儀 Chao Chien I
                             h4 社會新鮮人
@@ -54,7 +54,7 @@ html(lang="zh-TW")
                         h3 簡介
                         p Lorem ipsum at eos minima, quibusdam, ut, dignissimos labore a maxime quasi blanditiis voluptas earum laborum sit harum?
                 section.portfolio(v-else-if="web_page === 2")
-                    .left_box
+                    .left_box(data-aos="fade-right")
                         ul.nav_tag
                             li(:class="{active:portfolio_page===0}")
                                 a(@click="portfolio_change(0)") UIUX設計
@@ -69,7 +69,7 @@ html(lang="zh-TW")
                             li(:class="{active:portfolio_page===5}")
                                 a(@click="portfolio_change(5)")  其他作品
                     .right_box
-                        .uiux(v-if="portfolio_page === 0" data-aos="fade-up")
+                        .uiux(v-if="portfolio_page === 0" data-aos="fade-down")
                             ul
                                 li(v-for="uiux_data in uiuxData")
                                     .card
@@ -80,7 +80,7 @@ html(lang="zh-TW")
                                             p {{uiux_data.Introduction}}
                                             span {{uiux_data.tag}}
                                     h3 {{uiux_data.Name}}
-                        .web(v-else-if="portfolio_page === 1" data-aos="fade-up")
+                        .web(v-else-if="portfolio_page === 1" data-aos="fade-down")
                             ul
                                 li(v-for="web_data in webData")
                                     .card
@@ -91,12 +91,12 @@ html(lang="zh-TW")
                                             p {{web_data.Introduction}}
                                             span {{web_data.tag}}
                                     h3 {{web_data.Name}}
-                        .illustration(v-else-if="portfolio_page === 2" data-aos="fade-up")
+                        .illustration(v-else-if="portfolio_page === 2" data-aos="fade-down")
                             .waterfall
                                 .item(v-for="illustration_data in illustrationData")
                                     img(:src="illustration_data.img")
                                     .tag {{illustration_data.tag}}
-                        .clip(v-else-if="portfolio_page === 3" data-aos="fade-up")
+                        .clip(v-else-if="portfolio_page === 3" data-aos="fade-down")
                             ul
                                 li(v-for="clip_data in clipData")
                                     .card
@@ -107,7 +107,7 @@ html(lang="zh-TW")
                                             p {{clip_data.Introduction}}
                                             span {{clip_data.tag}}
                                     h3 {{clip_data.Name}}
-                        .product(v-else-if="portfolio_page === 4" data-aos="fade-up")
+                        .product(v-else-if="portfolio_page === 4" data-aos="fade-down")
                             ul
                                 li(v-for="product_data in productData")
                                     .card
@@ -118,7 +118,7 @@ html(lang="zh-TW")
                                             p {{product_data.Introduction}}
                                             span {{product_data.tag}}
                                     h3 {{product_data.Name}}
-                        .other(v-else-if="portfolio_page === 5" data-aos="fade-up")
+                        .other(v-else-if="portfolio_page === 5" data-aos="fade-down")
                             ul
                                 li(v-for="other_data in otherData")
                                     .card
