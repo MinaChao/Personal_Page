@@ -31,9 +31,7 @@
         <div class="loader" v-show="loading">
           <div class="glitch" data-glitch="Loading...">Loading...</div>
         </div>
-        <section class="home" v-if="web_page === 0">
-          <h1>HOME PAGE</h1>
-        </section>
+        <section class="home" v-if="web_page === 0"></section>
         <section class="about" v-else-if="web_page === 1">
           <div class="blocks">
             <div class="block block1"></div>
@@ -69,7 +67,7 @@
         <section class="portfolio" v-else-if="web_page === 2">
           <div class="left_box" data-aos="fade-right">
             <ul class="nav_tag">
-              <li :class="{active:portfolio_page===0}"><a @click="portfolio_change(0)">UIUX設計</a></li>
+              <li :class="{active:portfolio_page===0}"><a @click="portfolio_change(0)">UIUX 設計</a></li>
               <li :class="{active:portfolio_page===1}"><a @click="portfolio_change(1)">網頁設計</a></li>
               <li :class="{active:portfolio_page===2}"><a @click="portfolio_change(2)"> 插畫繪製</a></li>
               <li :class="{active:portfolio_page===3}"><a @click="portfolio_change(3)"> 影片剪輯</a></li>
@@ -84,7 +82,7 @@
                   <div class="card"><a :href="uiux_data.Link" target="_blank"></a>
                     <div class="front"><img :src="uiux_data.img"></div>
                     <div class="back">
-                      <p>{{uiux_data.Introduction}}</p><span>{{uiux_data.tag}}</span>
+                      <p>{{uiux_data.Introduction}}</p><span>▶ {{uiux_data.tag}}</span>
                     </div>
                   </div>
                   <h3>{{uiux_data.Name}}</h3>
@@ -97,7 +95,7 @@
                   <div class="card"><a :href="web_data.Link" target="_blank"></a>
                     <div class="front"><img :src="web_data.img"></div>
                     <div class="back">
-                      <p>{{web_data.Introduction}}</p><span>{{web_data.tag}}</span>
+                      <p>{{web_data.Introduction}}</p><span>▶ {{web_data.tag}}</span>
                     </div>
                   </div>
                   <h3>{{web_data.Name}}</h3>
@@ -117,7 +115,7 @@
                   <div class="card"><a :href="clip_data.Link" target="_blank"></a>
                     <div class="front"><img :src="clip_data.img"></div>
                     <div class="back">
-                      <p>{{clip_data.Introduction}}</p><span>{{clip_data.tag}}</span>
+                      <p>{{clip_data.Introduction}}</p><span>▶ {{clip_data.tag}}</span>
                     </div>
                   </div>
                   <h3>{{clip_data.Name}}</h3>
@@ -130,7 +128,7 @@
                   <div class="card"><a :href="product_data.Link" target="_blank"></a>
                     <div class="front"><img :src="product_data.img"></div>
                     <div class="back">
-                      <p>{{product_data.Introduction}}</p><span>{{product_data.tag}}</span>
+                      <p>{{product_data.Introduction}}</p><span>▶ {{product_data.tag}}</span>
                     </div>
                   </div>
                   <h3>{{product_data.Name}}</h3>
@@ -143,7 +141,7 @@
                   <div class="card"><a :href="other_data.Link" target="_blank"></a>
                     <div class="front"><img :src="other_data.img"></div>
                     <div class="back">
-                      <p>{{other_data.Introduction}}</p><span>{{other_data.tag}} </span>
+                      <p>{{other_data.Introduction}}</p><span>▶ {{other_data.tag}} </span>
                     </div>
                   </div>
                   <h3>{{other_data.Name}}</h3>

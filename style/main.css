@@ -1,9 +1,10 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Roboto+Condensed:wght@300;400;500;600&family=Tektur:wght@700&display=swap");
 * {
-  font-family: 微軟正黑體;
+  font-family: "Roboto Condensed", "Noto Sans TC", sans-serif;
   list-style: none;
   position: relative;
-  letter-spacing: 1px;
+  letter-spacing: 0.1rem;
 }
 
 html, body {
@@ -34,9 +35,9 @@ header {
   max-width: 600px;
   min-width: 420px;
   padding: 0 1rem;
-  background-color: #fff;
-  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
-          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+  background-color: #1f1f1f;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(242, 242, 242, 0.4);
+          box-shadow: 0px 0px 4px 0px rgba(242, 242, 242, 0.4);
   border-radius: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -82,7 +83,7 @@ header .left_box a img {
   border-radius: 50%;
   -o-object-fit: contain;
      object-fit: contain;
-  border: solid 2px #c4c4c4;
+  border: solid 2px rgba(196, 196, 196, 0.4);
 }
 header .left_box a:hover {
   opacity: 0.7;
@@ -122,13 +123,13 @@ header .nav_box .navbar li {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: #1f1f1f;
+  color: rgba(196, 196, 196, 0.4);
 }
 header .nav_box .navbar a {
   padding: 0.5rem 1rem;
   border-radius: 72px;
   text-decoration: none;
-  color: #1f1f1f;
+  color: #f2f2f2;
   cursor: pointer;
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
@@ -168,11 +169,12 @@ main {
 .portfolio .left_box li {
   margin-bottom: 2rem;
   border-radius: 70px;
-  background-color: #f3f3f3;
-  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+  background-color: #1f1f1f;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(242, 242, 242, 0.4);
+          box-shadow: 0px 0px 4px 0px rgba(242, 242, 242, 0.4);
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
+  color: #f2f2f2;
 }
 .portfolio .left_box li a {
   display: block;
@@ -191,6 +193,27 @@ main {
 .portfolio .left_box li:hover {
   -webkit-transform: translateX(24px);
           transform: translateX(24px);
+}
+.portfolio .left_box .active {
+  background-color: #cd2727 !important;
+  -webkit-transform: translateX(24px);
+          transform: translateX(24px);
+}
+.portfolio .left_box .active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 90%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 20%;
+  height: 50%;
+  z-index: -1;
+  background-color: #cd2727;
+  border-radius: 4px;
+  opacity: 1;
+  -webkit-clip-path: polygon(0 0, 0% 100%, 100% 50%);
+          clip-path: polygon(0 0, 0% 100%, 100% 50%);
 }
 .portfolio .right_box {
   width: 86%;
@@ -219,10 +242,10 @@ main {
   margin-bottom: 2.4rem;
   font-size: 18px;
   vertical-align: top;
+  color: #f2f2f2;
 }
 .portfolio .right_box .uiux ul li h3, .portfolio .right_box .web ul li h3, .portfolio .right_box .illustration ul li h3, .portfolio .right_box .clip ul li h3, .portfolio .right_box .product ul li h3, .portfolio .right_box .other ul li h3 {
   margin: 0.8rem;
-  color: #f3f3f3;
 }
 .portfolio .right_box .uiux ul li .card, .portfolio .right_box .web ul li .card, .portfolio .right_box .illustration ul li .card, .portfolio .right_box .clip ul li .card, .portfolio .right_box .product ul li .card, .portfolio .right_box .other ul li .card {
   width: 100%;
@@ -243,6 +266,7 @@ main {
 .portfolio .right_box .uiux ul li .card .front, .portfolio .right_box .uiux ul li .card .back, .portfolio .right_box .web ul li .card .front, .portfolio .right_box .web ul li .card .back, .portfolio .right_box .illustration ul li .card .front, .portfolio .right_box .illustration ul li .card .back, .portfolio .right_box .clip ul li .card .front, .portfolio .right_box .clip ul li .card .back, .portfolio .right_box .product ul li .card .front, .portfolio .right_box .product ul li .card .back, .portfolio .right_box .other ul li .card .front, .portfolio .right_box .other ul li .card .back {
   width: 100%;
   height: 100%;
+  background-color: #1f1f1f;
   position: absolute;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -250,14 +274,11 @@ main {
   transition: all 0.5s;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  border: 2px solid #c4c4c4;
+  border: 2px solid rgba(196, 196, 196, 0.7);
   border-radius: 16px;
   overflow: hidden;
-  -webkit-box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.6);
-          box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.6);
-}
-.portfolio .right_box .uiux ul li .card .front, .portfolio .right_box .web ul li .card .front, .portfolio .right_box .illustration ul li .card .front, .portfolio .right_box .clip ul li .card .front, .portfolio .right_box .product ul li .card .front, .portfolio .right_box .other ul li .card .front {
-  background-color: #f3f3f3;
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(242, 242, 242, 0.2);
+          box-shadow: 0px 0px 6px 0px rgba(242, 242, 242, 0.2);
 }
 .portfolio .right_box .uiux ul li .card .front img, .portfolio .right_box .web ul li .card .front img, .portfolio .right_box .illustration ul li .card .front img, .portfolio .right_box .clip ul li .card .front img, .portfolio .right_box .product ul li .card .front img, .portfolio .right_box .other ul li .card .front img {
   width: 100%;
@@ -267,7 +288,6 @@ main {
   vertical-align: middle;
 }
 .portfolio .right_box .uiux ul li .card .back, .portfolio .right_box .web ul li .card .back, .portfolio .right_box .illustration ul li .card .back, .portfolio .right_box .clip ul li .card .back, .portfolio .right_box .product ul li .card .back, .portfolio .right_box .other ul li .card .back {
-  background-color: #f3f3f3;
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
   display: -webkit-box;
@@ -289,7 +309,7 @@ main {
 }
 .portfolio .right_box .uiux ul li .card .back span, .portfolio .right_box .web ul li .card .back span, .portfolio .right_box .illustration ul li .card .back span, .portfolio .right_box .clip ul li .card .back span, .portfolio .right_box .product ul li .card .back span, .portfolio .right_box .other ul li .card .back span {
   font-size: 0.8rem;
-  color: rgb(108, 181, 30);
+  color: #c4c4c4;
 }
 .portfolio .right_box .uiux ul li .card:hover .front, .portfolio .right_box .web ul li .card:hover .front, .portfolio .right_box .illustration ul li .card:hover .front, .portfolio .right_box .clip ul li .card:hover .front, .portfolio .right_box .product ul li .card:hover .front, .portfolio .right_box .other ul li .card:hover .front {
   -webkit-transform: rotateY(180deg);
@@ -341,8 +361,9 @@ main {
   margin: 1rem;
   padding: 0.2rem 0.5rem;
   font-size: 0.8rem;
-  background-color: rgb(160, 255, 59);
-  border: solid 2px #f3f3f3;
+  background-color: #cd2727;
+  color: #f2f2f2;
+  border: solid 2px #f2f2f2;
   border-radius: 16px;
 }
 .portfolio .right_box .illustration .waterfall .item:hover {
@@ -364,15 +385,16 @@ main {
 }
 .about .card {
   position: absolute;
+  color: #f2f2f2;
   top: 160px;
   left: 8%;
   width: 36%;
   padding: 1rem 2rem;
   overflow: hidden;
-  background-color: #f3f3f3;
-  border-radius: 8px;
-  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+  background-color: #1f1f1f;
+  border-radius: 16px;
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(242, 242, 242, 0.4);
+          box-shadow: 0px 0px 6px 0px rgba(242, 242, 242, 0.4);
 }
 .about .card .title {
   display: -webkit-box;
@@ -389,14 +411,19 @@ main {
   display: inline-block;
   margin: 0.8rem 0 0.4rem 0;
 }
+.about .card .title h4 {
+  font-weight: 400;
+}
 .about .card h3 {
   margin: 0.7rem 0 0.5rem 0;
+  font-weight: 400;
 }
 .about .card span {
-  color: rgb(108, 181, 30);
+  color: #ff3939;
 }
 .about .card p {
   margin: 0 0 1rem 0;
+  font-weight: 400;
 }
 .about .card .edu {
   display: -webkit-box;
@@ -408,6 +435,7 @@ main {
 }
 .about .card .edu h4, .about .card .edu h5 {
   display: inline-block;
+  font-weight: 400;
   margin: 0.5rem 0;
 }
 .about .card .skills {
@@ -480,9 +508,9 @@ main {
 .about .blocks .block {
   height: 25%;
   width: 100%;
-  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
-  background-color: rgba(160, 255, 59, 0.5);
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.8);
+          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.8);
+  background-color: rgba(205, 39, 39, 0.5);
 }
 .about .blocks .block1 {
   -webkit-clip-path: polygon(0 28%, 100% 0, 100% 90%, 0% 100%);
@@ -508,10 +536,10 @@ main {
   height: 200px;
   width: 240px;
   overflow: hidden;
-  background-color: #f3f3f3;
-  border-radius: 8px;
-  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+  background-color: #1f1f1f;
+  border-radius: 16px;
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(242, 242, 242, 0.4);
+          box-shadow: 0px 0px 6px 0px rgba(242, 242, 242, 0.4);
   padding: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -542,34 +570,13 @@ main {
   z-index: -2;
 }
 
-.active {
-  background-color: rgb(160, 255, 59) !important;
-  -webkit-transform: translateX(24px);
-          transform: translateX(24px);
-}
-.active::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 90%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  width: 20%;
-  height: 50%;
-  z-index: -1;
-  background-color: rgb(160, 255, 59);
-  border-radius: 4px;
-  opacity: 1;
-  -webkit-clip-path: polygon(0 0, 0% 100%, 100% 50%);
-          clip-path: polygon(0 0, 0% 100%, 100% 50%);
-}
-
 .glitch {
+  font-family: "Tektur";
   position: relative;
-  font-size: 25px;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1.2;
-  color: #f3f3f3;
+  color: #f2f2f2;
   letter-spacing: 5px;
   z-index: 1;
   -webkit-animation: shift 1s ease-in-out infinite alternate;
@@ -589,13 +596,13 @@ main {
 .glitch:before {
   -webkit-animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
           animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
-  color: #ff60a2;
+  color: #60ff63;
   z-index: -1;
 }
 
 .glitch:after {
   animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
-  color: rgb(160, 255, 59);
+  color: #cd2727;
   z-index: -2;
 }
 

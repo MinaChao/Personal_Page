@@ -1,8 +1,12 @@
-$white:#f3f3f3;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Roboto+Condensed:wght@300;400;500;600&family=Tektur:wght@700&display=swap');
+
+
+$white:#f2f2f2;
 $gray:#c4c4c4;
 $black:#1f1f1f;
-$main:rgb(160, 255, 59);
-$main_dark:rgba(108, 181, 30);
+$main:#cd2727;
+$main_light:#ff3939;
+$main_dark:#9f1111;
 
 
 @mixin size($w, $h) {
@@ -24,11 +28,11 @@ $main_dark:rgba(108, 181, 30);
   }
   
   * {
-    font-family: 微軟正黑體;
+    font-family: 'Roboto Condensed','Noto Sans TC',sans-serif;
     // border: solid 1px red;
     list-style: none;
     position: relative;
-    letter-spacing: 1px;
+    letter-spacing: 0.1rem;
   }
   
   html, body {
@@ -58,8 +62,8 @@ $main_dark:rgba(108, 181, 30);
     max-width: 600px;
     min-width: 420px;
     padding: 0 1rem;
-    background-color: #fff;
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+    background-color: $black;
+    box-shadow: 0px 0px 4px 0px rgba($white, 0.4);
     border-radius: 80px;
     display: flex;
     justify-content: space-between;
@@ -89,7 +93,7 @@ $main_dark:rgba(108, 181, 30);
           height: 70%;
           border-radius: 50%;
           object-fit: contain;
-          border: solid 2px $gray;
+          border: solid 2px rgba($gray, 0.4);
         }
   
         &:hover {
@@ -117,14 +121,14 @@ $main_dark:rgba(108, 181, 30);
           height: 100%;
           display: flex;
           align-items: center;
-          color: $black;
+          color: rgba($gray, 0.4);
         }
   
         a {
           padding: 0.5rem 1rem;
           border-radius: 72px;
           text-decoration: none;
-          color: $black;
+          color: $white;
           cursor: pointer;
           transition-duration: 0.3s;
   
@@ -162,9 +166,10 @@ $main_dark:rgba(108, 181, 30);
         margin-bottom: 2rem;
         border-radius: 70px;
         // overflow: hidden;
-        background-color: $white;
-        box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+        background-color: $black;
+        box-shadow: 0px 0px 4px 0px rgba($white, 0.4);
         transition-duration: 0.3s;
+        color: $white;
         a {
           display: block;
           padding: 1rem;
@@ -177,6 +182,24 @@ $main_dark:rgba(108, 181, 30);
         }
         &:hover {
           transform: translateX(24px);
+        }
+      }
+      .active{
+        background-color: $main !important;
+        transform: translateX(24px);
+        &::after{
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 90%;
+          transform: translateY(-50%);
+          width: 20%;
+          height: 50%;
+          z-index: -1;
+          background-color: $main;
+          border-radius: 4px;
+          opacity: 1;
+          clip-path: polygon(0 0, 0% 100%, 100% 50%);
         }
       }
     }
@@ -203,10 +226,9 @@ $main_dark:rgba(108, 181, 30);
             margin-bottom: 2.4rem;
             font-size: 18px;
             vertical-align: top;
-  
+            color: $white;
             h3 {
               margin: 0.8rem;
-              color: $white;
             }
   
             .card {
@@ -225,18 +247,18 @@ $main_dark:rgba(108, 181, 30);
   
               .front, .back {
                 @include size(100%, 100%);
+                background-color: $black;
                 position: absolute;
                 box-sizing: border-box;
                 transition: all 0.5s;
                 backface-visibility: hidden;
-                border: 2px solid $gray;
+                border: 2px solid rgba($gray, 0.7);
                 border-radius: 16px;
                 overflow: hidden;
-                box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.6);
+                box-shadow: 0px 0px 6px 0px rgba($white, 0.2);
               }
   
               .front {
-                background-color: $white;
                 img {
                   width: 100%;
                   height: 100%;
@@ -246,7 +268,6 @@ $main_dark:rgba(108, 181, 30);
               }
   
               .back {
-                background-color: $white;
                 transform: rotateY(-180deg);
                 display: flex;
                 flex-direction: column;
@@ -257,7 +278,7 @@ $main_dark:rgba(108, 181, 30);
                 }
                 span {
                   font-size: 0.8rem;
-                  color:$main_dark;
+                  color:$gray;
                 }
               }
   
@@ -304,6 +325,7 @@ $main_dark:rgba(108, 181, 30);
               padding: 0.2rem 0.5rem;
               font-size: 0.8rem;
               background-color: $main;
+              color: $white;
               border: solid 2px $white;
               border-radius: 16px;
             }
@@ -329,14 +351,15 @@ $main_dark:rgba(108, 181, 30);
     height: 100%;
     .card{
       position: absolute;
+      color: $white;
       top: 160px;
       left: 8%;
       width: 36%;
       padding: 1rem 2rem;
       overflow: hidden;
-      background-color: $white;
-      border-radius: 8px;
-      box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+      background-color: $black;
+      border-radius: 16px;
+      box-shadow: 0px 0px 6px 0px rgba($white, 0.4);
       .title{
         display: flex;
         justify-content: space-between;
@@ -345,21 +368,27 @@ $main_dark:rgba(108, 181, 30);
           display: inline-block;
           margin: 0.8rem 0 0.4rem 0;
         }
+        h4{
+          font-weight: 400;
+        }
       }
       h3{
         margin: 0.7rem 0 0.5rem 0;
+        font-weight: 400;
       }
       span{
-        color: $main_dark;
+        color: $main_light;
       }
       p{
         margin: 0 0 1rem 0;
+        font-weight: 400;
       }
       .edu{
         display: flex;
         justify-content: space-between;
         h4,h5{
           display: inline-block;
+          font-weight: 400;
           margin: 0.5rem 0;
         }
       }
@@ -418,7 +447,7 @@ $main_dark:rgba(108, 181, 30);
       .block{
         height: 25%;
         width: 100%;
-        box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.8);
         background-color: rgba($main,0.5);
       }
       .block1{
@@ -444,9 +473,9 @@ $main_dark:rgba(108, 181, 30);
   height: 200px;
   width: 240px;
   overflow: hidden;
-  background-color: $white;
-  border-radius: 8px;
-  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+  background-color: $black;
+  border-radius: 16px;
+  box-shadow: 0px 0px 6px 0px rgba($white, 0.4);
   padding: 1rem;
   display: flex;
   justify-content: center;
@@ -455,7 +484,6 @@ $main_dark:rgba(108, 181, 30);
 .chart-z-index-1 {
   z-index: 1;
 }
-
 .chart-z-index-2 {
   z-index: -1;
   display: none;
@@ -469,29 +497,13 @@ $main_dark:rgba(108, 181, 30);
   z-index: -2;
 }
 
-.active{
-  background-color: $main !important;
-  transform: translateX(24px);
-  &::after{
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 90%;
-    transform: translateY(-50%);
-    width: 20%;
-    height: 50%;
-    z-index: -1;
-    background-color: $main;
-    border-radius: 4px;
-    opacity: 1;
-    clip-path: polygon(0 0, 0% 100%, 100% 50%);
-  }
-}
+
 
 
 .glitch {
+  font-family: 'Tektur';
   position: relative;
-  font-size: 25px;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1.2;
   color: $white;
@@ -512,7 +524,7 @@ $main_dark:rgba(108, 181, 30);
 
 .glitch:before {
   animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
-  color: #ff60a2;
+  color: #60ff63;
   z-index: -1;
 }
 

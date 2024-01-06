@@ -36,11 +36,11 @@ const chartConfig = {
     datasets: [
       {
         data: [4, 5, 4, 3, 4],
-        backgroundColor: ['rgba(160, 255, 59,0.3)'],
-        borderColor: ['rgba(108, 181, 30,1)', 'rgba(108, 181, 30,1)','rgba(108, 181, 30,1)','rgba(108, 181, 30,1)','rgba(108, 181, 30,1)'],
+        backgroundColor: ['rgba(205, 39, 39,0.3)'],
+        borderColor: ['rgba(205, 39, 39,1)', 'rgba(205, 39, 39,1)','rgba(205, 39, 39,1)','rgba(205, 39, 39,1)','rgba(205, 39, 39,1)'],
         borderWidth: 1,
         pointRadius: 3,
-        pointBackgroundColor: ['rgba(108, 181, 30,1)', 'rgba(108, 181, 30,1)','rgba(108, 181, 30,1)','rgba(108, 181, 30,1)','rgba(108, 181, 30,1)'],
+        pointBackgroundColor: ['rgba(205, 39, 39,1)', 'rgba(205, 39, 39,1)','rgba(205, 39, 39,1)','rgba(205, 39, 39,1)','rgba(205, 39, 39,1)'],
       },
       {
         data: [0, 1, 2, 3, 4, 5],
@@ -62,7 +62,15 @@ const chartConfig = {
     },
     scale: {
       pointLabels: {
-        fontSize: 11 // 在這裡設定標籤的字體大小
+        fontSize: 11, // 在這裡設定標籤的字體大小
+        fontColor:'#f3f3f3'
+      },
+      gridLines:{
+        color:'rgba(196, 196, 196,0.2)'
+      },
+      ticks:{
+        color:'rgba(196, 196, 196,0.2)',
+        backdropColor:'rgba(196, 196, 196,0)'
       }
     }
   }
@@ -81,7 +89,7 @@ createApp({
       myinfoData: [],
       // 當前顯示的頁面
       portfolio_page: 0,
-      web_page: 2,
+      web_page: 1,
       // Chart.js 實例
       myChart: null,
       loading: false,

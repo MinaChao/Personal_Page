@@ -33,7 +33,6 @@ html(lang="zh-TW")
                 .loader(v-show="loading")
                     .glitch(data-glitch='Loading...') Loading...
                 section.home(v-if="web_page === 0")
-                    h1 HOME PAGE
                 section.about(v-else-if="web_page === 1")
                     .blocks
                         .block.block1
@@ -66,7 +65,7 @@ html(lang="zh-TW")
                     .left_box(data-aos="fade-right")
                         ul.nav_tag
                             li(:class="{active:portfolio_page===0}")
-                                a(@click="portfolio_change(0)") UIUX設計
+                                a(@click="portfolio_change(0)") UIUX 設計
                             li(:class="{active:portfolio_page===1}")
                                 a(@click="portfolio_change(1)") 網頁設計
                             li(:class="{active:portfolio_page===2}")
@@ -87,7 +86,7 @@ html(lang="zh-TW")
                                             img(:src='uiux_data.img')
                                         .back
                                             p {{uiux_data.Introduction}}
-                                            span {{uiux_data.tag}}
+                                            span ▶ {{uiux_data.tag}}
                                     h3 {{uiux_data.Name}}
                         .web(v-else-if="portfolio_page === 1" data-aos="fade-down")
                             ul
@@ -98,7 +97,7 @@ html(lang="zh-TW")
                                             img(:src='web_data.img')
                                         .back
                                             p {{web_data.Introduction}}
-                                            span {{web_data.tag}}
+                                            span ▶ {{web_data.tag}}
                                     h3 {{web_data.Name}}
                         .illustration(v-else-if="portfolio_page === 2" data-aos="fade-down")
                             .waterfall
@@ -114,7 +113,7 @@ html(lang="zh-TW")
                                             img(:src='clip_data.img')
                                         .back
                                             p {{clip_data.Introduction}}
-                                            span {{clip_data.tag}}
+                                            span ▶ {{clip_data.tag}}
                                     h3 {{clip_data.Name}}
                         .product(v-else-if="portfolio_page === 4" data-aos="fade-down")
                             ul
@@ -125,7 +124,7 @@ html(lang="zh-TW")
                                             img(:src='product_data.img')
                                         .back
                                             p {{product_data.Introduction}}
-                                            span {{product_data.tag}}
+                                            span ▶ {{product_data.tag}}
                                     h3 {{product_data.Name}}
                         .other(v-else-if="portfolio_page === 5" data-aos="fade-down")
                             ul
@@ -136,7 +135,7 @@ html(lang="zh-TW")
                                             img(:src='other_data.img')
                                         .back
                                             p {{other_data.Introduction}}
-                                            span {{other_data.tag}} 
+                                            span ▶ {{other_data.tag}} 
                                     h3 {{other_data.Name}}
                 .chart(:class="{ 'chart-z-index-1': web_page === 1, 'chart-z-index-2': web_page === 0 || web_page === 2 }"  data-aos="fade-up")
                     canvas#myChart(v-show="web_page===1" width="360" height="360")
