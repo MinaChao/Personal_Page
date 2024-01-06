@@ -18,7 +18,7 @@ var confettiSettings = {
   max:80,size:1,
   animate:true,
   props:["circle"],
-  colors:[[210,210,210]],
+  colors:[[120,120,120]],
   clock:"2",rotate:false,
   width:"1498",height:"705",
   start_from_edge:false,
@@ -36,14 +36,14 @@ const chartConfig = {
     datasets: [
       {
         data: [4, 5, 4, 3, 4],
-        backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+        backgroundColor: ['rgba(160, 255, 59,0.3)'],
+        borderColor: ['rgba(108, 181, 30,1)', 'rgba(108, 181, 30,1)','rgba(108, 181, 30,1)','rgba(108, 181, 30,1)','rgba(108, 181, 30,1)'],
         borderWidth: 1,
         pointRadius: 3,
-        pointBackgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+        pointBackgroundColor: ['rgba(108, 181, 30,1)', 'rgba(108, 181, 30,1)','rgba(108, 181, 30,1)','rgba(108, 181, 30,1)','rgba(108, 181, 30,1)'],
       },
       {
-        data: [5, 5, 5, 0, 5, 0],
+        data: [0, 1, 2, 3, 4, 5],
         backgroundColor: ['rgba(255, 255, 255, 0)'],
         borderColor: Array(6).fill('rgba(255, 255, 255, 0)'),
         pointBackgroundColor: Array(6).fill('rgba(255, 255, 255, 0)'),
@@ -81,7 +81,7 @@ createApp({
       myinfoData: [],
       // 當前顯示的頁面
       portfolio_page: 0,
-      web_page: 1,
+      web_page: 2,
       // Chart.js 實例
       myChart: null,
       loading: false,
