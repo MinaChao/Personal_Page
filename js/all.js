@@ -1,9 +1,11 @@
+// 從 CDN 引入 Vue
 import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 
+// Google Sheets API 和金鑰
 const googleSheetsBaseUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1TUZOFns9dqeBfhOfxWJ3_9H4ACBtAycmm47yHpwF-Ek/values/';
 const apiKey = 'AIzaSyA1M5R1HsJnEvDl5C6HY4fYY8s7dsBG2zw';
 
-// 定義各個資料表的 URL
+// 不同資料表在 Google Sheets 中的 URL
 const uiuxDataUrl = `${googleSheetsBaseUrl}uiux?alt=json&key=${apiKey}`;
 const webDataUrl = `${googleSheetsBaseUrl}web?alt=json&key=${apiKey}`;
 const illustrationDataUrl = `${googleSheetsBaseUrl}illustration?alt=json&key=${apiKey}`;
@@ -12,23 +14,22 @@ const productDataUrl = `${googleSheetsBaseUrl}product?alt=json&key=${apiKey}`;
 const otherDataUrl = `${googleSheetsBaseUrl}other?alt=json&key=${apiKey}`;
 const myinfoDataUrl = `${googleSheetsBaseUrl}myinfo?alt=json&key=${apiKey}`;
 
-// 定義背景粒子，生成粒子
+// 粒子動畫設定
 var confettiSettings = {
-  target:"confetti_holder",
-  max:80,size:1,
-  animate:true,
-  props:["circle"],
-  colors:[[120,120,120]],
-  clock:"2",rotate:false,
-  width:"1498",height:"705",
-  start_from_edge:false,
-  respawn:true
+  target: "confetti_holder",
+  max: 80, size: 1,
+  animate: true,
+  props: ["circle"],
+  colors: [[120, 120, 120]],
+  clock: "2", rotate: false,
+  width: "1498", height: "705",
+  start_from_edge: false,
+  respawn: true
 };
 var confetti = new ConfettiGenerator(confettiSettings);
 confetti.render();
 
-
-// 定義雷達圖的配置
+// 雷達圖配置
 const chartConfig = {
   type: 'radar',
   data: {
@@ -62,24 +63,26 @@ const chartConfig = {
     },
     scale: {
       pointLabels: {
-        fontSize: 11, // 在這裡設定標籤的字體大小
-        fontColor:'#f3f3f3'
+        fontSize: 11, // 設定標籤字體大小
+        fontColor: '#f3f3f3',
+        backgroundColor: 'rgba(205, 39, 39,0.3)', // 設定標籤背景顏色
       },
-      gridLines:{
-        color:'rgba(196, 196, 196,0.2)'
+      gridLines: {
+        color: 'rgba(196, 196, 196,0.2)'
       },
-      ticks:{
-        color:'rgba(196, 196, 196,0.2)',
-        backdropColor:'rgba(196, 196, 196,0)'
+      ticks: {
+        color: 'rgba(196, 196, 196,0.2)',
+        backdropColor: 'rgba(196, 196, 196,0)'
       }
     }
   }
 };
 
+// 創建 Vue app
 createApp({
   data() {
     return {
-      // 定義各個資料表的資料
+      // 定義不同資料表的資料
       uiuxData: [],
       webData: [],
       illustrationData: [],
@@ -87,9 +90,9 @@ createApp({
       productData: [],
       otherData: [],
       myinfoData: [],
-      // 當前顯示的頁面
+      // 目前顯示的頁面
       portfolio_page: 0,
-      web_page: 1,
+      web_page: 0,
       // Chart.js 實例
       myChart: null,
       loading: false,
@@ -102,7 +105,7 @@ createApp({
       this.loading = true;
       await this.loadData();
       this.loading = false;
-      AOS.refreshHard({delay: 1000,}); // 重新初始化 AOS
+      AOS.refreshHard({ delay: 1000, }); // 重新初始化 AOS
     },
     // 創建 Chart.js 圖表
     createChart() {
@@ -145,35 +148,35 @@ createApp({
     },
     // 載入所有資料
     async loadData() {
-      if (this.portfolio_page === 0 && this.web_page ===2) {
+      if (this.portfolio_page === 0 && this.web_page === 2) {
         this.uiuxData = await this.fetchData(uiuxDataUrl);
-      } else if (this.portfolio_page === 1 &&  this.web_page ===2) {
+      } else if (this.portfolio_page === 1 && this.web_page === 2) {
         this.webData = await this.fetchData(webDataUrl);
-      } else if (this.portfolio_page === 2 &&  this.web_page ===2) {
+      } else if (this.portfolio_page === 2 && this.web_page === 2) {
         this.illustrationData = await this.fetchData(illustrationDataUrl);
-      } else if (this.portfolio_page === 3 &&  this.web_page ===2) {
+      } else if (this.portfolio_page === 3 && this.web_page === 2) {
         this.clipData = await this.fetchData(clipDataUrl);
-      } else if (this.portfolio_page === 4 &&  this.web_page ===2) {
+      } else if (this.portfolio_page === 4 && this.web_page === 2) {
         this.productData = await this.fetchData(productDataUrl);
-      } else if (this.portfolio_page === 5 &&  this.web_page ===2) {
+      } else if (this.portfolio_page === 5 && this.web_page === 2) {
         this.otherData = await this.fetchData(otherDataUrl);
       }
     },
     async loadAllData() {
-      if(this.web_page ===2){
-      this.uiuxData = await this.fetchData(uiuxDataUrl);
-      this.webData = await this.fetchData(webDataUrl);
-      this.illustrationData = await this.fetchData(illustrationDataUrl);
-      this.clipData = await this.fetchData(clipDataUrl);
-      this.productData = await this.fetchData(productDataUrl);
-      this.otherData = await this.fetchData(otherDataUrl);
+      if (this.web_page === 2) {
+        this.uiuxData = await this.fetchData(uiuxDataUrl);
+        this.webData = await this.fetchData(webDataUrl);
+        this.illustrationData = await this.fetchData(illustrationDataUrl);
+        this.clipData = await this.fetchData(clipDataUrl);
+        this.productData = await this.fetchData(productDataUrl);
+        this.otherData = await this.fetchData(otherDataUrl);
       }
     }
   },
   async mounted() {
     this.loading = true;
     AOS.init();
-    // 在元件掛載後創建 Chart.js 圖表並載入資料
+    // 創建 Chart.js 圖表並載入資料
     this.createChart();
     await this.loadData();
     axios.get(myinfoDataUrl)
@@ -190,7 +193,7 @@ createApp({
       .catch((error) => {
         console.error('抓取我的資訊時發生錯誤:', error);
       });
-      this.loading = false;
-      AOS.refreshHard();
+    this.loading = false;
+    AOS.refreshHard();
   }
 }).mount("#app");

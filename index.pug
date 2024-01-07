@@ -33,6 +33,55 @@ html(lang="zh-TW")
                 .loader(v-show="loading")
                     .glitch(data-glitch='Loading...') Loading...
                 section.home(v-if="web_page === 0")
+                    .action
+                        .button
+                            .normal_atk 普通攻擊
+                            .magic_atk 魔法攻擊
+                            .hp_heal HP回復
+                            .sp_use SP使用
+                                .mp_heal MP回復
+                                .status_ailments_relieved 異常解除
+                        .description 對敵人造成物理攻擊，暴擊機率較小
+                        .bg_block
+                        .helper
+                            img(src="")
+                    .status
+                        .hp
+                            span HP 
+                            .block_out
+                                .block_in
+                        .mp
+                            span MP 
+                            .block_out
+                                .block_in
+                        .sp
+                            span SP 
+                            .circle_out
+                                .circle_in
+                            .circle_out
+                                .circle_in
+                            .circle_out
+                                .circle_in
+                        .ailments
+                            img(src="")
+                        .bg_block
+                    .monster
+                        .monster_status
+                            .name 怪物名稱
+                            .hp
+                                .block_out
+                                    .block_in
+                                span HP
+                            .sp
+                                .block_out
+                                    .block_in
+                                span SP
+                            .bg_block
+                        .monster_img
+                            img(src="")
+
+
+
                 section.about(v-else-if="web_page === 1")
                     .blocks
                         .block.block1
