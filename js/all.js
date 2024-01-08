@@ -1,82 +1,76 @@
 // 從 CDN 引入 Vue
 import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+import { uiuxDataUrl,webDataUrl,illustrationDataUrl,clipDataUrl,productDataUrl,otherDataUrl,myinfoDataUrl,chartConfig,confetti } from "./data.js";
 
-// Google Sheets API 和金鑰
-const googleSheetsBaseUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1TUZOFns9dqeBfhOfxWJ3_9H4ACBtAycmm47yHpwF-Ek/values/';
-const apiKey = 'AIzaSyA1M5R1HsJnEvDl5C6HY4fYY8s7dsBG2zw';
-
-// 不同資料表在 Google Sheets 中的 URL
-const uiuxDataUrl = `${googleSheetsBaseUrl}uiux?alt=json&key=${apiKey}`;
-const webDataUrl = `${googleSheetsBaseUrl}web?alt=json&key=${apiKey}`;
-const illustrationDataUrl = `${googleSheetsBaseUrl}illustration?alt=json&key=${apiKey}`;
-const clipDataUrl = `${googleSheetsBaseUrl}clip?alt=json&key=${apiKey}`;
-const productDataUrl = `${googleSheetsBaseUrl}product?alt=json&key=${apiKey}`;
-const otherDataUrl = `${googleSheetsBaseUrl}other?alt=json&key=${apiKey}`;
-const myinfoDataUrl = `${googleSheetsBaseUrl}myinfo?alt=json&key=${apiKey}`;
-
-// 粒子動畫設定
-var confettiSettings = {
-  target: "confetti_holder",
-  max: 80, size: 1,
-  animate: true,
-  props: ["circle"],
-  colors: [[120, 120, 120]],
-  clock: "2", rotate: false,
-  width: "1498", height: "705",
-  start_from_edge: false,
-  respawn: true
-};
-var confetti = new ConfettiGenerator(confettiSettings);
 confetti.render();
 
-// 雷達圖配置
-const chartConfig = {
-  type: 'radar',
-  data: {
-    labels: ['問題解決', 'EQ', '團隊合作', '溝通表達', '責任心'],
-    datasets: [
-      {
-        data: [4, 5, 4, 3, 4],
-        backgroundColor: ['rgba(205, 39, 39,0.3)'],
-        borderColor: ['rgba(205, 39, 39,1)', 'rgba(205, 39, 39,1)','rgba(205, 39, 39,1)','rgba(205, 39, 39,1)','rgba(205, 39, 39,1)'],
-        borderWidth: 1,
-        pointRadius: 3,
-        pointBackgroundColor: ['rgba(205, 39, 39,1)', 'rgba(205, 39, 39,1)','rgba(205, 39, 39,1)','rgba(205, 39, 39,1)','rgba(205, 39, 39,1)'],
-      },
-      {
-        data: [0, 1, 2, 3, 4, 5],
-        backgroundColor: ['rgba(255, 255, 255, 0)'],
-        borderColor: Array(6).fill('rgba(255, 255, 255, 0)'),
-        pointBackgroundColor: Array(6).fill('rgba(255, 255, 255, 0)'),
-        borderWidth: 0,
-      },
-    ],
-  },
-  options: {
-    spanGaps: true,
-    responsive: true,
-    tooltips: {
-      enabled: false  // 關閉 tooltips（hover 功能）
-    },
-    legend: {
-      display: false
-    },
-    scale: {
-      pointLabels: {
-        fontSize: 11, // 設定標籤字體大小
-        fontColor: '#f3f3f3',
-        backgroundColor: 'rgba(205, 39, 39,0.3)', // 設定標籤背景顏色
-      },
-      gridLines: {
-        color: 'rgba(196, 196, 196,0.2)'
-      },
-      ticks: {
-        color: 'rgba(196, 196, 196,0.2)',
-        backdropColor: 'rgba(196, 196, 196,0)'
-      }
-    }
+class Player {
+  constructor() {
+      this.hp = 100;
+      this.maxHp = 100;
+      this.mp = 50;
+      this.maxMp = 100;
+      this.atk = Math.floor(Math.random() * (25 - 5 + 1) + 15);
+      this.sp = 0;
+      this.maxSp = 3;
   }
-};
+
+  normalAttack(monsterDef) {
+      this.sp = Math.min(this.maxSp, this.sp + 1);
+      const damage = Math.max(0, this.atk - monsterDef);
+      return damage;
+  }
+
+  magicAttack(monsterDef) {
+      if (this.mp >= 10) {
+          this.mp -= 10;
+          const damage = Math.max(0, Math.floor(this.atk * 1.5) - monsterDef);
+          return damage;
+      } else {
+          return 0;
+      }
+  }
+
+  heal() {
+      if (this.mp >= 10) {
+          this.mp -= 10;
+          const healAmount = Math.floor(Math.random() * (40 - 10 + 1) + 20);
+          this.hp = Math.min(this.maxHp, this.hp + healAmount);
+      }
+  }
+
+  restoreMP() {
+      if (this.sp > 0) {
+          this.sp -= 1;
+          const restoreAmount = Math.floor(Math.random() * (30 - 10 + 1) + 10);
+          this.mp = Math.min(this.maxMp, this.mp + restoreAmount);
+      }
+  }
+}
+
+class Monster {
+  constructor(name, def, atkRange, crit, imagePath) {
+      this.name = name;
+      this.hp = 100;
+      this.maxHp = 100;
+      this.sp = 0;
+      this.maxSp = 50;
+      this.def = def;
+      this.atk = Math.floor(Math.random() * (atkRange[1] - atkRange[0] + 1) + atkRange[0]);
+      this.crit = crit;
+      this.imagePath = imagePath;
+  }
+
+  attack() {
+      let damage = Math.max(0, this.atk);
+      if (this.sp === this.maxSp) {
+          damage = Math.floor(this.atk * this.crit);
+          this.sp = 0;
+      }
+      return damage;
+  }
+}
+
 
 // 創建 Vue app
 createApp({
@@ -96,9 +90,75 @@ createApp({
       // Chart.js 實例
       myChart: null,
       loading: false,
+      player: new Player(),
+      monsters: [
+          new Monster("怪物1", 0, [3, 5], 1.2," "),
+          new Monster("怪物2", 0, [5, 8], 1.5," "),
+          new Monster("怪物3", 0, [10, 12], 2," "),
+      ],
+      currentMonsterIndex: 0,
     };
   },
   methods: {
+    // 玩家普通攻擊方法
+    attack() {
+      const monster = this.monsters[this.currentMonsterIndex];
+      const damage = this.player.normalAttack(monster.def);
+      monster.hp = Math.max(0, monster.hp - damage);
+      monster.sp = Math.min(monster.maxSp, monster.sp + 20);
+      this.monsterAttack();
+      console.log("playHP:"+this.player.hp);
+      console.log("monsterHP:" + this.monsters[this.currentMonsterIndex].hp);
+  },
+  // 玩家魔法攻擊方法
+  magicAttack() {
+      const monster = this.monsters[this.currentMonsterIndex];
+      const damage = this.player.magicAttack(monster.def);
+      monster.hp = Math.max(0, monster.hp - damage);
+      monster.sp = Math.min(monster.maxSp, monster.sp + 20);
+      this.monsterAttack();
+  },
+  // 玩家治療方法
+  heal() {
+      this.player.heal();
+      this.monsterAttack();
+  },
+  // 回復魔力方法
+  restoreMP() {
+      this.player.restoreMP();
+      this.monsterAttack();
+  },
+  // 怪物攻擊方法
+  monsterAttack() {
+      const monster = this.monsters[this.currentMonsterIndex];
+      const monsterDamage = monster.attack();
+      this.player.hp = Math.max(0, this.player.hp - monsterDamage);
+      console.log("monsterDamage:"+monsterDamage);
+      // 假設等待1秒再檢查遊戲狀態
+      setTimeout(() => {
+          this.checkGameStatus();
+      }, 1000);
+  },
+  checkGameStatus() {
+      if (this.player.hp <= 0) {
+          alert("你的HP歸零了，遊戲重新開始！");
+          this.restartGame();
+      } else if (this.monsters[this.currentMonsterIndex].hp <= 0) {
+          this.currentMonsterIndex++;
+          if (this.currentMonsterIndex >= this.monsters.length) {
+              alert("恭喜你，成功擊敗所有怪物！");
+              this.restartGame();
+          }
+      }
+  },
+  restartGame() {
+      this.player = new Player();
+      this.currentMonsterIndex = 0;
+      for (let monster of this.monsters) {
+          monster.hp = monster.maxHp;
+          monster.sp = 0;
+      }
+  },
     // 切換專案類別
     async portfolio_change(page) {
       this.portfolio_page = page;
@@ -171,7 +231,34 @@ createApp({
         this.productData = await this.fetchData(productDataUrl);
         this.otherData = await this.fetchData(otherDataUrl);
       }
-    }
+    },
+    increaseHP() {
+      // 增加 HP 寬度（這裡以增加 10% 為例）
+      if (this.player.mp >= 10) {
+        this.player.hp += 10;
+        this.player.mp -= 10;
+      }
+      // 確保 HP 寬度不超過 100%
+      if (this.player.hp > 100) {
+        this.player.hp = 100;
+      }
+      if (this.player.mp < 0) {
+        this.player.mp = 0;
+      }
+    },
+    increaseMP() {
+      if (this.player.sp >= 1) {
+        this.player.mp += 10;
+        this.player.sp -= 1;
+      }
+      // 確保 MP 寬度不超過 100%
+      if (this.player.mp > 100) {
+        this.player.mp = 100;
+      }
+      if (this.player.sp < 0) {
+        this.player.sp = 0;
+      }
+    },
   },
   async mounted() {
     this.loading = true;

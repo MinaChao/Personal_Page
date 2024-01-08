@@ -495,8 +495,14 @@ $main_dark:#9f1111;
         height: 50px;
         border-radius: 50px;
         margin: 0 1.2rem;
+        cursor: pointer;
         &:hover{
           background-color: lighten($black, 8);
+        }
+      }
+      .sp_use{
+        &:hover{
+          background-color: $main;
         }
       }
       .mp_heal{
@@ -561,13 +567,12 @@ $main_dark:#9f1111;
       .block_in{
         position: absolute;
         top: 50%;
-        left: 1%;
+        left: 0;
         transform: translateY(-50%);
-
         background-color: $white;
         border-radius: 20px;
-        width: 98%;
-        height: 50%;
+        height: 100%;
+        transition: width 0.5s ease;
       }
     }
     .circle_out{
@@ -649,13 +654,12 @@ $main_dark:#9f1111;
         .block_in{
           position: absolute;
           top: 50%;
-          left: 99%;
+          left: 100%;
           transform: translate(-100%,-50%);
-  
           background-color: $white;
           border-radius: 20px;
-          width: 98%;
-          height: 50%;
+          height: 100%;
+          transition: width 0.5s ease;
         }
       }
       .sp{
@@ -820,4 +824,5 @@ $main_dark:#9f1111;
   background-color: rgba($black, 0.7);
   z-index: 5;
 }
+
 

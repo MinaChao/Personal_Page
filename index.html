@@ -34,11 +34,11 @@
         <section class="home" v-if="web_page === 0">
           <div class="action">
             <div class="button">
-              <div class="normal_atk">普通攻擊</div>
-              <div class="magic_atk">魔法攻擊</div>
-              <div class="hp_heal">HP回復</div>
+              <div class="normal_atk" @click="attack()">普通攻擊</div>
+              <div class="magic_atk" @click="magicAttack()">魔法攻擊</div>
+              <div class="hp_heal" @click="heal()">HP回復</div>
               <div class="sp_use">SP使用
-                <div class="mp_heal">MP回復</div>
+                <div class="mp_heal" @click="restoreMP()">MP回復</div>
                 <div class="status_ailments_relieved">異常解除</div>
               </div>
             </div>
@@ -49,22 +49,22 @@
           <div class="status">
             <div class="hp"><span>HP </span>
               <div class="block_out">
-                <div class="block_in"></div>
+                <div class="block_in" :style="{ width: this.player.hp + '%' }"></div>
               </div>
             </div>
             <div class="mp"><span>MP </span>
               <div class="block_out">
-                <div class="block_in"></div>
+                <div class="block_in" :style="{ width: this.player.mp + '%' }"></div>
               </div>
             </div>
             <div class="sp"><span>SP </span>
-              <div class="circle_out">
+              <div class="circle_out" v-show="this.player.sp===1 || this.player.sp===2 || this.player.sp===3">
                 <div class="circle_in"></div>
               </div>
-              <div class="circle_out">
+              <div class="circle_out" v-show="this.player.sp===2 || this.player.sp===3">
                 <div class="circle_in"></div>
               </div>
-              <div class="circle_out">
+              <div class="circle_out" v-show="this.player.sp===3">
                 <div class="circle_in"></div>
               </div>
             </div>
@@ -73,20 +73,20 @@
           </div>
           <div class="monster">
             <div class="monster_status">
-              <div class="name">怪物名稱</div>
+              <div class="name">{{this.monsters[this.currentMonsterIndex].name}}</div>
               <div class="hp">
                 <div class="block_out">
-                  <div class="block_in"></div>
+                  <div class="block_in" :style="{ width: this.monsters[this.currentMonsterIndex].hp + '%' }"></div>
                 </div><span>HP</span>
               </div>
               <div class="sp">
                 <div class="block_out">
-                  <div class="block_in"></div>
+                  <div class="block_in" :style="{ width: this.monsters[this.currentMonsterIndex].sp + '%' }"></div>
                 </div><span>SP</span>
               </div>
               <div class="bg_block"></div>
             </div>
-            <div class="monster_img"><img src=""></div>
+            <div class="monster_img"><img :src="this.monsters[this.currentMonsterIndex].imagePath"></div>
           </div>
         </section>
         <section class="about" v-else-if="web_page === 1">

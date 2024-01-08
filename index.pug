@@ -35,11 +35,11 @@ html(lang="zh-TW")
                 section.home(v-if="web_page === 0")
                     .action
                         .button
-                            .normal_atk 普通攻擊
-                            .magic_atk 魔法攻擊
-                            .hp_heal HP回復
+                            .normal_atk(@click="attack()") 普通攻擊
+                            .magic_atk(@click="magicAttack()") 魔法攻擊
+                            .hp_heal(@click="heal()") HP回復
                             .sp_use SP使用
-                                .mp_heal MP回復
+                                .mp_heal(@click="restoreMP()") MP回復
                                 .status_ailments_relieved 異常解除
                         .description 對敵人造成物理攻擊，暴擊機率較小
                         .bg_block
@@ -49,39 +49,36 @@ html(lang="zh-TW")
                         .hp
                             span HP 
                             .block_out
-                                .block_in
+                                .block_in(:style="{ width: this.player.hp + '%' }")
                         .mp
                             span MP 
                             .block_out
-                                .block_in
+                                .block_in(:style="{ width: this.player.mp + '%' }")
                         .sp
                             span SP 
-                            .circle_out
+                            .circle_out(v-show="this.player.sp===1 || this.player.sp===2 || this.player.sp===3")
                                 .circle_in
-                            .circle_out
+                            .circle_out(v-show="this.player.sp===2 || this.player.sp===3")
                                 .circle_in
-                            .circle_out
+                            .circle_out(v-show="this.player.sp===3")
                                 .circle_in
                         .ailments
                             img(src="")
                         .bg_block
                     .monster
                         .monster_status
-                            .name 怪物名稱
+                            .name {{this.monsters[this.currentMonsterIndex].name}}
                             .hp
                                 .block_out
-                                    .block_in
+                                    .block_in(:style="{ width: this.monsters[this.currentMonsterIndex].hp + '%' }")
                                 span HP
                             .sp
                                 .block_out
-                                    .block_in
+                                    .block_in(:style="{ width: this.monsters[this.currentMonsterIndex].sp + '%' }")
                                 span SP
                             .bg_block
                         .monster_img
-                            img(src="")
-
-
-
+                            img(:src="this.monsters[this.currentMonsterIndex].imagePath")
                 section.about(v-else-if="web_page === 1")
                     .blocks
                         .block.block1

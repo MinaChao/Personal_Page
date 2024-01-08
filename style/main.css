@@ -581,9 +581,13 @@ main {
   height: 50px;
   border-radius: 50px;
   margin: 0 1.2rem;
+  cursor: pointer;
 }
 .home .action .button .normal_atk:hover, .home .action .button .magic_atk:hover, .home .action .button .hp_heal:hover, .home .action .button .sp_use:hover, .home .action .button .mp_heal:hover, .home .action .button .status_ailments_relieved:hover {
   background-color: #333333;
+}
+.home .action .button .sp_use:hover {
+  background-color: #cd2727;
 }
 .home .action .button .mp_heal {
   position: absolute;
@@ -656,13 +660,14 @@ main {
 .home .status .block_out .block_in {
   position: absolute;
   top: 50%;
-  left: 1%;
+  left: 0;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   background-color: #f2f2f2;
   border-radius: 20px;
-  width: 98%;
-  height: 50%;
+  height: 100%;
+  -webkit-transition: width 0.5s ease;
+  transition: width 0.5s ease;
 }
 .home .status .circle_out {
   border: solid 1.2px #f2f2f2;
@@ -761,13 +766,14 @@ main {
 .home .monster .monster_status .block_out .block_in {
   position: absolute;
   top: 50%;
-  left: 99%;
+  left: 100%;
   -webkit-transform: translate(-100%, -50%);
           transform: translate(-100%, -50%);
   background-color: #f2f2f2;
   border-radius: 20px;
-  width: 98%;
-  height: 50%;
+  height: 100%;
+  -webkit-transition: width 0.5s ease;
+  transition: width 0.5s ease;
 }
 .home .monster .monster_status .sp .block_out {
   width: 40%;
