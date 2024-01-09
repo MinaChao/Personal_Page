@@ -19,6 +19,7 @@ html(lang="zh-TW")
             audio#magicSound(src='sound/scifi_attack1.mp3' preload="auto")
             audio#healSound(src='sound/voice_of_light.mp3')
             audio#monsterAttackSound(src='sound/cut_with_sword2.mp3')
+            audio(src="sound/maou_bgm_cyber31.mp3" autoplay="autoplay" loop="loop") 
             header
                 .left_box
                     a(@click="web_page_change(0)")
@@ -37,15 +38,16 @@ html(lang="zh-TW")
                 .loader(v-show="loading")
                     .glitch(data-glitch='Loading...') Loading...
                 section.home(v-if="web_page === 0")
+
                     .action(:class="{ 'player_shake': isPlayerShaking }")
                         .button
-                            .normal_atk(@mouseover="handleHover('對敵人造成一般傷害')" @mouseleave="handleHover()" @click="attack()") 普通攻擊
-                            .magic_atk(@mouseover="handleHover('消耗MP 10，對敵人1.5倍傷害')" @mouseleave="handleHover()" @click="magicAttack()" :class="{ 'disabled': player.mp < 10 }") 魔法攻擊
-                            .hp_heal(@mouseover="handleHover('消耗MP 10，回復自身HP')" @mouseleave="handleHover()" @click="heal()" :class="{ 'disabled': player.mp < 10 }") HP回復
+                            .normal_atk(@mouseover="handleHover('對敵人造成一般傷害')" @mouseleave="handleHover()" @click="attack()" :class="{ 'disabled': isBleeding===true}") 普通攻擊
+                            .magic_atk(@mouseover="handleHover('消耗MP 10，對敵人1.5倍傷害')" @mouseleave="handleHover()" @click="magicAttack()" :class="{ 'disabled': player.mp < 10 || isSealed===true}") 魔法攻擊
+                            .hp_heal(@mouseover="handleHover('消耗MP 10，回復自身HP')" @mouseleave="handleHover()" @click="heal()" :class="{ 'disabled': player.mp < 10 || isSealed===true}") HP回復
                             .container(@mouseover="spUseHover()" @mouseleave="spNoUseHover()")
                                 .sp_use SP使用
-                                .mp_heal(v-show="spUse" @mouseover="handleHover('消耗SP 1，回復自身MP');" @mouseleave="handleHover()" @click="restoreMP()" :class="{ 'disabled': player.sp == 0 }") MP回復
-                                .status_ailments_relieved(v-show="spUse" @mouseover="handleHover('消耗SP 3，解除所有異常狀態');" @mouseleave="handleHover()" :class="{ 'disabled': player.sp == 0 }") 異常解除
+                                .mp_heal(v-show="spUse" @mouseover="handleHover('消耗SP 1，回復自身MP');" @mouseleave="handleHover()" @click="restoreMP()" :class="{ 'disabled': player.sp == 0 || isWeak===true}") MP回復
+                                .status_ailments_relieved(v-show="spUse" @mouseover="handleHover('消耗SP 3，解除所有異常狀態');" @mouseleave="handleHover()" @click=" relieveStatus()" :class="{ 'disabled': player.sp == 0 }") 異常解除
                             .action_skip(@mouseover="handleHover('不做任何動作')" @mouseleave="handleHover()" @click="skipAction()") 不行動
                         .description {{ actionDescription }}
                         .bg_block
@@ -69,7 +71,15 @@ html(lang="zh-TW")
                             .circle_out(v-show="this.player.sp===3")
                                 .circle_in
                         .ailments
-                            img(src="")
+                            .ailments_description {{ ailmentDescription }}
+                            .ailment(v-show="isPoisoned===true" @mouseover="ailmentHover('中毒：每次行動HP-3')" @mouseleave="ailmentHover()")
+                                img(src="img/figma.png")
+                            .ailment(v-show="isSealed===true" @mouseover="ailmentHover('封印：無法使用魔法攻擊、治療')" @mouseleave="ailmentHover()")
+                                img(src="img/csp.png")
+                            .ailment(v-show="isBleeding===true" @mouseover="ailmentHover('出血：無法使用普通攻擊')" @mouseleave="ailmentHover()")
+                                img(src="img/mina.png")
+                            .ailment(v-show="isWeak===true" @mouseover="ailmentHover('虛弱：無法使用MP恢復')" @mouseleave="ailmentHover()")
+                                img(src="img/upa.png")
                         .bg_block
                     .monster
                         .monster_status

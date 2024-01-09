@@ -19,6 +19,7 @@
       <audio id="magicSound" src="sound/scifi_attack1.mp3" preload="auto"></audio>
       <audio id="healSound" src="sound/voice_of_light.mp3"></audio>
       <audio id="monsterAttackSound" src="sound/cut_with_sword2.mp3"></audio>
+      <audio src="sound/maou_bgm_cyber31.mp3" autoplay="autoplay" loop="loop"> </audio>
       <header>
         <div class="left_box"><a @click="web_page_change(0)"><img src="img/mina.png"></a></div>
         <nav class="nav_box">
@@ -38,13 +39,13 @@
         <section class="home" v-if="web_page === 0">
           <div class="action" :class="{ 'player_shake': isPlayerShaking }">
             <div class="button">
-              <div class="normal_atk" @mouseover="handleHover('對敵人造成一般傷害')" @mouseleave="handleHover()" @click="attack()">普通攻擊</div>
-              <div class="magic_atk" @mouseover="handleHover('消耗MP 10，對敵人1.5倍傷害')" @mouseleave="handleHover()" @click="magicAttack()" :class="{ 'disabled': player.mp &lt; 10 }">魔法攻擊</div>
-              <div class="hp_heal" @mouseover="handleHover('消耗MP 10，回復自身HP')" @mouseleave="handleHover()" @click="heal()" :class="{ 'disabled': player.mp &lt; 10 }">HP回復</div>
+              <div class="normal_atk" @mouseover="handleHover('對敵人造成一般傷害')" @mouseleave="handleHover()" @click="attack()" :class="{ 'disabled': isBleeding===true}">普通攻擊</div>
+              <div class="magic_atk" @mouseover="handleHover('消耗MP 10，對敵人1.5倍傷害')" @mouseleave="handleHover()" @click="magicAttack()" :class="{ 'disabled': player.mp &lt; 10 || isSealed===true}">魔法攻擊</div>
+              <div class="hp_heal" @mouseover="handleHover('消耗MP 10，回復自身HP')" @mouseleave="handleHover()" @click="heal()" :class="{ 'disabled': player.mp &lt; 10 || isSealed===true}">HP回復</div>
               <div class="container" @mouseover="spUseHover()" @mouseleave="spNoUseHover()">
                 <div class="sp_use">SP使用</div>
-                <div class="mp_heal" v-show="spUse" @mouseover="handleHover('消耗SP 1，回復自身MP');" @mouseleave="handleHover()" @click="restoreMP()" :class="{ 'disabled': player.sp == 0 }">MP回復</div>
-                <div class="status_ailments_relieved" v-show="spUse" @mouseover="handleHover('消耗SP 3，解除所有異常狀態');" @mouseleave="handleHover()" :class="{ 'disabled': player.sp == 0 }">異常解除</div>
+                <div class="mp_heal" v-show="spUse" @mouseover="handleHover('消耗SP 1，回復自身MP');" @mouseleave="handleHover()" @click="restoreMP()" :class="{ 'disabled': player.sp == 0 || isWeak===true}">MP回復</div>
+                <div class="status_ailments_relieved" v-show="spUse" @mouseover="handleHover('消耗SP 3，解除所有異常狀態');" @mouseleave="handleHover()" @click=" relieveStatus()" :class="{ 'disabled': player.sp == 0 }">異常解除</div>
               </div>
               <div class="action_skip" @mouseover="handleHover('不做任何動作')" @mouseleave="handleHover()" @click="skipAction()">不行動</div>
             </div>
@@ -74,7 +75,13 @@
                 <div class="circle_in"></div>
               </div>
             </div>
-            <div class="ailments"><img src=""></div>
+            <div class="ailments">
+              <div class="ailments_description">{{ ailmentDescription }}</div>
+              <div class="ailment" v-show="isPoisoned===true" @mouseover="ailmentHover('中毒：每次行動HP-3')" @mouseleave="ailmentHover()"><img src="img/figma.png"></div>
+              <div class="ailment" v-show="isSealed===true" @mouseover="ailmentHover('封印：無法使用魔法攻擊、治療')" @mouseleave="ailmentHover()"><img src="img/csp.png"></div>
+              <div class="ailment" v-show="isBleeding===true" @mouseover="ailmentHover('出血：無法使用普通攻擊')" @mouseleave="ailmentHover()"><img src="img/mina.png"></div>
+              <div class="ailment" v-show="isWeak===true" @mouseover="ailmentHover('虛弱：無法使用MP恢復')" @mouseleave="ailmentHover()"><img src="img/upa.png"></div>
+            </div>
             <div class="bg_block"></div>
           </div>
           <div class="monster">

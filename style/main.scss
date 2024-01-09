@@ -604,13 +604,28 @@ $main_dark:#9f1111;
     }
     .ailments{
       position: absolute;
-      width: 2.5rem;
+      display: flex;
       height: 2.5rem;
       top: 0;
       left: 6rem;
       transform: translateY(-120%);
+      .ailments_description{
+        position: absolute;
+        font-size: 0.8rem;
+        width: 16rem;
+        padding: 0.5rem 0;
+        top: 0;
+        transform: translateY(-100%);
+      }
+      .ailment{
+        width: 2.5rem;
+        margin-right: 0.6rem;
+      }
       img{
         max-width: 100%;
+        &:hover{
+          
+        }
       }
     }
     .bg_block{

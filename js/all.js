@@ -46,8 +46,11 @@ class Player {
       this.mp = Math.min(this.maxMp, this.mp + restoreAmount);
     }
   }
-
   
+  noAction(){
+    this.sp = Math.min(this.maxSp, this.sp + 1);
+  }
+
 }
 
 class Monster {
@@ -111,7 +114,13 @@ createApp({
       isMonsterShaking: false,
       isPlayerShaking: false,
       actionDescription: "",
-      spUse: false
+      ailmentDescription: "",
+      spUse: false,
+      // 玩家負面狀態
+      isPoisoned: true,
+      isSealed: true,
+      isBleeding: false,
+      isWeak: false,
     };
   },
   methods: {
@@ -147,7 +156,7 @@ createApp({
       if (this.isAttacking) {
         return; // 避免連續點擊
       }
-      if(this.player.mp>=10){
+      if (this.player.mp >= 10) {
         this.isAttacking = true;
         const monster = this.monsters[this.currentMonsterIndex];
         const damage = this.player.magicAttack(monster.def);
@@ -159,10 +168,10 @@ createApp({
           monster.sp = Math.min(monster.maxSp, monster.sp + 20);
           this.monsterAttack();
         }
-      }else{
+      } else {
         return;
       }
-      
+
 
       setTimeout(() => {
         this.checkGameStatus();
@@ -174,7 +183,7 @@ createApp({
       if (this.isAttacking) {
         return; // 避免連續點擊
       }
-      if(this.player.mp>=10){
+      if (this.player.mp >= 10) {
         this.isAttacking = true;
         const healSound = document.getElementById('healSound');
 
@@ -183,7 +192,7 @@ createApp({
           this.player.heal();
           this.monsterAttack();
         }
-      }else{
+      } else {
         return;
       }
 
@@ -197,7 +206,7 @@ createApp({
       if (this.isAttacking) {
         return; // 避免連續點擊
       }
-      if(this.player.sp>=1){
+      if (this.player.sp >= 1) {
         this.isAttacking = true;
         const healSound = document.getElementById('healSound');
 
@@ -206,7 +215,7 @@ createApp({
           this.player.restoreMP();
           this.monsterAttack();
         }
-      }else{
+      } else {
         return;
       }
       setTimeout(() => {
@@ -214,11 +223,35 @@ createApp({
         this.isAttacking = false;
       }, 1000);
     },
-    skipAction(){
+    // 解除所有異常狀態
+    async relieveStatus() {
       if (this.isAttacking) {
         return; // 避免連續點擊
       }
-
+      if (this.player.sp >= 3) {
+        this.isAttacking = true;
+        const healSound = document.getElementById('healSound');
+        if (healSound) {
+          await healSound.play();
+          this.isPoisoned = false;
+          this.isSealed = false;
+          this.isBleeding = false;
+          this.isWeak = false;
+          this.player.sp -= 3;
+          this.monsterAttack();
+        }
+      }
+      setTimeout(() => {
+        this.checkGameStatus();
+        this.isAttacking = false;
+      }, 1000);
+    },
+    // 不行動
+    skipAction() {
+      if (this.isAttacking) {
+        return; // 避免連續點擊
+      }
+      this.player.noAction();
       this.monsterAttack();
 
       this.checkGameStatus();
@@ -227,27 +260,71 @@ createApp({
     async monsterAttack() {
       const monster = this.monsters[this.currentMonsterIndex];
 
-      if (monster.hp > 0){
+      if (monster.hp > 0) {
         const monsterAttackSound = document.getElementById('monsterAttackSound');
         setTimeout(async () => {
-          if(monsterAttackSound){
-          await monsterAttackSound.play();
-          this.isPlayerShaking = true;
-          const monsterDamage = monster.attack();
-          this.player.hp = Math.max(0, this.player.hp - monsterDamage);
-          console.log("monsterDamage:" + monsterDamage);
-          setTimeout(() => {
-            this.isPlayerShaking = false; // 在一秒后关闭震动效果
-          }, 1000);
+          if (monsterAttackSound) {
+            await monsterAttackSound.play();
+            this.isPlayerShaking = true;
+            const monsterDamage = monster.attack();
+            this.player.hp = Math.max(0, this.player.hp - monsterDamage);
+            console.log("monsterDamage:" + monsterDamage);
+            const statusChance = Math.random(); // 生成0到1的隨機數
+            if (statusChance < 0.3) {
+              // 30%的機會啟動負面狀態
+              this.activateStatus();
+            }
+
+            setTimeout(() => {
+              this.isPlayerShaking = false; // 在一秒后关闭震动效果
+            }, 1000);
           }
         }, 1000);
-      }else{
+      } else {
         return;
       }
-      // 假設等待1秒再檢查遊戲狀態
+
+      // 等待攻擊結束
       setTimeout(() => {
-        this.checkGameStatus();
+        // 檢查玩家負面狀態
+        this.checkPlayerStatus();
+        console.log("毒：" + this.isPoisoned + "，封：" + this.isSealed + "，血" + this.isBleeding + "，弱：" + this.isWeak);
+
+        // 假設等待1秒再檢查遊戲狀態
+        setTimeout(() => {
+          this.checkGameStatus();
+        }, 1000);
       }, 1000);
+    },
+    // 啟動負面狀態的方法
+    activateStatus() {
+      const statusType = Math.floor(Math.random() * 4); // 隨機選擇負面狀態
+
+      // 根據隨機選擇啟動相應的負面狀態
+      switch (statusType) {
+        case 0:
+          this.isPoisoned = true;
+          break;
+        case 1:
+          this.isSealed = true;
+          break;
+        case 2:
+          this.isBleeding = true;
+          break;
+        case 3:
+          this.isWeak = true;
+          break;
+        default:
+          break;
+      }
+    },
+    // 檢查玩家負面狀態的方法
+    checkPlayerStatus() {
+      if (this.isPoisoned) {
+        // 中毒狀態
+        this.player.hp = Math.max(0, this.player.hp - 3);
+      }
+      // 其他負面狀態的處理...
     },
     // 檢查遊戲狀態
     checkGameStatus() {
@@ -255,31 +332,40 @@ createApp({
         alert("你的HP歸零了，遊戲重新開始！");
         this.restartGame();
       } else if (this.monsters[this.currentMonsterIndex].hp <= 0 && this.currentMonsterIndex <= this.monsters.length) {
-          this.currentMonsterIndex++;
+        this.currentMonsterIndex++;
         if (this.currentMonsterIndex >= this.monsters.length) {
           alert("恭喜你，成功擊敗所有怪物！");
           this.restartGame();
         }
       }
     },
-    // 重製遊戲
+    // 重置遊戲
     restartGame() {
       this.player = new Player();
+      this.isPoisoned = false;
+      this.isSealed = false;
+      this.isBleeding = false;
+      this.isWeak = false;
       this.currentMonsterIndex = 0;
       for (let monster of this.monsters) {
         monster.hp = monster.maxHp;
         monster.sp = 0;
       }
+      
     },
     // 按鈕狀態
     handleHover(description) {
       this.actionDescription = description;
     },
-    spUseHover(){
+    spUseHover() {
       this.spUse = true;
     },
-    spNoUseHover(){
-        this.spUse = false;
+    spNoUseHover() {
+      this.spUse = false;
+    },
+    // 異常描述
+    ailmentHover(description){
+      this.ailmentDescription = description;
     },
     // 切換專案類別
     async portfolio_change(page) {

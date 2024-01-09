@@ -713,12 +713,27 @@ main {
 }
 .home .status .ailments {
   position: absolute;
-  width: 2.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   height: 2.5rem;
   top: 0;
   left: 6rem;
   -webkit-transform: translateY(-120%);
           transform: translateY(-120%);
+}
+.home .status .ailments .ailments_description {
+  position: absolute;
+  font-size: 0.8rem;
+  width: 16rem;
+  padding: 0.5rem 0;
+  top: 0;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+.home .status .ailments .ailment {
+  width: 2.5rem;
+  margin-right: 0.6rem;
 }
 .home .status .ailments img {
   max-width: 100%;
