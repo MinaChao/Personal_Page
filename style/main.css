@@ -559,12 +559,15 @@ main {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   position: absolute;
   top: 0%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
-.home .action .button .normal_atk, .home .action .button .magic_atk, .home .action .button .hp_heal, .home .action .button .sp_use, .home .action .button .mp_heal, .home .action .button .status_ailments_relieved {
+.home .action .button .normal_atk, .home .action .button .magic_atk, .home .action .button .hp_heal, .home .action .button .sp_use, .home .action .button .mp_heal, .home .action .button .status_ailments_relieved, .home .action .button .action_skip {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -577,39 +580,56 @@ main {
   background-color: #1f1f1f;
   -webkit-box-shadow: 0px 0px 4px 0px rgba(242, 242, 242, 0.4);
           box-shadow: 0px 0px 4px 0px rgba(242, 242, 242, 0.4);
-  width: 200px;
-  height: 50px;
+  width: 150px;
+  height: 30px;
   border-radius: 50px;
   margin: 0 1.2rem;
   cursor: pointer;
 }
-.home .action .button .normal_atk:hover, .home .action .button .magic_atk:hover, .home .action .button .hp_heal:hover, .home .action .button .sp_use:hover, .home .action .button .mp_heal:hover, .home .action .button .status_ailments_relieved:hover {
+.home .action .button .normal_atk:hover, .home .action .button .magic_atk:hover, .home .action .button .hp_heal:hover, .home .action .button .sp_use:hover, .home .action .button .mp_heal:hover, .home .action .button .status_ailments_relieved:hover, .home .action .button .action_skip:hover {
   background-color: #333333;
 }
-.home .action .button .sp_use:hover {
+.home .action .button .disabled {
+  color: #393939;
+  cursor: auto;
+}
+.home .action .button .container {
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  -ms-flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse;
+}
+.home .action .button .container .mp_heal {
+  position: absolute;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+.home .action .button .container .status_ailments_relieved {
+  position: absolute;
+  -webkit-transform: translateY(-200%);
+          transform: translateY(-200%);
+}
+.home .action .button .container:hover .sp_use {
   background-color: #cd2727;
-}
-.home .action .button .mp_heal {
-  position: absolute;
-  -webkit-transform: translateY(-120%);
-          transform: translateY(-120%);
-}
-.home .action .button .status_ailments_relieved {
-  position: absolute;
-  -webkit-transform: translateY(-240%);
-          transform: translateY(-240%);
+  cursor: auto;
 }
 .home .action .description {
-  margin-top: 1rem;
-  padding: 1.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1.5rem;
 }
 .home .action .bg_block {
   position: absolute;
   top: 0;
-  left: 0;
+  left: -10%;
   background-color: rgba(205, 39, 39, 0.5);
   height: 100%;
-  width: 100%;
+  width: 110%;
   z-index: -1;
   -webkit-clip-path: polygon(0 0, 90% 0%, 100% 100%, 0% 100%);
           clip-path: polygon(0 0, 90% 0%, 100% 100%, 0% 100%);
@@ -706,10 +726,10 @@ main {
 .home .status .bg_block {
   position: absolute;
   top: 0;
-  left: 0;
+  left: -10%;
   background-color: rgba(205, 39, 39, 0.5);
   height: 100%;
-  width: 100%;
+  width: 120%;
   z-index: -1;
   -webkit-clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
           clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
@@ -1025,4 +1045,104 @@ main {
   height: 100%;
   background-color: rgba(31, 31, 31, 0.7);
   z-index: 5;
+}
+
+@-webkit-keyframes monster_shake {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  25% {
+    -webkit-transform: translate(-10px, -5px);
+            transform: translate(-10px, -5px);
+  }
+  50% {
+    -webkit-transform: translate(10px, 5px);
+            transform: translate(10px, 5px);
+  }
+  75% {
+    -webkit-transform: translate(-8px, -5px);
+            transform: translate(-8px, -5px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@keyframes monster_shake {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  25% {
+    -webkit-transform: translate(-10px, -5px);
+            transform: translate(-10px, -5px);
+  }
+  50% {
+    -webkit-transform: translate(10px, 5px);
+            transform: translate(10px, 5px);
+  }
+  75% {
+    -webkit-transform: translate(-8px, -5px);
+            transform: translate(-8px, -5px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+.monster_shake {
+  -webkit-animation: monster_shake 0.3s ease-in-out;
+          animation: monster_shake 0.3s ease-in-out;
+}
+
+@-webkit-keyframes player_shake {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  25% {
+    -webkit-transform: translate(-5px, -5px);
+            transform: translate(-5px, -5px);
+  }
+  50% {
+    -webkit-transform: translate(5px, 5px);
+            transform: translate(5px, 5px);
+  }
+  75% {
+    -webkit-transform: translate(-5px, -5px);
+            transform: translate(-5px, -5px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@keyframes player_shake {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  25% {
+    -webkit-transform: translate(-5px, -5px);
+            transform: translate(-5px, -5px);
+  }
+  50% {
+    -webkit-transform: translate(5px, 5px);
+            transform: translate(5px, 5px);
+  }
+  75% {
+    -webkit-transform: translate(-5px, -5px);
+            transform: translate(-5px, -5px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+.player_shake {
+  -webkit-animation: player_shake 0.3s ease-in-out;
+          animation: player_shake 0.3s ease-in-out;
 }

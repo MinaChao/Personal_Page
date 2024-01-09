@@ -1,73 +1,75 @@
 // 從 CDN 引入 Vue
 import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
-import { uiuxDataUrl,webDataUrl,illustrationDataUrl,clipDataUrl,productDataUrl,otherDataUrl,myinfoDataUrl,chartConfig,confetti } from "./data.js";
+import { uiuxDataUrl, webDataUrl, illustrationDataUrl, clipDataUrl, productDataUrl, otherDataUrl, myinfoDataUrl, chartConfig, confetti } from "./data.js";
 
 confetti.render();
 
 class Player {
   constructor() {
-      this.hp = 100;
-      this.maxHp = 100;
-      this.mp = 50;
-      this.maxMp = 100;
-      this.atk = Math.floor(Math.random() * (25 - 5 + 1) + 15);
-      this.sp = 0;
-      this.maxSp = 3;
+    this.hp = 100;
+    this.maxHp = 100;
+    this.mp = 10;
+    this.maxMp = 100;
+    this.atk = Math.floor(Math.random() * (25 - 5 + 1) + 15);
+    this.sp = 1;
+    this.maxSp = 3;
   }
 
   normalAttack(monsterDef) {
-      this.sp = Math.min(this.maxSp, this.sp + 1);
-      const damage = Math.max(0, this.atk - monsterDef);
-      return damage;
+    this.sp = Math.min(this.maxSp, this.sp + 1);
+    const damage = Math.max(0, this.atk - monsterDef);
+    return damage;
   }
 
   magicAttack(monsterDef) {
-      if (this.mp >= 10) {
-          this.mp -= 10;
-          const damage = Math.max(0, Math.floor(this.atk * 1.5) - monsterDef);
-          return damage;
-      } else {
-          return 0;
-      }
+    if (this.mp >= 10) {
+      this.mp -= 10;
+      const damage = Math.max(0, Math.floor(this.atk * 1.5) - monsterDef);
+      return damage;
+    } else {
+      return 0;
+    }
   }
 
   heal() {
-      if (this.mp >= 10) {
-          this.mp -= 10;
-          const healAmount = Math.floor(Math.random() * (40 - 10 + 1) + 20);
-          this.hp = Math.min(this.maxHp, this.hp + healAmount);
-      }
+    if (this.mp >= 10) {
+      this.mp -= 10;
+      const healAmount = Math.floor(Math.random() * (40 - 10 + 1) + 20);
+      this.hp = Math.min(this.maxHp, this.hp + healAmount);
+    }
   }
 
   restoreMP() {
-      if (this.sp > 0) {
-          this.sp -= 1;
-          const restoreAmount = Math.floor(Math.random() * (30 - 10 + 1) + 10);
-          this.mp = Math.min(this.maxMp, this.mp + restoreAmount);
-      }
+    if (this.sp > 0) {
+      this.sp -= 1;
+      const restoreAmount = Math.floor(Math.random() * (30 - 10 + 1) + 10);
+      this.mp = Math.min(this.maxMp, this.mp + restoreAmount);
+    }
   }
+
+  
 }
 
 class Monster {
   constructor(name, def, atkRange, crit, imagePath) {
-      this.name = name;
-      this.hp = 100;
-      this.maxHp = 100;
-      this.sp = 0;
-      this.maxSp = 50;
-      this.def = def;
-      this.atk = Math.floor(Math.random() * (atkRange[1] - atkRange[0] + 1) + atkRange[0]);
-      this.crit = crit;
-      this.imagePath = imagePath;
+    this.name = name;
+    this.hp = 100;
+    this.maxHp = 100;
+    this.sp = 0;
+    this.maxSp = 50;
+    this.def = def;
+    this.atk = Math.floor(Math.random() * (atkRange[1] - atkRange[0] + 1) + atkRange[0]);
+    this.crit = crit;
+    this.imagePath = imagePath;
   }
 
   attack() {
-      let damage = Math.max(0, this.atk);
-      if (this.sp === this.maxSp) {
-          damage = Math.floor(this.atk * this.crit);
-          this.sp = 0;
-      }
-      return damage;
+    let damage = Math.max(0, this.atk);
+    if (this.sp === this.maxSp) {
+      damage = Math.floor(this.atk * this.crit);
+      this.sp = 0;
+    }
+    return damage;
   }
 }
 
@@ -92,73 +94,193 @@ createApp({
       loading: false,
       player: new Player(),
       monsters: [
-          new Monster("怪物1", 0, [3, 5], 1.2," "),
-          new Monster("怪物2", 0, [5, 8], 1.5," "),
-          new Monster("怪物3", 0, [10, 12], 2," "),
+        new Monster("怪物1", 0, [3, 5], 1.2, "img/mina.png"),
+        new Monster("怪物2", 0, [5, 8], 1.5, "img/upa.png"),
+        new Monster("怪物3", 0, [10, 12], 2, "img/mina.png"),
       ],
-      currentMonsterIndex: 0,
+      currentMonsterIndex: 2,
+      isAttacking: false,
+      audioElements: {
+        attack: null,
+        magic: null,
+        heal: null,
+        monsterAttack: null
+        // 添加其他音效的屬性
+      },
+      isAudioLoaded: false,
+      isMonsterShaking: false,
+      isPlayerShaking: false,
+      actionDescription: "",
+      spUse: false
     };
   },
   methods: {
     // 玩家普通攻擊方法
-    attack() {
+    async attack() {
+      if (this.isAttacking) {
+        return; // 避免連續點擊
+      }
+      this.isAttacking = true;
       const monster = this.monsters[this.currentMonsterIndex];
       const damage = this.player.normalAttack(monster.def);
-      monster.hp = Math.max(0, monster.hp - damage);
-      monster.sp = Math.min(monster.maxSp, monster.sp + 20);
-      this.monsterAttack();
-      console.log("playHP:"+this.player.hp);
+      const attackSound = document.getElementById('attackSound');
+
+      if (attackSound) {
+        await attackSound.play();
+        this.isMonsterShaking = true;
+        monster.hp = Math.max(0, monster.hp - damage);
+        monster.sp = Math.min(monster.maxSp, monster.sp + 20);
+        this.monsterAttack();
+      }
+
+      setTimeout(() => {
+        this.checkGameStatus();
+        this.isMonsterShaking = false;
+        this.isAttacking = false;
+      }, 1000);
+
+      console.log("playHP:" + this.player.hp);
       console.log("monsterHP:" + this.monsters[this.currentMonsterIndex].hp);
-  },
-  // 玩家魔法攻擊方法
-  magicAttack() {
+    },
+    // 玩家魔法攻擊方法
+    async magicAttack() {
+      if (this.isAttacking) {
+        return; // 避免連續點擊
+      }
+      if(this.player.mp>=10){
+        this.isAttacking = true;
+        const monster = this.monsters[this.currentMonsterIndex];
+        const damage = this.player.magicAttack(monster.def);
+        const magicSound = document.getElementById('magicSound');
+
+        if (magicSound) {
+          await magicSound.play();
+          monster.hp = Math.max(0, monster.hp - damage);
+          monster.sp = Math.min(monster.maxSp, monster.sp + 20);
+          this.monsterAttack();
+        }
+      }else{
+        return;
+      }
+      
+
+      setTimeout(() => {
+        this.checkGameStatus();
+        this.isAttacking = false;
+      }, 1000);
+    },
+    // 玩家治療方法
+    async heal() {
+      if (this.isAttacking) {
+        return; // 避免連續點擊
+      }
+      if(this.player.mp>=10){
+        this.isAttacking = true;
+        const healSound = document.getElementById('healSound');
+
+        if (healSound) {
+          await healSound.play();
+          this.player.heal();
+          this.monsterAttack();
+        }
+      }else{
+        return;
+      }
+
+      setTimeout(() => {
+        this.checkGameStatus();
+        this.isAttacking = false;
+      }, 1000);
+    },
+    // 回復魔力方法
+    async restoreMP() {
+      if (this.isAttacking) {
+        return; // 避免連續點擊
+      }
+      if(this.player.sp>=1){
+        this.isAttacking = true;
+        const healSound = document.getElementById('healSound');
+
+        if (healSound) {
+          await healSound.play();
+          this.player.restoreMP();
+          this.monsterAttack();
+        }
+      }else{
+        return;
+      }
+      setTimeout(() => {
+        this.checkGameStatus();
+        this.isAttacking = false;
+      }, 1000);
+    },
+    skipAction(){
+      if (this.isAttacking) {
+        return; // 避免連續點擊
+      }
+
+      this.monsterAttack();
+
+      this.checkGameStatus();
+    },
+    // 怪物攻擊方法
+    async monsterAttack() {
       const monster = this.monsters[this.currentMonsterIndex];
-      const damage = this.player.magicAttack(monster.def);
-      monster.hp = Math.max(0, monster.hp - damage);
-      monster.sp = Math.min(monster.maxSp, monster.sp + 20);
-      this.monsterAttack();
-  },
-  // 玩家治療方法
-  heal() {
-      this.player.heal();
-      this.monsterAttack();
-  },
-  // 回復魔力方法
-  restoreMP() {
-      this.player.restoreMP();
-      this.monsterAttack();
-  },
-  // 怪物攻擊方法
-  monsterAttack() {
-      const monster = this.monsters[this.currentMonsterIndex];
-      const monsterDamage = monster.attack();
-      this.player.hp = Math.max(0, this.player.hp - monsterDamage);
-      console.log("monsterDamage:"+monsterDamage);
+
+      if (monster.hp > 0){
+        const monsterAttackSound = document.getElementById('monsterAttackSound');
+        setTimeout(async () => {
+          if(monsterAttackSound){
+          await monsterAttackSound.play();
+          this.isPlayerShaking = true;
+          const monsterDamage = monster.attack();
+          this.player.hp = Math.max(0, this.player.hp - monsterDamage);
+          console.log("monsterDamage:" + monsterDamage);
+          setTimeout(() => {
+            this.isPlayerShaking = false; // 在一秒后关闭震动效果
+          }, 1000);
+          }
+        }, 1000);
+      }else{
+        return;
+      }
       // 假設等待1秒再檢查遊戲狀態
       setTimeout(() => {
-          this.checkGameStatus();
+        this.checkGameStatus();
       }, 1000);
-  },
-  checkGameStatus() {
+    },
+    // 檢查遊戲狀態
+    checkGameStatus() {
       if (this.player.hp <= 0) {
-          alert("你的HP歸零了，遊戲重新開始！");
-          this.restartGame();
-      } else if (this.monsters[this.currentMonsterIndex].hp <= 0) {
+        alert("你的HP歸零了，遊戲重新開始！");
+        this.restartGame();
+      } else if (this.monsters[this.currentMonsterIndex].hp <= 0 && this.currentMonsterIndex <= this.monsters.length) {
           this.currentMonsterIndex++;
-          if (this.currentMonsterIndex >= this.monsters.length) {
-              alert("恭喜你，成功擊敗所有怪物！");
-              this.restartGame();
-          }
+        if (this.currentMonsterIndex >= this.monsters.length) {
+          alert("恭喜你，成功擊敗所有怪物！");
+          this.restartGame();
+        }
       }
-  },
-  restartGame() {
+    },
+    // 重製遊戲
+    restartGame() {
       this.player = new Player();
       this.currentMonsterIndex = 0;
       for (let monster of this.monsters) {
-          monster.hp = monster.maxHp;
-          monster.sp = 0;
+        monster.hp = monster.maxHp;
+        monster.sp = 0;
       }
-  },
+    },
+    // 按鈕狀態
+    handleHover(description) {
+      this.actionDescription = description;
+    },
+    spUseHover(){
+      this.spUse = true;
+    },
+    spNoUseHover(){
+        this.spUse = false;
+    },
     // 切換專案類別
     async portfolio_change(page) {
       this.portfolio_page = page;
@@ -232,36 +354,43 @@ createApp({
         this.otherData = await this.fetchData(otherDataUrl);
       }
     },
-    increaseHP() {
-      // 增加 HP 寬度（這裡以增加 10% 為例）
-      if (this.player.mp >= 10) {
-        this.player.hp += 10;
-        this.player.mp -= 10;
-      }
-      // 確保 HP 寬度不超過 100%
-      if (this.player.hp > 100) {
-        this.player.hp = 100;
-      }
-      if (this.player.mp < 0) {
-        this.player.mp = 0;
-      }
+    preloadAudio() {
+      const audioIds = Object.keys(this.audioElements);
+
+      // 遍歷所有音效元素，進行預先載入
+      audioIds.forEach((audioId) => {
+        const audioElement = document.getElementById(audioId);
+
+        if (audioElement) {
+          this.audioElements[audioId] = audioElement;
+          audioElement.load(); // 載入音效
+        }
+      });
+
+      // 監聽所有音效的載入事件
+      const loadedAudioCount = 0;
+
+      audioIds.forEach((audioId) => {
+        const audioElement = this.audioElements[audioId];
+
+        if (audioElement) {
+          audioElement.addEventListener('loadeddata', () => {
+            this.isAudioLoaded = (++loadedAudioCount === audioIds.length);
+          });
+        }
+      });
     },
-    increaseMP() {
-      if (this.player.sp >= 1) {
-        this.player.mp += 10;
-        this.player.sp -= 1;
-      }
-      // 確保 MP 寬度不超過 100%
-      if (this.player.mp > 100) {
-        this.player.mp = 100;
-      }
-      if (this.player.sp < 0) {
-        this.player.sp = 0;
+    async playAudio(audioId) {
+      const audioElement = this.audioElements[audioId];
+
+      if (audioElement) {
+        await audioElement.play();
       }
     },
   },
   async mounted() {
     this.loading = true;
+    this.preloadAudio();
     AOS.init();
     // 創建 Chart.js 圖表並載入資料
     this.createChart();

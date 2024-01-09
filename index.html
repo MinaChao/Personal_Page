@@ -15,6 +15,10 @@
   <body>
     <canvas id="confetti_holder"></canvas>
     <div id="app">
+      <audio id="attackSound" src="sound/swing1.mp3" preload="auto"></audio>
+      <audio id="magicSound" src="sound/scifi_attack1.mp3" preload="auto"></audio>
+      <audio id="healSound" src="sound/voice_of_light.mp3"></audio>
+      <audio id="monsterAttackSound" src="sound/cut_with_sword2.mp3"></audio>
       <header>
         <div class="left_box"><a @click="web_page_change(0)"><img src="img/mina.png"></a></div>
         <nav class="nav_box">
@@ -32,21 +36,23 @@
           <div class="glitch" data-glitch="Loading...">Loading...</div>
         </div>
         <section class="home" v-if="web_page === 0">
-          <div class="action">
+          <div class="action" :class="{ 'player_shake': isPlayerShaking }">
             <div class="button">
-              <div class="normal_atk" @click="attack()">普通攻擊</div>
-              <div class="magic_atk" @click="magicAttack()">魔法攻擊</div>
-              <div class="hp_heal" @click="heal()">HP回復</div>
-              <div class="sp_use">SP使用
-                <div class="mp_heal" @click="restoreMP()">MP回復</div>
-                <div class="status_ailments_relieved">異常解除</div>
+              <div class="normal_atk" @mouseover="handleHover('對敵人造成一般傷害')" @mouseleave="handleHover()" @click="attack()">普通攻擊</div>
+              <div class="magic_atk" @mouseover="handleHover('消耗MP 10，對敵人1.5倍傷害')" @mouseleave="handleHover()" @click="magicAttack()" :class="{ 'disabled': player.mp &lt; 10 }">魔法攻擊</div>
+              <div class="hp_heal" @mouseover="handleHover('消耗MP 10，回復自身HP')" @mouseleave="handleHover()" @click="heal()" :class="{ 'disabled': player.mp &lt; 10 }">HP回復</div>
+              <div class="container" @mouseover="spUseHover()" @mouseleave="spNoUseHover()">
+                <div class="sp_use">SP使用</div>
+                <div class="mp_heal" v-show="spUse" @mouseover="handleHover('消耗SP 1，回復自身MP');" @mouseleave="handleHover()" @click="restoreMP()" :class="{ 'disabled': player.sp == 0 }">MP回復</div>
+                <div class="status_ailments_relieved" v-show="spUse" @mouseover="handleHover('消耗SP 3，解除所有異常狀態');" @mouseleave="handleHover()" :class="{ 'disabled': player.sp == 0 }">異常解除</div>
               </div>
+              <div class="action_skip" @mouseover="handleHover('不做任何動作')" @mouseleave="handleHover()" @click="skipAction()">不行動</div>
             </div>
-            <div class="description">對敵人造成物理攻擊，暴擊機率較小</div>
+            <div class="description">{{ actionDescription }}</div>
             <div class="bg_block"></div>
             <div class="helper"><img src=""></div>
           </div>
-          <div class="status">
+          <div class="status" :class="{ 'player_shake': isPlayerShaking }">
             <div class="hp"><span>HP </span>
               <div class="block_out">
                 <div class="block_in" :style="{ width: this.player.hp + '%' }"></div>
@@ -86,7 +92,7 @@
               </div>
               <div class="bg_block"></div>
             </div>
-            <div class="monster_img"><img :src="this.monsters[this.currentMonsterIndex].imagePath"></div>
+            <div class="monster_img" :class="{ 'monster_shake': isMonsterShaking }"><img :src="this.monsters[this.currentMonsterIndex].imagePath"></div>
           </div>
         </section>
         <section class="about" v-else-if="web_page === 1">
