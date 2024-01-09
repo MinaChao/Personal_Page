@@ -7,7 +7,8 @@
   letter-spacing: 0.1rem;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   font-size: 100%;
   margin: 0;
@@ -226,16 +227,31 @@ main {
   top: 0;
   left: 14%;
 }
-.portfolio .right_box .uiux, .portfolio .right_box .web, .portfolio .right_box .illustration, .portfolio .right_box .clip, .portfolio .right_box .product, .portfolio .right_box .other {
+.portfolio .right_box .uiux,
+.portfolio .right_box .web,
+.portfolio .right_box .illustration,
+.portfolio .right_box .clip,
+.portfolio .right_box .product,
+.portfolio .right_box .other {
   width: 100%;
 }
-.portfolio .right_box .uiux ul, .portfolio .right_box .web ul, .portfolio .right_box .illustration ul, .portfolio .right_box .clip ul, .portfolio .right_box .product ul, .portfolio .right_box .other ul {
+.portfolio .right_box .uiux ul,
+.portfolio .right_box .web ul,
+.portfolio .right_box .illustration ul,
+.portfolio .right_box .clip ul,
+.portfolio .right_box .product ul,
+.portfolio .right_box .other ul {
   margin: 0;
   padding: 0;
   width: 100%;
   font-size: 0;
 }
-.portfolio .right_box .uiux ul li, .portfolio .right_box .web ul li, .portfolio .right_box .illustration ul li, .portfolio .right_box .clip ul li, .portfolio .right_box .product ul li, .portfolio .right_box .other ul li {
+.portfolio .right_box .uiux ul li,
+.portfolio .right_box .web ul li,
+.portfolio .right_box .illustration ul li,
+.portfolio .right_box .clip ul li,
+.portfolio .right_box .product ul li,
+.portfolio .right_box .other ul li {
   display: inline-block;
   width: 40%;
   padding-left: 4rem;
@@ -244,10 +260,20 @@ main {
   vertical-align: top;
   color: #f2f2f2;
 }
-.portfolio .right_box .uiux ul li h3, .portfolio .right_box .web ul li h3, .portfolio .right_box .illustration ul li h3, .portfolio .right_box .clip ul li h3, .portfolio .right_box .product ul li h3, .portfolio .right_box .other ul li h3 {
+.portfolio .right_box .uiux ul li h3,
+.portfolio .right_box .web ul li h3,
+.portfolio .right_box .illustration ul li h3,
+.portfolio .right_box .clip ul li h3,
+.portfolio .right_box .product ul li h3,
+.portfolio .right_box .other ul li h3 {
   margin: 0.8rem;
 }
-.portfolio .right_box .uiux ul li .card, .portfolio .right_box .web ul li .card, .portfolio .right_box .illustration ul li .card, .portfolio .right_box .clip ul li .card, .portfolio .right_box .product ul li .card, .portfolio .right_box .other ul li .card {
+.portfolio .right_box .uiux ul li .card,
+.portfolio .right_box .web ul li .card,
+.portfolio .right_box .illustration ul li .card,
+.portfolio .right_box .clip ul li .card,
+.portfolio .right_box .product ul li .card,
+.portfolio .right_box .other ul li .card {
   width: 100%;
   height: 280px;
   margin: auto;
@@ -256,14 +282,30 @@ main {
           perspective: 150rem;
   vertical-align: top;
 }
-.portfolio .right_box .uiux ul li .card a, .portfolio .right_box .web ul li .card a, .portfolio .right_box .illustration ul li .card a, .portfolio .right_box .clip ul li .card a, .portfolio .right_box .product ul li .card a, .portfolio .right_box .other ul li .card a {
+.portfolio .right_box .uiux ul li .card a,
+.portfolio .right_box .web ul li .card a,
+.portfolio .right_box .illustration ul li .card a,
+.portfolio .right_box .clip ul li .card a,
+.portfolio .right_box .product ul li .card a,
+.portfolio .right_box .other ul li .card a {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 1;
   border-radius: 8px;
 }
-.portfolio .right_box .uiux ul li .card .front, .portfolio .right_box .uiux ul li .card .back, .portfolio .right_box .web ul li .card .front, .portfolio .right_box .web ul li .card .back, .portfolio .right_box .illustration ul li .card .front, .portfolio .right_box .illustration ul li .card .back, .portfolio .right_box .clip ul li .card .front, .portfolio .right_box .clip ul li .card .back, .portfolio .right_box .product ul li .card .front, .portfolio .right_box .product ul li .card .back, .portfolio .right_box .other ul li .card .front, .portfolio .right_box .other ul li .card .back {
+.portfolio .right_box .uiux ul li .card .front,
+.portfolio .right_box .uiux ul li .card .back,
+.portfolio .right_box .web ul li .card .front,
+.portfolio .right_box .web ul li .card .back,
+.portfolio .right_box .illustration ul li .card .front,
+.portfolio .right_box .illustration ul li .card .back,
+.portfolio .right_box .clip ul li .card .front,
+.portfolio .right_box .clip ul li .card .back,
+.portfolio .right_box .product ul li .card .front,
+.portfolio .right_box .product ul li .card .back,
+.portfolio .right_box .other ul li .card .front,
+.portfolio .right_box .other ul li .card .back {
   width: 100%;
   height: 100%;
   background-color: #1f1f1f;
@@ -280,14 +322,24 @@ main {
   -webkit-box-shadow: 0px 0px 6px 0px rgba(242, 242, 242, 0.2);
           box-shadow: 0px 0px 6px 0px rgba(242, 242, 242, 0.2);
 }
-.portfolio .right_box .uiux ul li .card .front img, .portfolio .right_box .web ul li .card .front img, .portfolio .right_box .illustration ul li .card .front img, .portfolio .right_box .clip ul li .card .front img, .portfolio .right_box .product ul li .card .front img, .portfolio .right_box .other ul li .card .front img {
+.portfolio .right_box .uiux ul li .card .front img,
+.portfolio .right_box .web ul li .card .front img,
+.portfolio .right_box .illustration ul li .card .front img,
+.portfolio .right_box .clip ul li .card .front img,
+.portfolio .right_box .product ul li .card .front img,
+.portfolio .right_box .other ul li .card .front img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   vertical-align: middle;
 }
-.portfolio .right_box .uiux ul li .card .back, .portfolio .right_box .web ul li .card .back, .portfolio .right_box .illustration ul li .card .back, .portfolio .right_box .clip ul li .card .back, .portfolio .right_box .product ul li .card .back, .portfolio .right_box .other ul li .card .back {
+.portfolio .right_box .uiux ul li .card .back,
+.portfolio .right_box .web ul li .card .back,
+.portfolio .right_box .illustration ul li .card .back,
+.portfolio .right_box .clip ul li .card .back,
+.portfolio .right_box .product ul li .card .back,
+.portfolio .right_box .other ul li .card .back {
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
   display: -webkit-box;
@@ -304,18 +356,44 @@ main {
       -ms-flex-align: start;
           align-items: flex-start;
 }
-.portfolio .right_box .uiux ul li .card .back p, .portfolio .right_box .uiux ul li .card .back span, .portfolio .right_box .web ul li .card .back p, .portfolio .right_box .web ul li .card .back span, .portfolio .right_box .illustration ul li .card .back p, .portfolio .right_box .illustration ul li .card .back span, .portfolio .right_box .clip ul li .card .back p, .portfolio .right_box .clip ul li .card .back span, .portfolio .right_box .product ul li .card .back p, .portfolio .right_box .product ul li .card .back span, .portfolio .right_box .other ul li .card .back p, .portfolio .right_box .other ul li .card .back span {
+.portfolio .right_box .uiux ul li .card .back p,
+.portfolio .right_box .uiux ul li .card .back span,
+.portfolio .right_box .web ul li .card .back p,
+.portfolio .right_box .web ul li .card .back span,
+.portfolio .right_box .illustration ul li .card .back p,
+.portfolio .right_box .illustration ul li .card .back span,
+.portfolio .right_box .clip ul li .card .back p,
+.portfolio .right_box .clip ul li .card .back span,
+.portfolio .right_box .product ul li .card .back p,
+.portfolio .right_box .product ul li .card .back span,
+.portfolio .right_box .other ul li .card .back p,
+.portfolio .right_box .other ul li .card .back span {
   padding: 1rem 2rem;
 }
-.portfolio .right_box .uiux ul li .card .back span, .portfolio .right_box .web ul li .card .back span, .portfolio .right_box .illustration ul li .card .back span, .portfolio .right_box .clip ul li .card .back span, .portfolio .right_box .product ul li .card .back span, .portfolio .right_box .other ul li .card .back span {
+.portfolio .right_box .uiux ul li .card .back span,
+.portfolio .right_box .web ul li .card .back span,
+.portfolio .right_box .illustration ul li .card .back span,
+.portfolio .right_box .clip ul li .card .back span,
+.portfolio .right_box .product ul li .card .back span,
+.portfolio .right_box .other ul li .card .back span {
   font-size: 0.8rem;
   color: #c4c4c4;
 }
-.portfolio .right_box .uiux ul li .card:hover .front, .portfolio .right_box .web ul li .card:hover .front, .portfolio .right_box .illustration ul li .card:hover .front, .portfolio .right_box .clip ul li .card:hover .front, .portfolio .right_box .product ul li .card:hover .front, .portfolio .right_box .other ul li .card:hover .front {
+.portfolio .right_box .uiux ul li .card:hover .front,
+.portfolio .right_box .web ul li .card:hover .front,
+.portfolio .right_box .illustration ul li .card:hover .front,
+.portfolio .right_box .clip ul li .card:hover .front,
+.portfolio .right_box .product ul li .card:hover .front,
+.portfolio .right_box .other ul li .card:hover .front {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
 }
-.portfolio .right_box .uiux ul li .card:hover .back, .portfolio .right_box .web ul li .card:hover .back, .portfolio .right_box .illustration ul li .card:hover .back, .portfolio .right_box .clip ul li .card:hover .back, .portfolio .right_box .product ul li .card:hover .back, .portfolio .right_box .other ul li .card:hover .back {
+.portfolio .right_box .uiux ul li .card:hover .back,
+.portfolio .right_box .web ul li .card:hover .back,
+.portfolio .right_box .illustration ul li .card:hover .back,
+.portfolio .right_box .clip ul li .card:hover .back,
+.portfolio .right_box .product ul li .card:hover .back,
+.portfolio .right_box .other ul li .card:hover .back {
   -webkit-transform: rotateY(0);
           transform: rotateY(0);
 }
@@ -407,7 +485,8 @@ main {
       -ms-flex-align: end;
           align-items: flex-end;
 }
-.about .card .title h1, .about .card .title h4 {
+.about .card .title h1,
+.about .card .title h4 {
   display: inline-block;
   margin: 0.8rem 0 0.4rem 0;
 }
@@ -433,7 +512,8 @@ main {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.about .card .edu h4, .about .card .edu h5 {
+.about .card .edu h4,
+.about .card .edu h5 {
   display: inline-block;
   font-weight: 400;
   margin: 0.5rem 0;
@@ -538,6 +618,36 @@ main {
       -ms-user-select: none;
           user-select: none;
 }
+.home .rule {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background-color: rgba(31, 31, 31, 0.7);
+}
+.home .rule img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  max-width: 80%;
+  border-radius: 16px;
+}
+.home .helper {
+  position: absolute;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: solid 3px #f2f2f2;
+  background-color: #f2f2f2;
+  -webkit-transform: translate(-100%, -50%);
+          transform: translate(-100%, -50%);
+  left: 82%;
+  top: 86%;
+  border-radius: 100%;
+  z-index: 6;
+}
 .home .action {
   width: 70%;
   height: 14%;
@@ -567,7 +677,13 @@ main {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
-.home .action .button .normal_atk, .home .action .button .magic_atk, .home .action .button .hp_heal, .home .action .button .sp_use, .home .action .button .mp_heal, .home .action .button .status_ailments_relieved, .home .action .button .action_skip {
+.home .action .button .normal_atk,
+.home .action .button .magic_atk,
+.home .action .button .hp_heal,
+.home .action .button .sp_use,
+.home .action .button .mp_heal,
+.home .action .button .status_ailments_relieved,
+.home .action .button .action_skip {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -586,7 +702,13 @@ main {
   margin: 0 1.2rem;
   cursor: pointer;
 }
-.home .action .button .normal_atk:hover, .home .action .button .magic_atk:hover, .home .action .button .hp_heal:hover, .home .action .button .sp_use:hover, .home .action .button .mp_heal:hover, .home .action .button .status_ailments_relieved:hover, .home .action .button .action_skip:hover {
+.home .action .button .normal_atk:hover,
+.home .action .button .magic_atk:hover,
+.home .action .button .hp_heal:hover,
+.home .action .button .sp_use:hover,
+.home .action .button .mp_heal:hover,
+.home .action .button .status_ailments_relieved:hover,
+.home .action .button .action_skip:hover {
   background-color: #333333;
 }
 .home .action .button .disabled {
@@ -634,24 +756,15 @@ main {
   -webkit-clip-path: polygon(0 0, 90% 0%, 100% 100%, 0% 100%);
           clip-path: polygon(0 0, 90% 0%, 100% 100%, 0% 100%);
 }
-.home .action .helper {
-  position: absolute;
-  width: 3.5rem;
-  height: 3.5rem;
-  border: solid 3px #f2f2f2;
-  -webkit-transform: translate(-100%, -50%);
-          transform: translate(-100%, -50%);
-  left: 105%;
-  top: 50%;
-  border-radius: 100%;
-}
 .home .status {
   width: 25%;
   left: 0;
   top: 50%;
   position: absolute;
 }
-.home .status .hp, .home .status .mp, .home .status .sp {
+.home .status .hp,
+.home .status .mp,
+.home .status .sp {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -772,7 +885,8 @@ main {
   font-size: 1.4rem;
   margin: 1rem 3.6rem 0 0;
 }
-.home .monster .monster_status .hp, .home .monster .monster_status .sp {
+.home .monster .monster_status .hp,
+.home .monster .monster_status .sp {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -8,10 +8,10 @@ class Player {
   constructor() {
     this.hp = 100;
     this.maxHp = 100;
-    this.mp = 10;
+    this.mp = 50;
     this.maxMp = 100;
     this.atk = Math.floor(Math.random() * (25 - 5 + 1) + 15);
-    this.sp = 1;
+    this.sp = 0;
     this.maxSp = 3;
   }
 
@@ -59,7 +59,7 @@ class Monster {
     this.hp = 100;
     this.maxHp = 100;
     this.sp = 0;
-    this.maxSp = 50;
+    this.maxSp = 100;
     this.def = def;
     this.atk = Math.floor(Math.random() * (atkRange[1] - atkRange[0] + 1) + atkRange[0]);
     this.crit = crit;
@@ -101,7 +101,7 @@ createApp({
         new Monster("怪物2", 0, [5, 8], 1.5, "img/upa.png"),
         new Monster("怪物3", 0, [10, 12], 2, "img/mina.png"),
       ],
-      currentMonsterIndex: 2,
+      currentMonsterIndex: 0,
       isAttacking: false,
       audioElements: {
         attack: null,
@@ -117,10 +117,11 @@ createApp({
       ailmentDescription: "",
       spUse: false,
       // 玩家負面狀態
-      isPoisoned: true,
-      isSealed: true,
+      isPoisoned: false,
+      isSealed: false,
       isBleeding: false,
       isWeak: false,
+      showRule:false
     };
   },
   methods: {
@@ -128,6 +129,9 @@ createApp({
     async attack() {
       if (this.isAttacking) {
         return; // 避免連續點擊
+      }
+      if(this.isBleeding===true){
+        return;
       }
       this.isAttacking = true;
       const monster = this.monsters[this.currentMonsterIndex];
@@ -156,7 +160,10 @@ createApp({
       if (this.isAttacking) {
         return; // 避免連續點擊
       }
-      if (this.player.mp >= 10) {
+      if(this.isSealed===true){
+        return;
+      }
+      if (this.player.mp >= 10 ) {
         this.isAttacking = true;
         const monster = this.monsters[this.currentMonsterIndex];
         const damage = this.player.magicAttack(monster.def);
@@ -183,6 +190,9 @@ createApp({
       if (this.isAttacking) {
         return; // 避免連續點擊
       }
+      if(this.isSealed===true){
+        return;
+      }
       if (this.player.mp >= 10) {
         this.isAttacking = true;
         const healSound = document.getElementById('healSound');
@@ -205,6 +215,9 @@ createApp({
     async restoreMP() {
       if (this.isAttacking) {
         return; // 避免連續點擊
+      }
+      if(this.isWeak===true){
+        return;
       }
       if (this.player.sp >= 1) {
         this.isAttacking = true;
@@ -323,6 +336,7 @@ createApp({
       if (this.isPoisoned) {
         // 中毒狀態
         this.player.hp = Math.max(0, this.player.hp - 3);
+        console.log("已受到毒傷害");
       }
       // 其他負面狀態的處理...
     },
@@ -362,6 +376,12 @@ createApp({
     },
     spNoUseHover() {
       this.spUse = false;
+    },
+    hoverRule() {
+      this.showRule = true;
+    },
+    hiddenRule() {
+      this.showRule = false;
     },
     // 異常描述
     ailmentHover(description){
@@ -480,6 +500,7 @@ createApp({
     AOS.init();
     // 創建 Chart.js 圖表並載入資料
     this.createChart();
+    
     await this.loadData();
     axios.get(myinfoDataUrl)
       .then((response) => {
