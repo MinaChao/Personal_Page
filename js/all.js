@@ -91,7 +91,7 @@ createApp({
       myinfoData: [],
       // 目前顯示的頁面
       portfolio_page: 0,
-      web_page: 0,
+      web_page: 1,
       // Chart.js 實例
       myChart: null,
       loading: false,
@@ -121,7 +121,8 @@ createApp({
       isSealed: false,
       isBleeding: false,
       isWeak: false,
-      showRule:false
+      showRule:false,
+      showIntroduceCard: false
     };
   },
   methods: {
@@ -383,6 +384,9 @@ createApp({
     hiddenRule() {
       this.showRule = false;
     },
+    toggleIntroduceCard() {
+      this.showIntroduceCard = !this.showIntroduceCard;
+    },
     // 異常描述
     ailmentHover(description){
       this.ailmentDescription = description;
@@ -411,6 +415,12 @@ createApp({
       this.loading = true;
       this.web_page = page;
       await this.loadAllData();
+      if(this.portfolio_page!=0){
+        this.portfolio_page=0;
+      }
+      if(this.showIntroduceCard===true){
+        this.showIntroduceCard=false;
+      }
       this.loading = false;
       AOS.refreshHard(); // 重新初始化 AOS
     },
@@ -505,13 +515,7 @@ createApp({
     axios.get(myinfoDataUrl)
       .then((response) => {
         this.myinfoData = response.data.values;
-        const resultObjects = this.myinfoData.map((item) => ({
-          skill: item[0],
-          software: item[1],
-        }));
-        resultObjects.shift();
-        // console.log(resultObjects);
-        this.myinfoData = resultObjects;
+        console.log(this.myinfoData);
       })
       .catch((error) => {
         console.error('抓取我的資訊時發生錯誤:', error);

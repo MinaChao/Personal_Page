@@ -54,6 +54,7 @@
             <div class="bg_block"></div>
           </div>
           <div class="helper" @mouseover="hoverRule()" @mouseleave="hiddenRule()"></div>
+          <div class="sound_control" @click="">BGM Control</div>
           <div class="status" :class="{ 'player_shake': isPlayerShaking }">
             <div class="hp"><span>HP</span>
               <div class="block_out">
@@ -111,28 +112,38 @@
             <div class="block block4"></div>
           </div>
           <div class="my_photo" data-aos="fade-left"><img src="https://i.imgur.com/htZC4sDh.jpg"></div>
-          <div class="card" data-aos="fade-right">
-            <div class="title">
-              <h1>趙千儀 Chao Chien I</h1>
-              <h4>社會新鮮人</h4>
-            </div>
-            <hr>
-            <div class="edu">
-              <h4>國立臺灣科技大學 <span>設計系</span> 畢業</h4>
-              <h5>2019 - 2023</h5>
-            </div>
-            <h3>專長</h3>
-            <div class="skills">
-              <div class="skill" v-for="skills in myinfoData">{{skills.skill}}</div>
-            </div>
-            <h3>軟體</h3>
-            <div class="softwares">
-              <div class="software" v-for="software_img in myinfoData" :key="software_img.id">
-                <div class="img" :style="{'background-image': 'url(' + software_img.software + ')','background-size': 'cover','background-position': 'center','width': '100%', 'padding-top': '100%'}"></div>
+          <div class="myinfo" data-aos="fade-right">
+            <div class="card" :class="{ 'introduce-card-visible': showIntroduceCard }">
+              <div class="next" @click="toggleIntroduceCard()"></div>
+              <div class="title">
+                <h1>趙千儀 Chao Chien I</h1>
+                <h4>社會新鮮人</h4>
+              </div>
+              <hr>
+              <div class="edu">
+                <h4>國立臺灣科技大學 <span>設計系</span> 畢業</h4>
+                <h5>2019 - 2023</h5>
+              </div>
+              <h3>專長</h3>
+              <div class="skills">
+                <div class="skill" v-for="skills in myinfoData">{{skills[0]}}</div>
+              </div>
+              <h3>程式</h3>
+              <div class="skills">
+                <div class="skill" v-for="programs in myinfoData">{{programs[2]}}</div>
+              </div>
+              <h3>軟體</h3>
+              <div class="softwares">
+                <div class="software" v-for="software_img in myinfoData" :key="software_img.id">
+                  <div class="img" :style="{'background-image': 'url(' + software_img[3] + ')','background-size': 'cover','background-position': 'center','width': '100%', 'padding-top': '100%'}"></div>
+                </div>
               </div>
             </div>
-            <h3>簡介</h3>
-            <p>Lorem ipsum at eos minima, quibusdam, ut, dignissimos labore a maxime quasi blanditiis voluptas earum laborum sit harum?</p>
+            <div class="introduce_card" :class="{ 'introduce_card_fadein': showIntroduceCard }">
+              <div class="next" @click="toggleIntroduceCard()" v-show="showIntroduceCard"></div>
+              <h3>簡介</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat qui quas ipsam similique adipisci. Atque consectetur eum obcaecati vel nesciunt explicabo est, aperiam excepturi dolores laudantium, ipsum itaque nam dolore!</p>
+            </div>
           </div>
         </section>
         <section class="portfolio" v-else-if="web_page === 2">

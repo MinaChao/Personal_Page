@@ -53,6 +53,7 @@ html(lang="zh-TW")
                         .description {{ actionDescription }}
                         .bg_block
                     .helper(@mouseover="hoverRule()" @mouseleave="hiddenRule()")
+                    .sound_control(@click="") BGM Control
                     .status(:class="{ 'player_shake': isPlayerShaking }")
                         .hp
                             span HP
@@ -103,26 +104,34 @@ html(lang="zh-TW")
                         .block.block4
                     .my_photo(data-aos="fade-left")
                         img(src="https://i.imgur.com/htZC4sDh.jpg")
-                    .card(data-aos="fade-right")
-                        .title
-                            h1 趙千儀 Chao Chien I
-                            h4 社會新鮮人
-                        hr
-                        .edu
-                            h4
-                                | 國立臺灣科技大學 
-                                span 設計系
-                                |  畢業
-                            h5 2019 - 2023
-                        h3 專長
-                        .skills
-                            .skill(v-for="skills in myinfoData") {{skills.skill}}
-                        h3 軟體
-                        .softwares
-                            .software(v-for="software_img in myinfoData" :key="software_img.id")
-                                .img(:style="{'background-image': 'url(' + software_img.software + ')','background-size': 'cover','background-position': 'center','width': '100%', 'padding-top': '100%'}")
-                        h3 簡介
-                        p Lorem ipsum at eos minima, quibusdam, ut, dignissimos labore a maxime quasi blanditiis voluptas earum laborum sit harum?
+                    .myinfo(data-aos="fade-right" )
+                        .card(:class="{ 'introduce-card-visible': showIntroduceCard }")
+                            .next(@click="toggleIntroduceCard()")
+                            .title
+                                h1 趙千儀 Chao Chien I
+                                h4 社會新鮮人
+                            hr
+                            .edu
+                                h4
+                                    | 國立臺灣科技大學 
+                                    span 設計系
+                                    |  畢業
+                                h5 2019 - 2023
+                            h3 專長
+                            .skills
+                                .skill(v-for="skills in myinfoData") {{skills[0]}}
+                            h3 程式
+                            .skills
+                                .skill(v-for="programs in myinfoData") {{programs[2]}}
+                            h3 軟體
+                            .softwares
+                                .software(v-for="software_img in myinfoData" :key="software_img.id")
+                                    .img(:style="{'background-image': 'url(' + software_img[3] + ')','background-size': 'cover','background-position': 'center','width': '100%', 'padding-top': '100%'}")
+                        .introduce_card(:class="{ 'introduce_card_fadein': showIntroduceCard }")
+                            .next(@click="toggleIntroduceCard()" v-show="showIntroduceCard")
+                            h3 簡介
+                            p Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat qui quas ipsam similique adipisci. Atque consectetur eum obcaecati vel nesciunt explicabo est, aperiam excepturi dolores laudantium, ipsum itaque nam dolore!
+
                 section.portfolio(v-else-if="web_page === 2")
                     .left_box(data-aos="fade-right")
                         ul.nav_tag

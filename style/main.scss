@@ -33,6 +33,7 @@ $main_dark: #9f1111;
   list-style: none;
   position: relative;
   letter-spacing: 0.1rem;
+  box-sizing: border-box;
 }
 html,
 body {
@@ -55,7 +56,7 @@ header {
   position: fixed;
   z-index: 5;
   top: 1.6rem;
-  left:4%;
+  left:2%;
   max-width: 480px;
   min-width: 420px;
   @include size(25%, 64px);
@@ -138,16 +139,17 @@ main {
   top: 0;
   left: 0;
   position: absolute;
+  overflow: hidden;
 }
 
 // 作品集頁面
 .portfolio {
-  margin: 9rem auto;
+  margin: 8rem auto;
   max-width: 1400px;
   width: 90%;
 }
 .right_box {
-  width: 90%;
+  width: 86%;
   display: flex;
   justify-content: center;
   top: 0;
@@ -160,8 +162,8 @@ main {
   }
   li {
     display: inline-block;
-    width: 40%;
-    padding-left: 3rem;
+    width: 45%;
+    padding-left: 3.2rem;
     margin-bottom: 2.4rem;
     font-size: 1rem;
     vertical-align: top;
@@ -323,18 +325,25 @@ main {
 .about {
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
 
   .card {
     position: absolute;
+    opacity: 1;
     color: $white;
     top: 160px;
     left: 8%;
     width: 36%;
     padding: 1rem 2rem;
-    overflow: hidden;
     background-color: $black;
     border-radius: 16px;
     box-shadow: 0px 0px 6px 0px rgba($white, 0.4);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .introduce-card-visible {
+    opacity: 0;
+    transform: translateY(-100%);
   }
   .title {
     display: flex;
@@ -385,15 +394,72 @@ main {
 
 .skill {
   display: inline-block;
-  padding: 0.5rem 0.8rem;
+  padding: 0.5rem 0.6rem;
   border: solid 1px $gray;
-  border-radius: 24px;
+  border-radius: 12px;
   margin-right: 0.8rem;
   margin-bottom: 0.6rem;
   text-align: center;
   font-size: 0.8rem;
 }
-
+.next{
+  @include size(80px, 40px);
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: $white;
+  box-shadow: 0px 0px 4px 0px rgba($white, 0.7);
+  clip-path: polygon(100% 0, 0 0, 50% 100%);
+  animation: next infinite 2s;
+  cursor: pointer;
+  &::after{
+    content: "more";
+    color: $black;
+    font-size:0.8rem;
+    margin-top: 0.4rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+@keyframes next {
+  0%{
+    transform: translate(-50%,-70%);
+  }
+  50%{
+    transform: translate(-50%,-50%);
+  }
+  100%{
+    transform: translate(-50%,-70%);
+  }
+}
+.myinfo{
+  height: 100%;
+}
+.introduce_card{
+  position: absolute;
+  color: $white;
+  top: 95%;
+  left: 8%;
+  width: 36%;
+  padding: 1rem 2rem;
+  background-color: $black;
+  border-radius: 16px;
+  box-shadow: 0px 0px 6px 0px rgba($white, 0.4);
+  transition:0.5s;
+  .next{
+    top: 125%;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform: translate(-50%,-50%);
+    &::after{
+      content: "back";
+      margin-top: 1.2rem;
+    }
+  }
+}
+.introduce_card_fadein{
+  top: 160px;
+}
 .softwares {
   display: flex;
   justify-content: flex-start;
@@ -403,7 +469,6 @@ main {
 
 .software {
   display: inline-block;
-  border: solid 1px blue;
   height: 42px;
   width: 42px;
   margin-right: 1.2rem;
@@ -671,10 +736,26 @@ main {
   border: solid 3px $white;
   background-color: $white;
   transform: translate(-100%, -50%);
-  left: 82%;
+  left: 95%;
   top: 86%;
   border-radius: 100%;
   z-index: 6;
+}
+.sound_control{
+  position: absolute;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: solid 3px $white;
+  background-color: $white;
+  transform: translate(-100%, -50%);
+  left: 95%;
+  top: 75%;
+  border-radius: 100%;
+  z-index: 6;
+  color: $black;
+  font-size: 0.8rem;
+  text-align: center;
+  padding-top: 0.6rem;
 }
 
 .action {
@@ -697,10 +778,10 @@ main {
   .bg_block {
     position: absolute;
     top: 0;
-    left: -10%;
+    left: -6%;
     background-color: rgba($main, 0.5);
     height: 100%;
-    width: 110%;
+    width: 115%;
     z-index: -1;
     clip-path: polygon(0 0, 90% 0%, 100% 100%, 0% 100%);
   }
@@ -1029,7 +1110,7 @@ main {
   header{
     max-width: 350px;
     min-width: 330px;
-    height: 42px;
+    height: 50px;
   }
   .portfolio{
     margin: 6rem auto;
@@ -1084,7 +1165,7 @@ main {
   header{
     max-width: 350px;
     min-width: 330px;
-    height: 42px;
+    height: 50px;
   }
   .portfolio{
     margin: 6rem auto;
@@ -1138,15 +1219,15 @@ main {
 }
 @media (max-width:575.98px) {
   html{
-    font-size: 65%;
+    font-size: 70%;
   }
   header{
     max-width: 320px;
     min-width: 300px;
-    height: 36px;
+    height: 50px;
   }
   .portfolio{
-    margin: 6rem auto;
+    margin: 8rem auto;
   }
   .portfolio .left_box {
     width: 90%;
