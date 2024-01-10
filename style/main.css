@@ -9,14 +9,14 @@
 
 html,
 body {
+  width: 100vw;
+  height: 100vh;
   overflow-x: hidden;
   font-size: 100%;
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  height: 100%;
-  width: 100%;
 }
 
 body {
@@ -30,12 +30,12 @@ body {
 header {
   position: fixed;
   z-index: 5;
-  top: 4%;
-  left: 2%;
+  top: 1.6rem;
+  left: 4%;
+  max-width: 480px;
+  min-width: 420px;
   width: 25%;
   height: 64px;
-  max-width: 600px;
-  min-width: 420px;
   padding: 0 1rem;
   background-color: #1f1f1f;
   -webkit-box-shadow: 0px 0px 4px 0px rgba(242, 242, 242, 0.4);
@@ -53,8 +53,9 @@ header {
 }
 header img {
   max-width: 100%;
-  height: auto;
   vertical-align: middle;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 header .left_box {
   display: -webkit-box;
@@ -80,15 +81,15 @@ header .left_box a {
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
 }
-header .left_box a img {
-  height: 70%;
-  border-radius: 50%;
-  -o-object-fit: contain;
-     object-fit: contain;
-  border: solid 2px rgba(196, 196, 196, 0.4);
-}
 header .left_box a:hover {
   opacity: 0.7;
+}
+header .left_box img {
+  height: 70%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: solid 2px rgba(196, 196, 196, 0.4);
 }
 
 .nav_box {
@@ -151,12 +152,13 @@ main {
 }
 
 .portfolio {
-  margin: 132px auto;
+  margin: 9rem auto;
   max-width: 1400px;
+  width: 90%;
 }
 
 .right_box {
-  width: 86%;
+  width: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -164,7 +166,7 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
   top: 0;
-  left: 14%;
+  left: 14rem;
 }
 .right_box ul {
   margin: 0;
@@ -175,9 +177,9 @@ main {
 .right_box li {
   display: inline-block;
   width: 40%;
-  padding-left: 4rem;
+  padding-left: 3rem;
   margin-bottom: 2.4rem;
-  font-size: 18px;
+  font-size: 1rem;
   vertical-align: top;
   color: #f2f2f2;
 }
@@ -377,8 +379,8 @@ main {
   position: absolute;
   top: 50%;
   left: 90%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
   width: 20%;
   height: 50%;
   z-index: -1;
@@ -945,6 +947,7 @@ main {
 }
 
 #confetti_holder {
+  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -1229,4 +1232,247 @@ main {
 .player_shake {
   -webkit-animation: player_shake 0.3s ease-in-out;
           animation: player_shake 0.3s ease-in-out;
+}
+
+@media (max-width: 1399.98px) {
+  header {
+    max-width: 460px;
+    min-width: 420px;
+    height: 56px;
+  }
+  .portfolio {
+    margin: 8rem auto;
+  }
+  .right_box {
+    width: 98%;
+    top: 0;
+    left: 16%;
+  }
+  .right_box li {
+    padding-left: 2rem;
+    width: 40%;
+  }
+  .right_box .card {
+    width: 100%;
+    height: 40vh;
+  }
+}
+@media (max-width: 1199.98px) {
+  html {
+    font-size: 90%;
+  }
+  header {
+    max-width: 400px;
+    min-width: 380px;
+    height: 50px;
+  }
+  .portfolio {
+    margin: 8rem auto;
+  }
+  .right_box {
+    width: 98%;
+    top: 0;
+    left: 16%;
+  }
+  .right_box li {
+    padding-left: 2rem;
+  }
+  .right_box .card {
+    width: 100%;
+    height: 40vh;
+  }
+}
+@media (max-width: 991.98px) {
+  html {
+    font-size: 80%;
+  }
+  header {
+    max-width: 350px;
+    min-width: 330px;
+    height: 42px;
+  }
+  .portfolio {
+    margin: 6rem auto;
+  }
+  .portfolio .left_box {
+    width: 90%;
+  }
+  .nav_tag {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    font-size: 0.9rem;
+  }
+  .nav_tag li {
+    margin-bottom: 1rem;
+    margin-right: 0.5rem;
+    border-radius: 16px;
+  }
+  .nav_tag li:hover {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  .nav_tag a {
+    border-radius: 16px;
+  }
+  .active {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  .active::after {
+    content: "";
+    display: none;
+  }
+  .waterfall {
+    -webkit-column-count: 2;
+       -moz-column-count: 2;
+            column-count: 2; /*欄數*/
+    -webkit-column-gap: 8px;
+       -moz-column-gap: 8px;
+            column-gap: 8px; /*每欄間隔*/
+  }
+  .right_box {
+    width: 100%;
+    top: 6rem;
+    left: 0;
+  }
+  .right_box li {
+    width: 48%;
+    padding-left: 0;
+    margin-right: 1rem;
+  }
+  .right_box .card {
+    width: 100%;
+    height: 32vh;
+  }
+}
+@media (max-width: 767.98px) {
+  html {
+    font-size: 80%;
+  }
+  header {
+    max-width: 350px;
+    min-width: 330px;
+    height: 42px;
+  }
+  .portfolio {
+    margin: 6rem auto;
+    width: 95%;
+  }
+  .portfolio .left_box {
+    width: 90%;
+  }
+  .right_box {
+    width: 100%;
+    top: 5rem;
+    left: 0;
+  }
+  .right_box li {
+    width: 100%;
+    padding-left: 0;
+  }
+  .right_box .card {
+    width: 100%;
+    height: 40vh;
+  }
+  .nav_tag {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    font-size: 0.9rem;
+  }
+  .nav_tag li {
+    margin-bottom: 1rem;
+    margin-right: 0.5rem;
+    border-radius: 16px;
+  }
+  .nav_tag li:hover {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  .nav_tag a {
+    border-radius: 16px;
+  }
+  .active {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  .active::after {
+    content: "";
+    display: none;
+  }
+  .waterfall {
+    -webkit-column-count: 2;
+       -moz-column-count: 2;
+            column-count: 2; /*欄數*/
+    -webkit-column-gap: 8px;
+       -moz-column-gap: 8px;
+            column-gap: 8px; /*每欄間隔*/
+  }
+}
+@media (max-width: 575.98px) {
+  html {
+    font-size: 65%;
+  }
+  header {
+    max-width: 320px;
+    min-width: 300px;
+    height: 36px;
+  }
+  .portfolio {
+    margin: 6rem auto;
+  }
+  .portfolio .left_box {
+    width: 90%;
+  }
+  .right_box {
+    width: 100%;
+    top: 6rem;
+    left: 0;
+  }
+  .right_box li {
+    width: 100%;
+    padding-left: 0;
+  }
+  .right_box .card {
+    width: 100%;
+    height: 40vh;
+  }
+  .waterfall {
+    -webkit-column-count: 2;
+       -moz-column-count: 2;
+            column-count: 2; /*欄數*/
+    -webkit-column-gap: 8px;
+       -moz-column-gap: 8px;
+            column-gap: 8px; /*每欄間隔*/
+  }
+  .nav_tag {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    font-size: 0.9rem;
+  }
+  .nav_tag li {
+    margin-bottom: 1rem;
+    margin-right: 0.5rem;
+    border-radius: 16px;
+  }
+  .nav_tag li:hover {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  .nav_tag a {
+    border-radius: 16px;
+  }
+  .active {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  .active::after {
+    content: "";
+    display: none;
+  }
 }

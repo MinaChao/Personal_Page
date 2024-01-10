@@ -46,7 +46,7 @@
               <div class="container" @mouseover="spUseHover()" @mouseleave="spNoUseHover()">
                 <div class="sp_use">SP使用</div>
                 <div class="mp_heal" v-show="spUse" @mouseover="handleHover('消耗SP 1，回復自身MP');" @mouseleave="handleHover()" @click="restoreMP()" :class="{ 'disabled': player.sp == 0 || isWeak===true}">MP回復</div>
-                <div class="status_ailments_relieved" v-show="spUse" @mouseover="handleHover('消耗SP 3，解除所有異常狀態');" @mouseleave="handleHover()" @click=" relieveStatus()" :class="{ 'disabled': player.sp == 0 }">異常解除</div>
+                <div class="status_ailments_relieved" v-show="spUse" @mouseover="handleHover('消耗SP 3，解除所有異常狀態');" @mouseleave="handleHover()" @click=" relieveStatus()" :class="{ 'disabled': player.sp &lt; 3 }">異常解除</div>
               </div>
               <div class="action_skip" @mouseover="handleHover('不做任何動作')" @mouseleave="handleHover()" @click="skipAction()">不行動</div>
             </div>
@@ -55,17 +55,17 @@
           </div>
           <div class="helper" @mouseover="hoverRule()" @mouseleave="hiddenRule()"></div>
           <div class="status" :class="{ 'player_shake': isPlayerShaking }">
-            <div class="hp"><span>HP </span>
+            <div class="hp"><span>HP</span>
               <div class="block_out">
                 <div class="block_in" :style="{ width: this.player.hp + '%' }"></div>
               </div>
             </div>
-            <div class="mp"><span>MP </span>
+            <div class="mp"><span>MP</span>
               <div class="block_out">
                 <div class="block_in" :style="{ width: this.player.mp + '%' }"></div>
               </div>
             </div>
-            <div class="sp"><span>SP </span>
+            <div class="sp"><span>SP</span>
               <div class="circle_out" v-show="this.player.sp===1 || this.player.sp===2 || this.player.sp===3">
                 <div class="circle_in"></div>
               </div>

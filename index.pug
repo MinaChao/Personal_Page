@@ -48,22 +48,22 @@ html(lang="zh-TW")
                             .container(@mouseover="spUseHover()" @mouseleave="spNoUseHover()")
                                 .sp_use SP使用
                                 .mp_heal(v-show="spUse" @mouseover="handleHover('消耗SP 1，回復自身MP');" @mouseleave="handleHover()" @click="restoreMP()" :class="{ 'disabled': player.sp == 0 || isWeak===true}") MP回復
-                                .status_ailments_relieved(v-show="spUse" @mouseover="handleHover('消耗SP 3，解除所有異常狀態');" @mouseleave="handleHover()" @click=" relieveStatus()" :class="{ 'disabled': player.sp == 0 }") 異常解除
+                                .status_ailments_relieved(v-show="spUse" @mouseover="handleHover('消耗SP 3，解除所有異常狀態');" @mouseleave="handleHover()" @click=" relieveStatus()" :class="{ 'disabled': player.sp < 3 }") 異常解除
                             .action_skip(@mouseover="handleHover('不做任何動作')" @mouseleave="handleHover()" @click="skipAction()") 不行動
                         .description {{ actionDescription }}
                         .bg_block
                     .helper(@mouseover="hoverRule()" @mouseleave="hiddenRule()")
                     .status(:class="{ 'player_shake': isPlayerShaking }")
                         .hp
-                            span HP 
+                            span HP
                             .block_out
                                 .block_in(:style="{ width: this.player.hp + '%' }")
                         .mp
-                            span MP 
+                            span MP
                             .block_out
                                 .block_in(:style="{ width: this.player.mp + '%' }")
                         .sp
-                            span SP 
+                            span SP
                             .circle_out(v-show="this.player.sp===1 || this.player.sp===2 || this.player.sp===3")
                                 .circle_in
                             .circle_out(v-show="this.player.sp===2 || this.player.sp===3")

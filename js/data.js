@@ -68,7 +68,7 @@ var confettiSettings = {
   props: ["circle"],
   colors: [[120, 120, 120]],
   clock: "2", rotate: false,
-  width: "1498", height: "705",
+  width: "1600", height: "1200",
   start_from_edge: false,
   respawn: true
 };
