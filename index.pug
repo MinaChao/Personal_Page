@@ -126,7 +126,7 @@ html(lang="zh-TW")
                             h3 軟體
                             .softwares
                                 .software(v-for="software_img in myinfoData" :key="software_img.id")
-                                    .img(:style="{'background-image': 'url(' + software_img[3] + ')','background-size': 'cover','background-position': 'center','width': '100%', 'padding-top': '100%'}")
+                                    .img(:style="{'background-image': 'url(' + software_img[1] + ')','background-size': 'cover','background-position': 'center','width': '100%', 'padding-top': '100%'}")
                         .introduce_card(:class="{ 'introduce_card_fadein': showIntroduceCard }")
                             .next(@click="toggleIntroduceCard()" v-show="showIntroduceCard")
                             h3 簡介
