@@ -79,10 +79,10 @@
             </div>
             <div class="ailments">
               <div class="ailments_description">{{ ailmentDescription }}</div>
-              <div class="ailment" v-show="isPoisoned===true" @mouseover="ailmentHover('中毒：每次行動HP-3')" @mouseleave="ailmentHover()"><img src="img/figma.png"></div>
-              <div class="ailment" v-show="isSealed===true" @mouseover="ailmentHover('封印：無法使用魔法攻擊、治療')" @mouseleave="ailmentHover()"><img src="img/csp.png"></div>
-              <div class="ailment" v-show="isBleeding===true" @mouseover="ailmentHover('出血：無法使用普通攻擊')" @mouseleave="ailmentHover()"><img src="img/mina.png"></div>
-              <div class="ailment" v-show="isWeak===true" @mouseover="ailmentHover('虛弱：無法使用MP恢復')" @mouseleave="ailmentHover()"><img src="img/upa.png"></div>
+              <div class="ailment" v-show="isPoisoned===true" @mouseover="ailmentHover('中毒：每次行動HP-3')" @mouseleave="ailmentHover()"><img src="img/poisoned.svg"></div>
+              <div class="ailment" v-show="isSealed===true" @mouseover="ailmentHover('封印：無法使用魔法攻擊、治療')" @mouseleave="ailmentHover()"><img src="img/sealed.svg"></div>
+              <div class="ailment" v-show="isBleeding===true" @mouseover="ailmentHover('出血：無法使用普通攻擊')" @mouseleave="ailmentHover()"><img src="img/bleeding.svg"></div>
+              <div class="ailment" v-show="isWeak===true" @mouseover="ailmentHover('虛弱：無法使用MP恢復')" @mouseleave="ailmentHover()"><img src="img/weak.svg"></div>
             </div>
             <div class="bg_block"></div>
           </div>

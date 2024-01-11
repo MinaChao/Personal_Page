@@ -74,13 +74,13 @@ html(lang="zh-TW")
                         .ailments
                             .ailments_description {{ ailmentDescription }}
                             .ailment(v-show="isPoisoned===true" @mouseover="ailmentHover('中毒：每次行動HP-3')" @mouseleave="ailmentHover()")
-                                img(src="img/figma.png")
+                                img(src="img/poisoned.svg")
                             .ailment(v-show="isSealed===true" @mouseover="ailmentHover('封印：無法使用魔法攻擊、治療')" @mouseleave="ailmentHover()")
-                                img(src="img/csp.png")
+                                img(src="img/sealed.svg")
                             .ailment(v-show="isBleeding===true" @mouseover="ailmentHover('出血：無法使用普通攻擊')" @mouseleave="ailmentHover()")
-                                img(src="img/mina.png")
+                                img(src="img/bleeding.svg")
                             .ailment(v-show="isWeak===true" @mouseover="ailmentHover('虛弱：無法使用MP恢復')" @mouseleave="ailmentHover()")
-                                img(src="img/upa.png")
+                                img(src="img/weak.svg")
                         .bg_block
                     .monster
                         .monster_status
